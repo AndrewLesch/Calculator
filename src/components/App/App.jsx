@@ -13,6 +13,7 @@ import { HomePageFC } from '@/screens/Home_Functional/HomePage'
 export const ThemeContext = createContext()
 
 export const App = () => {
+  localStorage.clear()
   const [selectedTheme, setSelectedTheme] = useState(getStartValue(THEME_VALUE_LS_KEY))
 
   useEffect(() => {

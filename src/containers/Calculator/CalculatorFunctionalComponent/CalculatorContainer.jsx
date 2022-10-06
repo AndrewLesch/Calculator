@@ -7,10 +7,12 @@ import { ControlPanelFC } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
 import { checkBracets } from '@/utils/CheckBracets'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_VALUE_LS_KEY } from '@/constants/localStorage'
-import { operators } from '@/constants/calculatorConstants'
+import { ERRORS, operators } from '@/constants/calculatorConstants'
 import { getStartValue } from '@/utils/getStartValue'
+import { ErrorBoundary } from '@/components/Error'
 
 export const CalculatorContainerFC = () => {
+  // get number 100 in calculator to test Error Boundary working
   const [calculatorValue, setCalculatorValue] = useState(getStartValue(CALCULATOR_VALUE_LS_KEY))
   const [history, setHistoryValue] = useState(getStartValue(HISTORY_VALUE_LS_KEY))
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
@@ -37,20 +39,20 @@ export const CalculatorContainerFC = () => {
       case "=": {
         const lastSymbol = calculatorValue.toString().slice(-1)
         if (operators.includes(lastSymbol)) {
-          alert("eror")
+          throw new Error(ERRORS.invalidFormat)
         } else {
           const isOkey = checkBracets(calculatorValue)
           if (isOkey) {
             const value = toCalculator(calculatorValue)
             if (value === Infinity) {
               setCalculatorValue(calculatorValue)
-              
+              throw new Error(ERRORS.devideByZero)
             } else {
               setHistoryValue([...history, calculatorValue])
               setCalculatorValue(toCalculator(calculatorValue))
             }
           } else {
-            
+            throw new Error(ERRORS.whongBracets)
           }
         }
         break
@@ -81,6 +83,7 @@ export const CalculatorContainerFC = () => {
   }
 
   return (
+    <ErrorBoundary>
       <CalculatorWrapper>
         <LeftSideWrapper>
           <DisplayFC calculatorValue={calculatorValue} />
@@ -92,5 +95,6 @@ export const CalculatorContainerFC = () => {
           {isHistoryOpen && <HistoryFC history={history} />}
         </RigthSideWrapper>
       </CalculatorWrapper>
+    </ErrorBoundary>
   )
 }
