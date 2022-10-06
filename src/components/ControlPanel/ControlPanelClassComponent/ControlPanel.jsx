@@ -4,7 +4,6 @@ import { ControlPanelButton, ControlPanelButtonsContainer } from '../components'
 
 export class ControlPanelCL extends Component {
   render() {
-
     return (
       <ControlPanelButtonsContainer>
         <ControlPanelButton onClick={this.props.onHistoryButtonClick}>{this.props.isHistoryOpen ? "Hide story" : "Show history"}</ControlPanelButton>

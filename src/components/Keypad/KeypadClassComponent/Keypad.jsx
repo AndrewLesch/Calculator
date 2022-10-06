@@ -4,9 +4,7 @@ import { KeypadButton, KeypadButtonWrapper } from '../components'
 import { keypadButtons } from '@/constants/calculatorConstants'
 
 export class KeypadCL extends Component {
-
   render() {
-
     return (
       <KeypadButtonWrapper>
         {keypadButtons.map((btnValue, index) =>

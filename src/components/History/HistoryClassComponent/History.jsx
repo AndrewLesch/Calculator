@@ -3,9 +3,7 @@ import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitl
 import PropTypes from 'prop-types'
 
 export class HistoryCL extends Component {
-
   render() {
-
     return (
       <HistoryContainer>
         <HistoryTitle>

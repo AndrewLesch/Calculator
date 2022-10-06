@@ -5,7 +5,6 @@ import { keypadButtons } from '@/constants/calculatorConstants'
 
 
 export const KeypadFC = ({ onKeypadButtonClick }) => {
-
   return (
     <KeypadButtonWrapper>
       {keypadButtons.map((btnValue, index) =>

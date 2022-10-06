@@ -7,7 +7,7 @@ import { ControlPanelFC } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
 import { checkBracets } from '@/utils/CheckBracets'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_VALUE_LS_KEY } from '@/constants/localStorage'
-import { ERRORS, operators } from '@/constants/calculatorConstants'
+import { ERRORS, openBracet, operators } from '@/constants/calculatorConstants'
 import { getStartValue } from '@/utils/getStartValue'
 import { ErrorBoundary } from '@/components/Error'
 
@@ -38,10 +38,12 @@ export const CalculatorContainerFC = () => {
     switch (btnValue) {
       case "=": {
         const lastSymbol = calculatorValue.toString().slice(-1)
+
         if (operators.includes(lastSymbol)) {
           throw new Error(ERRORS.invalidFormat)
         } else {
           const isOkey = checkBracets(calculatorValue)
+          
           if (isOkey) {
             const value = toCalculator(calculatorValue)
             if (value === Infinity) {
@@ -70,9 +72,11 @@ export const CalculatorContainerFC = () => {
       default: {
         let value = `${calculatorValue}${btnValue}`
         let lastSymbol = calculatorValue.toString().slice(-1)
-        if (btnValue === "(" && !operators.includes(lastSymbol) && lastSymbol !== "(") {
+
+        if (btnValue === openBracet && !operators.includes(lastSymbol) && lastSymbol !== openBracet) {
           value = `${calculatorValue}`.concat(`*${btnValue}`)
         }
+
         if (operators.includes(lastSymbol) && operators.includes(btnValue)) {
           value = `${calculatorValue}${btnValue}`.slice(0, -2).concat(btnValue)
           lastSymbol = ""

@@ -6,3 +6,4 @@ export const ERRORS = {
   testErrorBoundary: "test error boundary",
   invalidFormat: "Invalid format",
 }
+export const openBracet = "("

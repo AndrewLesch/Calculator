@@ -3,7 +3,6 @@ import { Heading, TitleContainer, Title, LinksContainer, NavbarLink } from './co
 import { HOME_PAGE_ROUTE_CL, HOME_PAGE_ROUTE_FC, SETTING_PAGE_ROUTE } from '@/constants/router'
 
 export const Header = () => {
-
   return (
     <Heading>
       <TitleContainer>

@@ -4,7 +4,6 @@ import { darkTheme, lightTheme } from '@/styles/theme'
 import { ThemeContext } from '../App/App'
 
 export const ThemeChanger = () => {
-
   return (
     <ThemeContext.Consumer>
       {({ selectedTheme, handleThemeChange }) => (

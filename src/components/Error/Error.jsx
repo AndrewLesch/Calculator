@@ -16,7 +16,7 @@ export class ErrorBoundary extends Component {
     if (this.state.hasError) {
       return <h2>Something went wrong. Error Boundary test</h2>
     }
-
+    
     return this.props.children
   }
 }

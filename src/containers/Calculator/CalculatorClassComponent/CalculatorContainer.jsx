@@ -8,7 +8,7 @@ import { toCalculator } from '@/utils/Calculator'
 import { checkBracets } from '@/utils/CheckBracets'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_VALUE_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/getStartValue'
-import { ERRORS, operators } from '@/constants/calculatorConstants'
+import { ERRORS, openBracet, operators } from '@/constants/calculatorConstants'
 
 export class CalculatorContainerCL extends Component {
   constructor(props) {
@@ -62,14 +62,15 @@ export class CalculatorContainerCL extends Component {
     switch (btnValue) {
       case "=": {
         const lastSymbol = calculatorValue.toString().slice(-1)
+
         if (operators.includes(lastSymbol)) {
           throw new Error(ERRORS.invalidFormat)
         } else {
           const isOkey = checkBracets(calculatorValue)
+
           if (isOkey) {
             const value = toCalculator(calculatorValue)
             if (value === Infinity) {
-
               this.setState(({ calculatorValue }) => {
                 return {
                   calculatorValue: calculatorValue,
@@ -112,10 +113,16 @@ export class CalculatorContainerCL extends Component {
       default: {
         let value = `${calculatorValue}${btnValue}`
         let lastSymbol = calculatorValue.toString().slice(-1)
-        if (operators.includes(lastSymbol) && operators.includes(btnValue) && lastSymbol !== "(") {
+
+        if (btnValue === openBracet && !operators.includes(lastSymbol) && lastSymbol !== openBracet) {
+          value = `${calculatorValue}`.concat(`*${btnValue}`)
+        }
+
+        if (operators.includes(lastSymbol) && operators.includes(btnValue)) {
           value = `${calculatorValue}${btnValue}`.slice(0, -2).concat(btnValue)
           lastSymbol = ""
         }
+
         this.setState(({ calculatorValue }) => {
           return {
             calculatorValue: value,

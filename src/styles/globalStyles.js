@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-
 import { defaultThemeStyles } from './theme'
 
 export default createGlobalStyle`
