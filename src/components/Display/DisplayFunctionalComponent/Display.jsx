@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { CalculatorDisplay } from '../components'
 import { ERRORS } from '@/constants/calculatorConstants'
 
@@ -11,4 +12,8 @@ export const DisplayFC = ({ calculatorValue }) => {
   return (
     <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>
   )
+}
+
+DisplayFC.PropTypes = {
+  calculatorValue: PropTypes.string,
 }

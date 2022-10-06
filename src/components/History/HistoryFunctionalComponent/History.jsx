@@ -1,5 +1,6 @@
 import React from 'react'
 import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from '../components'
+import PropTypes from 'prop-types'
 
 export const HistoryFC = ({ history }) => {
   
@@ -13,4 +14,8 @@ export const HistoryFC = ({ history }) => {
       </HistoryElementsContainer>
     </HistoryContainer>
   )
+}
+
+HistoryFC.PropTypes = {
+  history: PropTypes.array,
 }
