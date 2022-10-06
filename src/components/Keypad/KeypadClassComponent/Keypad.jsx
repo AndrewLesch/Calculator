@@ -11,6 +11,7 @@ export class KeypadCL extends Component {
         {keypadButtons.map((btnValue, index) =>
           <KeypadButton
             value={btnValue}
+            onClick={() => this.props.onKeypadButtonClick(btnValue)}
             key={index}>{btnValue}
           </KeypadButton>,
         )}

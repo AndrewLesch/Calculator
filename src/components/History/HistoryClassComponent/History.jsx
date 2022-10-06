@@ -10,7 +10,9 @@ export class HistoryCL extends Component {
         <HistoryTitle>
           History
         </HistoryTitle>
-        <HistoryElementsContainer />
+        <HistoryElementsContainer>
+          {this.props.history.map(historyElement => <HistoryElement key={historyElement}>{historyElement}</HistoryElement>)}
+        </HistoryElementsContainer>
       </HistoryContainer>
     )
   }

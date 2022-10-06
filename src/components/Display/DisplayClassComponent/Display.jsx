@@ -6,7 +6,8 @@ export class DisplayCL extends Component {
   render() {
 
     return (
-      <CalculatorDisplay />
+      <CalculatorDisplay>{this.props.calculatorValue}</CalculatorDisplay>
     )
   }
+
 }

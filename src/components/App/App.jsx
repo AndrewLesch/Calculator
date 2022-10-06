@@ -9,6 +9,7 @@ import { HomePageCL } from '@/screens/Home_Classes/HomePage'
 import { HomePageFC } from '@/screens/Home_Functional/HomePage'
 import { lightTheme } from '@/styles/theme'
 
+
 export const App = () => {
 
   return (

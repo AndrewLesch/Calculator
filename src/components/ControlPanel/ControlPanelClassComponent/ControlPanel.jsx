@@ -6,8 +6,8 @@ export class ControlPanelCL extends Component {
 
     return (
       <ControlPanelButtonsContainer>
-        <ControlPanelButton>Show history</ControlPanelButton>
-        <ControlPanelButton>Delete history</ControlPanelButton>
+        <ControlPanelButton onClick={this.props.onHistoryButtonClick}>{this.props.isHistoryOpen ? "Hide story" : "Show history"}</ControlPanelButton>
+        <ControlPanelButton onClick={() => this.props.deleteHistory()}>Delete history</ControlPanelButton>
       </ControlPanelButtonsContainer>
     )
   }
