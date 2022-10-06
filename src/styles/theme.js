@@ -66,4 +66,31 @@ const lightThemeColors = {
   },
 }
 
+const darkThemeColors = {
+  colors: {
+    layoutBackground: "#181818",
+    headerBackground: "#101010",
+    calculatorBackground: "#2a2121",
+
+    keypadButton: "#181818",
+    keypadButtonBorder: "#9F9F9F",
+    keypadText: "#FEFEFE",
+
+    calculatorDisplayText: "#FEFEFE",
+
+    historyTitle: "#FEFEFE",
+    historyElement: "#FEFEFE",
+
+    settingsTitle: "#FEFEFE",
+    themeChangerDescription: "#FEFEFE",
+
+    defaultAppBorder: "#9F9F9F",
+
+    headerTitle: "#FEFEFE",
+    headerNavButton: "#9F9F9F",
+    headerNavButtonActive: "#FEFEFE",
+  },
+}
+
 export const lightTheme = Object.assign(lightThemeColors, defaultThemeStyles)
+export const darkTheme = Object.assign(darkThemeColors, defaultThemeStyles)

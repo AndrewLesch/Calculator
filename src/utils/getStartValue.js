@@ -11,6 +11,12 @@ export const getStartValue = key => {
 
     }
 
+    case THEME_VALUE_LS_KEY: {
+      const isData = localStorage.getItem(key)
+      return isData ? JSON.parse(localStorage.getItem(key)) : lightTheme
+
+    }
+
     default: {
       const isData = localStorage.getItem(key)
       return isData ? JSON.parse(localStorage.getItem(key)) : ""
