@@ -1,58 +1,71 @@
+import { operators } from "@/constants/calculatorConstants"
+
 class Calculator {
   constructor() {
     this.history = []
-    this.values = []
   }
 
   executeCommand(command) {
-    const value = command.execute(this.values.pop(), this.values.pop())
-    this.values.push(value)
     this.history.push(command)
+    return command.execute()
   }
 
-  getResult() {
-    return this.values.pop()
-  }
-
-  pushValue(value) {
-    this.values.push(value)
+  isHistoryNotEmpty() {
+    return this.history.length
   }
 }
 
 class AddCommand {
+  constructor(firstValueToAdd, secondValueToAdd) {
+    this.firstValueToAdd = firstValueToAdd
+    this.secondValueToAdd = secondValueToAdd
+  }
 
-  execute(currentValueOne, currentValueTwo) {
-    return currentValueOne + currentValueTwo
+  execute() {
+    return this.firstValueToAdd + this.secondValueToAdd
   }
 }
 
 class SubtractCommand {
+  constructor(firstValueToSubtract, secondValueToSubtract) {
+    this.firstValueToSubtract = firstValueToSubtract
+    this.secondValueToSubtract = secondValueToSubtract
+  }
 
-  execute(currentValueOne, currentValueTwo) {
-    return currentValueTwo - currentValueOne
+  execute() {
+    return this.firstValueToSubtract - this.secondValueToSubtract
   }
 }
 
 class MultiplyCommand {
+  constructor(firstValueToMultiply, secondValueToMultiply) {
+    this.firstValueToMultiply = firstValueToMultiply
+    this.secondValueToMultiply = secondValueToMultiply
+  }
 
-  execute(currentValueOne, currentValueTwo) {
-    return currentValueOne * currentValueTwo
+  execute() {
+    return this.firstValueToMultiply * this.secondValueToMultiply
   }
 }
 
 class DivideCommand {
+  constructor(firstValueToDivide, secondValueToDivide) {
+    this.firstValueToDivide = firstValueToDivide
+    this.secondValueToDivide = secondValueToDivide
+  }
 
-  execute(currentValueOne, currentValueTwo) {
-    return currentValueTwo / currentValueOne
+  execute() {
+    return this.firstValueToDivide / this.secondValueToDivide
   }
 }
 
 // Функция для преобразования выражения в польскую запись для дальнешей работы с ней.
 const toPolishWriteback = statement => {
   const stack = []
-  let result = ''
+  let expression = ''
+  const result = []
 
-  // Приоритет операторов
+  // operator: priority
   const operators = {
     '+': 0,
     '-': 0,
@@ -62,65 +75,73 @@ const toPolishWriteback = statement => {
 
   for (let i = 0; i < statement.length; ++i) {
     const char = statement.charAt(i)
-
     if ((['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', "."]).indexOf(char) >= 0) {
-      result += char
+      expression += char
     } else if (char === '(') {
       stack.push(char)
     } else if (char === ')') {
-      result += "?"
-      let s = stack.pop()
-
-      while (s && s !== '(') {
-        result += s
-        s = stack.pop()
+      if (expression !== "") {
+        result.push(expression)
       }
+      expression = ""
+      let el = stack.pop()
+
+      while (el && el !== '(') {
+        expression = el
+        el = stack.pop()
+        result.push(expression)
+      }
+      expression = ""
     } else if (Object.keys(operators).indexOf(char) >= 0) {
-      result += "?"
+      if (expression !== "") {
+        result.push(expression)
+      }
+      expression = ""
       while (operators[stack.slice(-1)[0]] >= operators[char]) {
-        result += stack.pop()
+        expression = stack.pop()
+        result.push(expression)
       }
       stack.push(char)
+      expression = ""
     }
   }
 
-  let sym = ''
-  const lastChar = result[result.length - 1]
-  if ((['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).indexOf(lastChar) >= 0) {
-    result += '?'
-  }
-  while ((sym = stack.pop())) {
-    result += sym
+  if (expression !== "") {
+    result.push(expression)
   }
 
+  let sym = ""
+  expression = ""
+  while ((sym = stack.pop())) {
+    expression = sym
+    result.push(expression)
+  }
   return result
 }
 
 
 // Функция расчета выражения польской записи
-const calculatePolishWriteback = statement => {
-  let number = 0
-  let stroka = ""
-
+const calculatePolishWriteback = polishWriteback => {
   const myCalculator = new Calculator()
+  let firstNumber, secondNumber, result
+  const stack = []
 
-  for (let i = 0; i < statement.length; i++) {
-    if (statement[i] <= "9" && statement[i] >= "0" || statement[i] === ".") {
-      stroka += statement[i]
-    } else if (statement[i] === "?") {
-      number = +stroka
-      myCalculator.pushValue(number)
-      stroka = ""
+  for (let i = 0; i < polishWriteback.length; i++) {
+    if ((operators).indexOf(polishWriteback[i]) < 0) {
+      stack.push(+polishWriteback[i])
     } else {
-      switch (statement[i]) {
-        case '+': myCalculator.executeCommand(new AddCommand()); break
-        case '-': myCalculator.executeCommand(new SubtractCommand()); break
-        case '*': myCalculator.executeCommand(new MultiplyCommand()); break
-        case '/': myCalculator.executeCommand(new DivideCommand()); break
+      secondNumber = stack.pop()
+      firstNumber = stack.pop()
+      switch (polishWriteback[i]) {
+        case '+': result = myCalculator.executeCommand(new AddCommand(firstNumber, secondNumber)); break
+        case '-': result = myCalculator.executeCommand(new SubtractCommand(firstNumber, secondNumber)); break
+        case '*': result = myCalculator.executeCommand(new MultiplyCommand(firstNumber, secondNumber)); break
+        case '/': result = myCalculator.executeCommand(new DivideCommand(firstNumber, secondNumber)); break
       }
+      stack.push(result)
     }
   }
-  return myCalculator.getResult()
+  return stack.pop()
 }
 
 export const toCalculator = value => +calculatePolishWriteback(toPolishWriteback(value)).toFixed(3)
