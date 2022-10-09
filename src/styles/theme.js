@@ -41,6 +41,7 @@ export const defaultThemeStyles = {
 }
 
 const lightThemeColors = {
+  key: "lightTheme",
   colors: {
     layoutBackground: "#CECECE",
     headerBackground: "#434343",
@@ -69,6 +70,7 @@ const lightThemeColors = {
 }
 
 const darkThemeColors = {
+  key: "darkTheme",
   colors: {
     layoutBackground: "#181818",
     headerBackground: "#101010",
@@ -96,5 +98,5 @@ const darkThemeColors = {
   },
 }
 
-export const lightTheme = {...lightThemeColors, ...defaultThemeStyles}
-export const darkTheme = {...darkThemeColors, ...defaultThemeStyles}
+export const lightTheme = { ...lightThemeColors, ...defaultThemeStyles }
+export const darkTheme = { ...darkThemeColors, ...defaultThemeStyles }

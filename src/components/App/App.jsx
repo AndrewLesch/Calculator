@@ -9,18 +9,29 @@ import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/GetStartValue'
 import { HomePageClass } from '@/screens/Home/HomePageClass'
 import { HomePageFunctional } from '@/screens/Home/HomePageFunctional'
+import { darkTheme, lightTheme } from '@/styles/theme'
+import { saveThemeToLS } from './constants'
 
-export const ThemeContext = createContext()
+export const ThemeContext = createContext({
+  selectedTheme: lightTheme || darkTheme,
+  setSelectedTheme: () => { },
+})
 
 export const App = () => {
   const [selectedTheme, setSelectedTheme] = useState(getStartValue(CURRENT_THEME_LS_KEY))
 
-  useEffect(() => {
-    localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(selectedTheme))
-  }, [selectedTheme])
-
-  const handleThemeChange = theme => {
-    setSelectedTheme(JSON.parse(theme))
+  const handleThemeChange = themeKey => {
+    switch (themeKey) {
+      case "lightTheme":
+        setSelectedTheme(lightTheme)
+        saveThemeToLS(lightTheme)
+        break;
+    
+      default:
+        setSelectedTheme(darkTheme)
+        saveThemeToLS(darkTheme)
+        break;
+    }
   }
 
   return (
