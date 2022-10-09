@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from '../components'
+import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from './components'
 import propTypes from 'prop-types'
 
-export class HistoryCL extends Component {
+export class HistoryClass extends Component {
   render() {
     return (
       <HistoryContainer>
@@ -17,6 +17,6 @@ export class HistoryCL extends Component {
   }
 }
 
-HistoryCL.propTypes = {
+HistoryClass.propTypes = {
   history: propTypes.array,
 }

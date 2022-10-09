@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from '../components'
-import { DisplayFC } from '@/components/Display'
-import { HistoryFC } from '@/components/History'
-import { KeypadFC } from '@/components/Keypad'
-import { ControlPanelFC } from '@/components/ControlPanel'
+import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from './components'
+import { DisplayFunctional } from '@/components/Display'
+import { HistoryFunctional } from '@/components/History'
+import { KeypadFunctional } from '@/components/Keypad'
+import { ControlPanelFunctional } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
@@ -11,7 +11,7 @@ import { errors, openBrace, operators } from '@/constants/calculatorConstants'
 import { getStartValue } from '@/utils/GetStartValue'
 import { ErrorBoundary } from '@/components/Error'
 
-export const CalculatorContainerFC = () => {
+export const CalculatorContainerFunctional = () => {
   // get number 100 in calculator to test Error Boundary working
   const [calculatorValue, setCalculatorValue] = useState(getStartValue(CALCULATOR_VALUE_LS_KEY))
   const [history, setHistoryValue] = useState(getStartValue(HISTORY_LS_KEY))
@@ -90,13 +90,13 @@ export const CalculatorContainerFC = () => {
     <ErrorBoundary>
       <CalculatorWrapper>
         <ButtonsWrapper>
-          <DisplayFC calculatorValue={calculatorValue} />
-          <KeypadFC onKeypadButtonClick={onKeypadButtonClick} />
+          <DisplayFunctional calculatorValue={calculatorValue} />
+          <KeypadFunctional onKeypadButtonClick={onKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
-          <ControlPanelFC isHistoryOpen={isHistoryOpen} onHistoryButtonClick={onHistoryButtonClick}
+          <ControlPanelFunctional isHistoryOpen={isHistoryOpen} onHistoryButtonClick={onHistoryButtonClick}
             setHistory={setHistoryValue} />
-          {isHistoryOpen && <HistoryFC history={history} />}
+          {isHistoryOpen && <HistoryFunctional history={history} />}
         </HistoryWrapper>
       </CalculatorWrapper>
     </ErrorBoundary>

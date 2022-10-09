@@ -1,2 +1,2 @@
-export { KeypadFC } from "./KeypadFunctionalComponent/Keypad"
-export { KeypadCL } from "./KeypadClassComponent/Keypad"
+export { KeypadFunctional } from './KeypadFunctional'
+export { KeypadClass } from './KeypadClass'

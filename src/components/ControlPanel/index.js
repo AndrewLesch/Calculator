@@ -1,2 +1,2 @@
-export { ControlPanelFC } from './ControlPanelFunctionalComponents/ControlPanel'
-export { ControlPanelCL } from './ControlPanelClassComponent/ControlPanel'
+export { ControlPanelFunctional } from './ControlPanelFunctional'
+export { ControlPanelClass } from './ControlPanelClass'

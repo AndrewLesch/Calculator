@@ -1,2 +1,2 @@
-export { DisplayFC } from './DisplayFunctionalComponent/Display'
-export { DisplayCL } from './DisplayClassComponent/Display'
+export { DisplayFunctional } from './DisplayFunctional'
+export { DisplayClass } from './DisplayClass'

@@ -11,12 +11,11 @@ export class ErrorBoundary extends Component {
     return { hasError: true }
   }
 
-
   render() {
     if (this.state.hasError) {
-      return <h2>Something went wrong. Error Boundary test</h2>
+      return <h2>Something went wrong. Ooops</h2>
     }
-    
+
     return this.props.children
   }
 }

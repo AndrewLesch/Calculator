@@ -1,2 +1,2 @@
-export { HistoryFC } from './HistoryFunctionalComponent/History'
-export { HistoryCL } from './HistoryClassComponent/History'
+export { HistoryFunctional} from './HistoryFunctional'
+export { HistoryClass} from './HistoryClass'

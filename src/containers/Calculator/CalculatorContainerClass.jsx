@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from '../components'
-import { DisplayCL } from '@/components/Display'
-import { HistoryCL } from '@/components/History'
-import { KeypadCL } from '@/components/Keypad'
-import { ControlPanelCL } from '@/components/ControlPanel'
+import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from './components'
+import { DisplayClass } from '@/components/Display'
+import { HistoryClass } from '@/components/History'
+import { KeypadClass } from '@/components/Keypad'
+import { ControlPanelClass } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/GetStartValue'
 import { errors, operators, openBrace } from '@/constants/calculatorConstants'
 
-export class CalculatorContainerCL extends Component {
+export class CalculatorContainerClass extends Component {
   constructor(props) {
     super(props)
 
@@ -138,13 +138,13 @@ export class CalculatorContainerCL extends Component {
     return (
       <CalculatorWrapper>
         <ButtonsWrapper>
-          <DisplayCL calculatorValue={calculatorValue} />
-          <KeypadCL onKeypadButtonClick={this.handleKeypadButtonClick} />
+          <DisplayClass calculatorValue={calculatorValue} />
+          <KeypadClass onKeypadButtonClick={this.handleKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
-          <ControlPanelCL deleteHistory={this.deleteHistory} isHistoryOpen={isHistoryOpen}
+          <ControlPanelClass deleteHistory={this.deleteHistory} isHistoryOpen={isHistoryOpen}
             onHistoryButtonClick={this.handleHistoryButtonClick} />
-          {isHistoryOpen && <HistoryCL history={history} />}
+          {isHistoryOpen && <HistoryClass history={history} />}
         </HistoryWrapper>
       </CalculatorWrapper >
     )

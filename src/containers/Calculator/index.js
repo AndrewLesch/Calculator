@@ -1,2 +1,2 @@
-export { CalculatorContainerFC } from "./CalculatorFunctionalComponent/CalculatorContainer"
-export { CalculatorContainerCL } from "./CalculatorClassComponent/CalculatorContainer"
+export { CalculatorContainerFunctional } from './CalculatorContainerFunctional'
+export { CalculatorContainerClass } from './CalculatorContainerClass'

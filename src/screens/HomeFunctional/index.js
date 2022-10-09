@@ -1,1 +1,0 @@
-export { HomePageFC } from "./HomePage"

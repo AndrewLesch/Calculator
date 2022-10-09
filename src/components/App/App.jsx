@@ -7,8 +7,8 @@ import { SettingsPage } from '@/screens/Settings'
 import { Header } from '@/components/Header'
 import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/GetStartValue'
-import { HomePageCL } from '@/screens/HomeClass/HomePage'
-import { HomePageFC } from '@/screens/HomeFunctional/HomePage'
+import { HomePageClass } from '@/screens/Home/HomePageClass'
+import { HomePageFunctional } from '@/screens/Home/HomePageFunctional'
 
 export const ThemeContext = createContext()
 
@@ -31,9 +31,9 @@ export const App = () => {
             <Header />
             <Switch>
               <Route path={SETTING_PAGE_ROUTE} component={SettingsPage} />
-              <Route path={HOME_PAGE_ROUTE_CL} component={HomePageCL} />
-              <Route path={HOME_PAGE_ROUTE_FC} component={HomePageFC} />
-              <Route path="*" component={HomePageFC} />
+              <Route path={HOME_PAGE_ROUTE_CL} component={HomePageClass} />
+              <Route path={HOME_PAGE_ROUTE_FC} component={HomePageFunctional} />
+              <Route path='*' component={HomePageFunctional} />
             </Switch>
           </AppWrapper>
         </PageLayout>
