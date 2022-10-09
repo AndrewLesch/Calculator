@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { CalculatorDisplay } from '../components'
 
 export class DisplayCL extends Component {
@@ -11,6 +11,6 @@ export class DisplayCL extends Component {
 
 }
 
-DisplayCL.PropTypes = {
-  calculatorValue: PropTypes.string,
+DisplayCL.propTypes = {
+  calculatorValue: propTypes.string,
 }

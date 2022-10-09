@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { CalculatorWrapper, LeftSideWrapper, RigthSideWrapper } from '../components'
+import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from '../components'
 import { DisplayCL } from '@/components/Display'
 import { HistoryCL } from '@/components/History'
 import { KeypadCL } from '@/components/Keypad'
 import { ControlPanelCL } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
-import { checkBracets } from '@/utils/CheckBracets'
-import { CALCULATOR_VALUE_LS_KEY, HISTORY_VALUE_LS_KEY } from '@/constants/localStorage'
-import { getStartValue } from '@/utils/getStartValue'
-import { ERRORS, openBracet, operators } from '@/constants/calculatorConstants'
+import { checkBraces } from '@/utils/CheckBraces'
+import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
+import { getStartValue } from '@/utils/GetStartValue'
+import { errors, operators, openBrace } from '@/constants/calculatorConstants'
 
 export class CalculatorContainerCL extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export class CalculatorContainerCL extends Component {
 
     this.state = {
       calculatorValue: getStartValue(CALCULATOR_VALUE_LS_KEY),
-      history: getStartValue(HISTORY_VALUE_LS_KEY),
+      history: getStartValue(HISTORY_LS_KEY),
       isHistoryOpen: false,
     }
   }
@@ -37,7 +37,7 @@ export class CalculatorContainerCL extends Component {
     }
 
     if (prevState.history !== history) {
-      localStorage.setItem(HISTORY_VALUE_LS_KEY, JSON.stringify(this.state.history))
+      localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(this.state.history))
     }
   }
 
@@ -48,7 +48,7 @@ export class CalculatorContainerCL extends Component {
   }
 
   deleteHistory = () => {
-    localStorage.setItem(HISTORY_VALUE_LS_KEY, [])
+    localStorage.setItem(HISTORY_LS_KEY, [])
     this.setState(({ history }) => {
       return {
         history: [],
@@ -64,9 +64,9 @@ export class CalculatorContainerCL extends Component {
         const lastSymbol = calculatorValue.toString().slice(-1)
 
         if (operators.includes(lastSymbol)) {
-          throw new Error(ERRORS.invalidFormat)
+          throw new Error(errors.invalidFormat)
         } else {
-          const isOkey = checkBracets(calculatorValue)
+          const isOkey = checkBraces(calculatorValue)
 
           if (isOkey) {
             const value = toCalculator(calculatorValue)
@@ -76,7 +76,7 @@ export class CalculatorContainerCL extends Component {
                   calculatorValue: calculatorValue,
                 }
               })
-              throw new Error(ERRORS.devideByZero)
+              throw new Error(errors.divideByZero)
             } else {
               this.setState(({ history, calculatorValue }) => {
                 return {
@@ -87,7 +87,7 @@ export class CalculatorContainerCL extends Component {
               })
             }
           } else {
-            throw new Error(ERRORS.whongBracets)
+            throw new Error(errors.wrongBracets)
           }
         }
         break
@@ -114,7 +114,7 @@ export class CalculatorContainerCL extends Component {
         let value = `${calculatorValue}${btnValue}`
         let lastSymbol = calculatorValue.toString().slice(-1)
 
-        if (btnValue === openBracet && !operators.includes(lastSymbol) && lastSymbol !== openBracet) {
+        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace) {
           value = `${calculatorValue}`.concat(`*${btnValue}`)
         }
 
@@ -137,15 +137,15 @@ export class CalculatorContainerCL extends Component {
 
     return (
       <CalculatorWrapper>
-        <LeftSideWrapper>
+        <ButtonsWrapper>
           <DisplayCL calculatorValue={calculatorValue} />
           <KeypadCL onKeypadButtonClick={this.handleKeypadButtonClick} />
-        </LeftSideWrapper>
-        <RigthSideWrapper>
+        </ButtonsWrapper>
+        <HistoryWrapper>
           <ControlPanelCL deleteHistory={this.deleteHistory} isHistoryOpen={isHistoryOpen}
             onHistoryButtonClick={this.handleHistoryButtonClick} />
           {isHistoryOpen && <HistoryCL history={history} />}
-        </RigthSideWrapper>
+        </HistoryWrapper>
       </CalculatorWrapper >
     )
   }

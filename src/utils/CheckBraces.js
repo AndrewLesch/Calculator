@@ -1,21 +1,21 @@
 // Функция для определения правильной расстоновки скобок.
 
-export const checkBracets = str => {
+export const checkBraces = str => {
   const chars = str.toString().split('')
   const stack = []
-  const openBracet = ['(']
-  const closeBracet = [')']
+  const openBrace = ['(']
+  const closeBrace = [')']
   let closeIndex
   let openIndex
 
   for (let i = 0, { length } = chars; i < length; i++) {
-    openIndex = openBracet.indexOf(chars[i])
+    openIndex = openBrace.indexOf(chars[i])
     if (openIndex !== -1) {
       stack.push(openIndex)
       continue
     }
 
-    closeIndex = closeBracet.indexOf(chars[i])
+    closeIndex = closeBrace.indexOf(chars[i])
 
     if (closeIndex !== -1) {
       openIndex = stack.pop()

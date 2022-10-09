@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 
-export const Heading = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   height: 10%;
   display: flex;
@@ -16,7 +16,7 @@ export const TitleContainer = styled.div`
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.headerTitle};
   font-size: ${({ theme }) => theme.fontSizes[3]}px;
-  font-weigth: 500;
+  font-weight: 500;
   margin-left: 20px;
 `
 
@@ -28,7 +28,7 @@ export const LinksContainer = styled.div`
 export const NavbarLink = styled(Link)`
   margin-right: 20px;
   text-decoration: none;
-  font-weigth: 400;
+  font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes[2]}px;
   color: ${({ theme }) => theme.colors.headerNavButton};
 

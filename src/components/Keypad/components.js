@@ -7,7 +7,7 @@ export const KeypadButton = styled.button`
   border: 2px solid ${({ theme }) => theme.colors.keypadButtonBorder};
   border-radius: 10px;
   font-size: 25px;
-  font-weigth: 700;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.keypadText};
   background-color: ${({ theme }) => theme.colors.keypadButton};
   &:hover {

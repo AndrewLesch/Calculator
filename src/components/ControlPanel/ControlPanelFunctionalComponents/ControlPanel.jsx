@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { ControlPanelButton, ControlPanelButtonsContainer } from '../components'
 
 export const ControlPanelFC = ({ isHistoryOpen, onHistoryButtonClick, setHistory }) => {
@@ -11,8 +11,8 @@ export const ControlPanelFC = ({ isHistoryOpen, onHistoryButtonClick, setHistory
   )
 }
 
-ControlPanelFC.PropTypes = {
-  isHistoryOpen: PropTypes.bool,
-  onHistoryButtonClick: PropTypes.func,
-  setHistory: PropTypes.func,
+ControlPanelFC.propTypes = {
+  isHistoryOpen: propTypes.bool,
+  onHistoryButtonClick: propTypes.func,
+  setHistory: propTypes.func,
 }

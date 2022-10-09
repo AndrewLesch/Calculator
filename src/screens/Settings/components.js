@@ -25,10 +25,9 @@ export const DeleteButton = styled.button`
   padding-left: 20px;
   text-align: start;
   border: 2px solid ${({ theme }) => theme.colors.defaultAppBorder};
-
 `
 
-export const ThemeChangerDescription = styled.p`
+export const ThemeChangerDescription = styled.h4`
 margin-left: 20px;
 font-size: 14px;
 color: ${({ theme }) => theme.colors.themeChangerDescription};

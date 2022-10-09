@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CalculatorDisplay = styled.h3`
+export const CalculatorDisplay = styled.div`
   margin: 20px;
   width: 90%;
   height: 10%;

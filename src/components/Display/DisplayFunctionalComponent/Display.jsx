@@ -1,11 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { CalculatorDisplay } from '../components'
-import { ERRORS } from '@/constants/calculatorConstants'
+import { errors } from '@/constants/calculatorConstants'
 
 export const DisplayFC = ({ calculatorValue }) => {
   if (calculatorValue === 100) {
-    throw new Error(ERRORS.testErrorBoundary)
+    throw new Error(errors.commonError)
   }
 
   return (
@@ -13,6 +13,6 @@ export const DisplayFC = ({ calculatorValue }) => {
   )
 }
 
-DisplayFC.PropTypes = {
-  calculatorValue: PropTypes.string,
+DisplayFC.propTypes = {
+  calculatorValue: propTypes.string,
 }

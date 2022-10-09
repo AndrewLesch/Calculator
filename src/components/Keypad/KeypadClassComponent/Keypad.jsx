@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { KeypadButton, KeypadButtonWrapper } from '../components'
 import { keypadButtons } from '@/constants/calculatorConstants'
 
@@ -19,6 +19,6 @@ export class KeypadCL extends Component {
   }
 }
 
-KeypadCL.PropTypes = {
-  onKeypadButtonClick: PropTypes.func,
+KeypadCL.propTypes = {
+  onKeypadButtonClick: propTypes.func,
 }

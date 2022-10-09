@@ -7,7 +7,7 @@ export const ControlPanelButton = styled.button`
   height: 40px;
   border-radius: 5px;
   font-size: 14px;
-  color: black;
+  color: ${({ theme }) => theme.colors.controlPanelButton};
   border: 2px solid ${({ theme }) => theme.colors.defaultAppBorder};
   
   &:hover {

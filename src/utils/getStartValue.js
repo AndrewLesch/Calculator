@@ -1,25 +1,23 @@
-import { HISTORY_VALUE_LS_KEY, THEME_VALUE_LS_KEY } from "@/constants/localStorage"
+import { HISTORY_LS_KEY, CURRENT_THEME_LS_KEY } from "@/constants/localStorage"
 import { lightTheme } from "@/styles/theme"
 
-// Функция для получения данных из LS для различных данных.
+// Function to get value from LS.
 
 export const getStartValue = key => {
   switch (key) {
-    case HISTORY_VALUE_LS_KEY: {
-      const isData = localStorage.getItem(key)
-      return isData ? JSON.parse(localStorage.getItem(key)) : []
-
+    case HISTORY_LS_KEY: {
+      const hasData = localStorage.getItem(key)
+      return hasData ? JSON.parse(localStorage.getItem(key)) : []
     }
 
-    case THEME_VALUE_LS_KEY: {
-      const isData = localStorage.getItem(key)
-      return isData ? JSON.parse(localStorage.getItem(key)) : lightTheme
-
+    case CURRENT_THEME_LS_KEY: {
+      const hasData = localStorage.getItem(key)
+      return hasData ? JSON.parse(localStorage.getItem(key)) : lightTheme
     }
 
     default: {
-      const isData = localStorage.getItem(key)
-      return isData ? JSON.parse(localStorage.getItem(key)) : ""
+      const hasData = localStorage.getItem(key)
+      return hasData ? JSON.parse(localStorage.getItem(key)) : ""
     }
   }
 }

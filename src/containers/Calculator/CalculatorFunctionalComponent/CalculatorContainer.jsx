@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { CalculatorWrapper, LeftSideWrapper, RigthSideWrapper } from '../components'
+import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from '../components'
 import { DisplayFC } from '@/components/Display'
 import { HistoryFC } from '@/components/History'
 import { KeypadFC } from '@/components/Keypad'
 import { ControlPanelFC } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
-import { checkBracets } from '@/utils/CheckBracets'
-import { CALCULATOR_VALUE_LS_KEY, HISTORY_VALUE_LS_KEY } from '@/constants/localStorage'
-import { ERRORS, openBracet, operators } from '@/constants/calculatorConstants'
-import { getStartValue } from '@/utils/getStartValue'
+import { checkBraces } from '@/utils/CheckBraces'
+import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
+import { errors, openBrace, operators } from '@/constants/calculatorConstants'
+import { getStartValue } from '@/utils/GetStartValue'
 import { ErrorBoundary } from '@/components/Error'
 
 export const CalculatorContainerFC = () => {
   // get number 100 in calculator to test Error Boundary working
   const [calculatorValue, setCalculatorValue] = useState(getStartValue(CALCULATOR_VALUE_LS_KEY))
-  const [history, setHistoryValue] = useState(getStartValue(HISTORY_VALUE_LS_KEY))
+  const [history, setHistoryValue] = useState(getStartValue(HISTORY_LS_KEY))
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
 
   useEffect(() => {
     setCalculatorValue(getStartValue(CALCULATOR_VALUE_LS_KEY))
-    setHistoryValue(getStartValue(HISTORY_VALUE_LS_KEY))
+    setHistoryValue(getStartValue(HISTORY_LS_KEY))
   }, [])
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const CalculatorContainerFC = () => {
   }, [calculatorValue])
 
   useEffect(() => {
-    localStorage.setItem(HISTORY_VALUE_LS_KEY, JSON.stringify(history))
+    localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(history))
   }, [history])
 
   const onHistoryButtonClick = () => {
@@ -40,21 +40,21 @@ export const CalculatorContainerFC = () => {
         const lastSymbol = calculatorValue.toString().slice(-1)
 
         if (operators.includes(lastSymbol)) {
-          throw new Error(ERRORS.invalidFormat)
+          throw new Error(errors.invalidFormat)
         } else {
-          const isOkey = checkBracets(calculatorValue)
-          
+          const isOkey = checkBraces(calculatorValue)
+
           if (isOkey) {
             const value = toCalculator(calculatorValue)
             if (value === Infinity) {
               setCalculatorValue(calculatorValue)
-              throw new Error(ERRORS.devideByZero)
+              throw new Error(errors.divideByZero)
             } else {
               setHistoryValue([...history, calculatorValue])
               setCalculatorValue(toCalculator(calculatorValue))
             }
           } else {
-            throw new Error(ERRORS.whongBracets)
+            throw new Error(errors.wrongBracets)
           }
         }
         break
@@ -73,7 +73,7 @@ export const CalculatorContainerFC = () => {
         let value = `${calculatorValue}${btnValue}`
         let lastSymbol = calculatorValue.toString().slice(-1)
 
-        if (btnValue === openBracet && !operators.includes(lastSymbol) && lastSymbol !== openBracet) {
+        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace) {
           value = `${calculatorValue}`.concat(`*${btnValue}`)
         }
 
@@ -89,15 +89,15 @@ export const CalculatorContainerFC = () => {
   return (
     <ErrorBoundary>
       <CalculatorWrapper>
-        <LeftSideWrapper>
+        <ButtonsWrapper>
           <DisplayFC calculatorValue={calculatorValue} />
           <KeypadFC onKeypadButtonClick={onKeypadButtonClick} />
-        </LeftSideWrapper>
-        <RigthSideWrapper>
+        </ButtonsWrapper>
+        <HistoryWrapper>
           <ControlPanelFC isHistoryOpen={isHistoryOpen} onHistoryButtonClick={onHistoryButtonClick}
             setHistory={setHistoryValue} />
           {isHistoryOpen && <HistoryFC history={history} />}
-        </RigthSideWrapper>
+        </HistoryWrapper>
       </CalculatorWrapper>
     </ErrorBoundary>
   )

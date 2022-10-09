@@ -1,21 +1,21 @@
 import React from 'react'
 import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from '../components'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 
 export const HistoryFC = ({ history }) => {
-  
+
   return (
     <HistoryContainer>
       <HistoryTitle>
         History
       </HistoryTitle>
       <HistoryElementsContainer>
-        {history.map(historyElement => <HistoryElement key={historyElement}>{historyElement}</HistoryElement>)}
+        {history.map((historyElement, i) => <HistoryElement key={i}>{historyElement}</HistoryElement>)}
       </HistoryElementsContainer>
     </HistoryContainer>
   )
 }
 
-HistoryFC.PropTypes = {
-  history: PropTypes.array,
+HistoryFC.propTypes = {
+  history: propTypes.array,
 }

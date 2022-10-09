@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from '../components'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 
 export class HistoryCL extends Component {
   render() {
@@ -10,13 +10,13 @@ export class HistoryCL extends Component {
           History
         </HistoryTitle>
         <HistoryElementsContainer>
-          {this.props.history.map(historyElement => <HistoryElement key={historyElement}>{historyElement}</HistoryElement>)}
+          {this.props.history.map((historyElement, i) => <HistoryElement key={i}>{historyElement}</HistoryElement>)}
         </HistoryElementsContainer>
       </HistoryContainer>
     )
   }
 }
 
-HistoryCL.PropTypes = {
-  history: PropTypes.array,
+HistoryCL.propTypes = {
+  history: propTypes.array,
 }

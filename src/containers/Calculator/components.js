@@ -6,11 +6,11 @@ export const CalculatorWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.calculatorBackground};
 `
 
-export const LeftSideWrapper = styled.div`
+export const ButtonsWrapper = styled.div`
   width: 75%;
 `
 
-export const RigthSideWrapper = styled.div`
+export const HistoryWrapper = styled.div`
   width: 25%;
   align-items: center;
   height: 90%;

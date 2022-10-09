@@ -1,14 +1,9 @@
 import React from 'react'
 import { ThemeChanger } from '@/components/ThemeChanger'
 import { SettingsContainer, SettingsTitle, ThemeChangerContainer, DeleteButton, ThemeChangerDescription } from './components'
-import { CALCULATOR_VALUE_LS_KEY, HISTORY_VALUE_LS_KEY } from '@/constants/localStorage'
+import { clearCalculatorData } from '@/utils/ClearData'
 
 export const SettingsPage = () => {
-    const clearCalculatorData = () => {
-        localStorage.setItem(HISTORY_VALUE_LS_KEY, [])
-        localStorage.setItem(CALCULATOR_VALUE_LS_KEY, "")
-    }
-
     return (
         <SettingsContainer>
             <SettingsTitle>
@@ -20,7 +15,7 @@ export const SettingsPage = () => {
                 </ThemeChangerDescription>
                 <ThemeChanger />
             </ThemeChangerContainer>
-            <DeleteButton onClick={() => clearCalculatorData()}>Clear all history</DeleteButton>
+            <DeleteButton onClick={clearCalculatorData()}>Clear all history</DeleteButton>
         </SettingsContainer>
     )
 }

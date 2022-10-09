@@ -50,6 +50,8 @@ const lightThemeColors = {
     keypadButtonBorder: "#101010",
     keypadText: "#101010",
 
+    controlPanelButton: "#181818",
+
     calculatorDisplayText: "#101010",
 
     historyTitle: "#101010",
@@ -76,6 +78,8 @@ const darkThemeColors = {
     keypadButtonBorder: "#9F9F9F",
     keypadText: "#FEFEFE",
 
+    controlPanelButton: "#181818",
+
     calculatorDisplayText: "#FEFEFE",
 
     historyTitle: "#FEFEFE",
@@ -92,5 +96,5 @@ const darkThemeColors = {
   },
 }
 
-export const lightTheme = Object.assign(lightThemeColors, defaultThemeStyles)
-export const darkTheme = Object.assign(darkThemeColors, defaultThemeStyles)
+export const lightTheme = {...lightThemeColors, ...defaultThemeStyles}
+export const darkTheme = {...darkThemeColors, ...defaultThemeStyles}
