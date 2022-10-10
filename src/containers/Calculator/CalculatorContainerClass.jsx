@@ -4,7 +4,7 @@ import { DisplayClass } from '@/components/Display'
 import { HistoryClass } from '@/components/History'
 import { KeypadClass } from '@/components/Keypad'
 import { ControlPanelClass } from '@/components/ControlPanel'
-import { toCalculator } from '@/utils/Calculator'
+import { toCalculator } from '@/utils/Calculator/CalculatorClass'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/GetStartValue'
@@ -60,7 +60,7 @@ export class CalculatorContainerClass extends Component {
     const { calculatorValue } = this.state
 
     switch (btnValue) {
-      case "=": {
+      case '=': {
         const lastSymbol = calculatorValue.toString().slice(-1)
 
         if (operators.includes(lastSymbol)) {
@@ -93,7 +93,7 @@ export class CalculatorContainerClass extends Component {
         break
       }
 
-      case "C": {
+      case 'C': {
         this.setState(({ calculatorValue }) => {
           return {
             calculatorValue: calculatorValue.toString().slice(0, -1),
@@ -102,10 +102,10 @@ export class CalculatorContainerClass extends Component {
         break
       }
 
-      case "CE": {
+      case 'CE': {
         this.setState(({ calculatorValue }) => {
           return {
-            calculatorValue: "",
+            calculatorValue: '',
           }
         })
         break
@@ -129,7 +129,7 @@ export class CalculatorContainerClass extends Component {
 
         if (operators.includes(lastSymbol) && operators.includes(btnValue)) {
           value = `${calculatorValue}${btnValue}`.slice(0, -2).concat(btnValue)
-          lastSymbol = ""
+          lastSymbol = ''
         }
 
         this.setState(({ calculatorValue }) => {

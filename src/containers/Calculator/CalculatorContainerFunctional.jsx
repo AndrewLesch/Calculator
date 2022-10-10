@@ -4,7 +4,7 @@ import { DisplayFunctional } from '@/components/Display'
 import { HistoryFunctional } from '@/components/History'
 import { KeypadFunctional } from '@/components/Keypad'
 import { ControlPanelFunctional } from '@/components/ControlPanel'
-import { toCalculator } from '@/utils/Calculator'
+import { toCalculator } from '@/utils/Calculator/CalculatorClass'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
 import { closeBrace, errors, numbers, openBrace, operators } from '@/constants/calculator'
@@ -12,7 +12,6 @@ import { getStartValue } from '@/utils/GetStartValue'
 import { ErrorBoundary } from '@/components/Error'
 
 export const CalculatorContainerFunctional = () => {
-  // get number 100 in calculator to test Error Boundary working
   const [calculatorValue, setCalculatorValue] = useState(getStartValue(CALCULATOR_VALUE_LS_KEY))
   const [history, setHistoryValue] = useState(getStartValue(HISTORY_LS_KEY))
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
@@ -36,7 +35,7 @@ export const CalculatorContainerFunctional = () => {
 
   const onKeypadButtonClick = btnValue => {
     switch (btnValue) {
-      case "=": {
+      case '=': {
         const lastSymbol = calculatorValue.toString().slice(-1)
 
         if (operators.includes(lastSymbol)) {
@@ -60,7 +59,7 @@ export const CalculatorContainerFunctional = () => {
         break
       }
 
-      case "C": {
+      case 'C': {
         setCalculatorValue(calculatorValue.toString().slice(0, -1))
         break
       }

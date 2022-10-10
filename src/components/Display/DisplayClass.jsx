@@ -7,7 +7,7 @@ export class DisplayClass extends Component {
     const { calculatorValue } = this.props
 
     return (
-      <CalculatorDisplay>{this.props.calculatorValue}</CalculatorDisplay>
+      <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>
     )
   }
 }

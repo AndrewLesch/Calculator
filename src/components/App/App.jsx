@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState } from 'react'
 import { AppWrapper, PageLayout } from './components'
 import { ThemeProvider } from 'styled-components'
 import { Route, Switch } from 'react-router-dom'
@@ -22,11 +22,11 @@ export const App = () => {
 
   const handleThemeChange = themeKey => {
     switch (themeKey) {
-      case "lightTheme":
+      case 'lightTheme':
         setSelectedTheme(lightTheme)
         saveThemeToLS(lightTheme)
         break
-    
+
       default:
         setSelectedTheme(darkTheme)
         saveThemeToLS(darkTheme)

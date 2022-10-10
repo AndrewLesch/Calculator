@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ThemeSelector = styled.select`
   margin-left: 20px;

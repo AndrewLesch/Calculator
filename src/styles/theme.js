@@ -41,60 +41,60 @@ export const defaultThemeStyles = {
 }
 
 const lightThemeColors = {
-  key: "lightTheme",
+  key: 'lightTheme',
   colors: {
-    layoutBackground: "#CECECE",
-    headerBackground: "#434343",
-    calculatorBackground: "#FFFFFF",
+    layoutBackground: '#CECECE',
+    headerBackground: '#434343',
+    calculatorBackground: '#FFFFFF',
 
-    keypadButton: "#FEFEFE",
-    keypadButtonBorder: "#101010",
-    keypadText: "#101010",
+    keypadButton: '#FEFEFE',
+    keypadButtonBorder: '#101010',
+    keypadText: '#101010',
 
-    controlPanelButton: "#181818",
+    controlPanelButton: '#181818',
 
-    calculatorDisplayText: "#101010",
+    calculatorDisplayText: '#101010',
 
-    historyTitle: "#101010",
-    historyElement: "#101010",
+    historyTitle: '#101010',
+    historyElement: '#101010',
 
-    settingsTitle: "#101010",
-    themeChangerDescription: "#101010",
+    settingsTitle: '#101010',
+    themeChangerDescription: '#101010',
 
-    defaultAppBorder: "#101010",
+    defaultAppBorder: '#101010',
 
-    headerTitle: "#FEFEFE",
-    headerNavButton: "#9F9F9F",
-    headerNavButtonActive: "#FEFEFE",
+    headerTitle: '#FEFEFE',
+    headerNavButton: '#9F9F9F',
+    headerNavButtonActive: '#FEFEFE',
   },
 }
 
 const darkThemeColors = {
-  key: "darkTheme",
+  key: 'darkTheme',
   colors: {
-    layoutBackground: "#181818",
-    headerBackground: "#101010",
-    calculatorBackground: "#2a2121",
+    layoutBackground: '#181818',
+    headerBackground: '#101010',
+    calculatorBackground: '#2a2121',
 
-    keypadButton: "#181818",
-    keypadButtonBorder: "#9F9F9F",
-    keypadText: "#FEFEFE",
+    keypadButton: '#181818',
+    keypadButtonBorder: '#9F9F9F',
+    keypadText: '#FEFEFE',
 
-    controlPanelButton: "#181818",
+    controlPanelButton: '#181818',
 
-    calculatorDisplayText: "#FEFEFE",
+    calculatorDisplayText: '#FEFEFE',
 
-    historyTitle: "#FEFEFE",
-    historyElement: "#FEFEFE",
+    historyTitle: '#FEFEFE',
+    historyElement: '#FEFEFE',
 
-    settingsTitle: "#FEFEFE",
-    themeChangerDescription: "#FEFEFE",
+    settingsTitle: '#FEFEFE',
+    themeChangerDescription: '#FEFEFE',
 
-    defaultAppBorder: "#9F9F9F",
+    defaultAppBorder: '#9F9F9F',
 
-    headerTitle: "#FEFEFE",
-    headerNavButton: "#9F9F9F",
-    headerNavButtonActive: "#FEFEFE",
+    headerTitle: '#FEFEFE',
+    headerNavButton: '#9F9F9F',
+    headerNavButtonActive: '#FEFEFE',
   },
 }
 
