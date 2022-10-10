@@ -6,7 +6,6 @@ export const DisplayFunctional = ({ calculatorValue }) => (
   <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>
 )
 
-
 DisplayFunctional.propTypes = {
   calculatorValue: propTypes.string,
 }

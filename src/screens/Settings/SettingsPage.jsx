@@ -14,6 +14,6 @@ export const SettingsPage = () => (
             </ThemeChangerDescription>
             <ThemeChanger />
         </ThemeChangerContainer>
-        <DeleteButton onClick={clearCalculatorData()}>Clear all history</DeleteButton>
+        <DeleteButton onClick={() => clearCalculatorData()}>Clear all history</DeleteButton>
     </SettingsContainer>
 )

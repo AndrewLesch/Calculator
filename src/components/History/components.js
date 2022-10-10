@@ -5,13 +5,13 @@ export const HistoryContainer = styled.div`
 `
 export const HistoryTitle = styled.h4`
   text-align: center;
-  margin-top: 10px;
+  margin-top: ${({ theme }) => theme.spaces[2]}px;
   font-size: ${({ theme }) => theme.fontSizes[2]}px;
   color: ${({ theme }) => theme.colors.historyTitle};
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.size.small};
 `
 export const HistoryElement = styled.p`
-  margin: 10px;
+  margin: ${({ theme }) => theme.spaces[2]}px;
   color: ${({ theme }) => theme.colors.historyElement};
 `
 export const HistoryElementsContainer = styled.div`

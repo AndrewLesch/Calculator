@@ -7,10 +7,10 @@ const boxShadows = [
 ]
 
 const size = {
-  xs: 550,
-  small: 768,
-  med: 992,
-  large: 1200,
+  xs: 400,
+  small: 500,
+  med: 600,
+  large: 700,
 }
 
 const above = Object.keys(size).reduce((acc, label) => {
@@ -32,12 +32,15 @@ const below = Object.keys(size).reduce((acc, label) => {
 }, {})
 
 export const defaultThemeStyles = {
+  size,
   above,
   below,
   boxShadows,
   font,
-  spaces: [0, 4, 8, 16, 32, 64, 128],
+  spaces: [0, 5, 10, 16, 20, 32, 64, 128],
   fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80],
+  borders: [1, 2],
+  borderRadiuses: [5, 10],
 }
 
 const lightThemeColors = {

@@ -1,14 +1,12 @@
 import React from 'react'
-import { Wrapper, TitleContainer, Title, LinksContainer, NavbarLink } from './components'
+import { Wrapper, Title, LinksContainer, NavbarLink } from './components'
 import { HOME_PAGE_ROUTE_CL, HOME_PAGE_ROUTE_FC, SETTING_PAGE_ROUTE } from '@/constants/router'
 
 export const Header = () => (
   <Wrapper>
-    <TitleContainer>
-      <Title>
-        Calculator App
-      </Title>
-    </TitleContainer>
+    <Title>
+      Calculator App
+    </Title>
     <LinksContainer>
       <NavbarLink activeClassName="activeLink" to={HOME_PAGE_ROUTE_FC}>Home functional</NavbarLink>
       <NavbarLink activeClassName="activeLink" to={HOME_PAGE_ROUTE_CL}>Home class</NavbarLink>

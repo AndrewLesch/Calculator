@@ -9,7 +9,6 @@ export const ControlPanelFunctional = ({ isHistoryVisible, onHistoryButtonClick,
   </ControlPanelButtonsContainer>
 )
 
-
 ControlPanelFunctional.propTypes = {
   isHistoryVisible: propTypes.bool,
   onHistoryButtonClick: propTypes.func,

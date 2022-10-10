@@ -2,21 +2,18 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 10%;
+  height: 55px;
   display: flex;
   background-color: ${({ theme }) => theme.colors.headerBackground};
   align-items: center;
-`
-export const TitleContainer = styled.div`
-  width: 30%;
+  justify-content: space-between;
 `
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.headerTitle};
   font-size: ${({ theme }) => theme.fontSizes[3]}px;
-  font-weight: 500;
-  margin-left: 20px;
+  font-weight: ${({ theme }) => theme.size.small};
+  margin-left: ${({ theme }) => theme.spaces[4]}px;
 `
 
 export const LinksContainer = styled.div`
@@ -29,9 +26,10 @@ export const NavbarLink = styled(NavLink)`
     color: ${({ theme }) => theme.colors.headerNavButtonActive};
     text-decoration: underline;
   }
-  margin-right: 20px;
+  
+  margin-right: ${({ theme }) => theme.spaces[4]}px;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.size.xs};
   font-size: ${({ theme }) => theme.fontSizes[2]}px;
   color: ${({ theme }) => theme.colors.headerNavButton};
 

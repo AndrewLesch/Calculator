@@ -90,7 +90,7 @@ export class CalculatorContainerClass extends Component {
         this.setState((({ ...this.state, calculatorValue: '' })))
         break
       }
-      
+
       default: {
         this.setState((({ ...this.state, calculatorValue: handeCalculatorValue(calculatorValue, btnValue) })))
       }

@@ -16,4 +16,3 @@ export const ThemeChanger = () => (
     )}
   </ThemeContext.Consumer>
 )
-

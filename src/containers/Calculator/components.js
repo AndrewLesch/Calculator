@@ -15,5 +15,5 @@ export const HistoryWrapper = styled.div`
   align-items: center;
   height: 90%;
   margin: auto;
-  border-left: 1px solid #707070;
+  border-left: ${({ theme }) => theme.borders[0]}px  solid ${({ theme }) => theme.colors.defaultAppBorder};
 `

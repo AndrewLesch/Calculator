@@ -18,24 +18,24 @@ export const ThemeContext = createContext({
 export const App = () => {
   const [selectedTheme, setSelectedTheme] = useState(lightTheme)
 
-  useEffect(() =>{
-    const themeKey = JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY)) 
+  useEffect(() => {
+    const themeKey = JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY))
     switch (themeKey) {
       case darkTheme.key:
         setSelectedTheme(darkTheme)
         break
-    
+
       default:
         setSelectedTheme(lightTheme)
         break
     }
-  },[])
+  }, [])
 
   const handleThemeChange = useCallback(theme => {
     const parsedTheme = JSON.parse(theme)
     setSelectedTheme(parsedTheme)
     localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(parsedTheme.key))
-  },[setSelectedTheme])
+  }, [setSelectedTheme])
 
   return (
     <ThemeContext.Provider value={{ selectedTheme, handleThemeChange }}>
