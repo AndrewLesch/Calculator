@@ -1,4 +1,4 @@
-import { operators } from "@/constants/calculatorConstants"
+import { operators } from "@/constants/calculator"
 
 class Calculator {
   constructor() {

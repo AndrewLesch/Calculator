@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import { KeypadButton, KeypadButtonWrapper } from './components'
-import { keypadButtons } from '@/constants/calculatorConstants'
+import { keypadButtons } from '@/constants/calculator'
 
 export class KeypadClass extends Component {
   render() {

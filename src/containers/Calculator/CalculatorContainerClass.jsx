@@ -8,7 +8,7 @@ import { toCalculator } from '@/utils/Calculator'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/GetStartValue'
-import { errors, operators, openBrace } from '@/constants/calculatorConstants'
+import { errors, operators, openBrace, closeBrace, numbers } from '@/constants/calculator'
 
 export class CalculatorContainerClass extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ export class CalculatorContainerClass extends Component {
 
           if (isOkey) {
             const value = toCalculator(calculatorValue)
-            if (value === Infinity) {
+            if (value === Infinity || isNaN(value)) {
               this.setState(({ calculatorValue }) => {
                 return {
                   calculatorValue: calculatorValue,
@@ -113,6 +113,15 @@ export class CalculatorContainerClass extends Component {
       default: {
         let value = `${calculatorValue}${btnValue}`
         let lastSymbol = calculatorValue.toString().slice(-1)
+
+        if (lastSymbol === '.' && !numbers.includes(btnValue)) {
+          value = value.slice(0, -1)
+        }
+
+        if (value.length === 1 && (operators.includes(btnValue) || value === closeBrace)) {
+          value = ''
+          throw new Error(errors.invalidFormat)
+        }
 
         if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace) {
           value = `${calculatorValue}`.concat(`*${btnValue}`)

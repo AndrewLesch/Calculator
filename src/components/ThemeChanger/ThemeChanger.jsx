@@ -8,10 +8,10 @@ export const ThemeChanger = () => {
       {({ selectedTheme, handleThemeChange }) => (
         <ThemeSelector
           defaultValue={selectedTheme.key === 'lightTheme' ? 'lightTheme' : 'darkTheme'}
-          onChange={(event) => handleThemeChange(event.target.value)}
+          onChange={event => handleThemeChange(event.target.value)}
         >
-          <ThemeOption value='lightTheme'>Light Theme</ThemeOption>
-          <ThemeOption value='darkTheme'>Dark Theme</ThemeOption>
+          <ThemeOption value="lightTheme">Light Theme</ThemeOption>
+          <ThemeOption value="darkTheme">Dark Theme</ThemeOption>
         </ThemeSelector>
       )}
     </ThemeContext.Consumer>

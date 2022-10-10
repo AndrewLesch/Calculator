@@ -1,7 +1,7 @@
 import React from 'react'
 import { KeypadButton, KeypadButtonWrapper } from './components'
 import propTypes from 'prop-types'
-import { keypadButtons } from '@/constants/calculatorConstants'
+import { keypadButtons } from '@/constants/calculator'
 
 
 export const KeypadFunctional = ({ onKeypadButtonClick }) => {

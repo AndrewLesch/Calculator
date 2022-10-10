@@ -25,12 +25,12 @@ export const App = () => {
       case "lightTheme":
         setSelectedTheme(lightTheme)
         saveThemeToLS(lightTheme)
-        break;
+        break
     
       default:
         setSelectedTheme(darkTheme)
         saveThemeToLS(darkTheme)
-        break;
+        break
     }
   }
 
@@ -44,7 +44,7 @@ export const App = () => {
               <Route path={SETTING_PAGE_ROUTE} component={SettingsPage} />
               <Route path={HOME_PAGE_ROUTE_CL} component={HomePageClass} />
               <Route path={HOME_PAGE_ROUTE_FC} component={HomePageFunctional} />
-              <Route path='*' component={HomePageFunctional} />
+              <Route path="*" component={HomePageFunctional} />
             </Switch>
           </AppWrapper>
         </PageLayout>

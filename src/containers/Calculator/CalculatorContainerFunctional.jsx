@@ -7,7 +7,7 @@ import { ControlPanelFunctional } from '@/components/ControlPanel'
 import { toCalculator } from '@/utils/Calculator'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
-import { errors, openBrace, operators } from '@/constants/calculatorConstants'
+import { closeBrace, errors, numbers, openBrace, operators } from '@/constants/calculator'
 import { getStartValue } from '@/utils/GetStartValue'
 import { ErrorBoundary } from '@/components/Error'
 
@@ -46,7 +46,7 @@ export const CalculatorContainerFunctional = () => {
 
           if (isOkey) {
             const value = toCalculator(calculatorValue)
-            if (value === Infinity) {
+            if (value === Infinity || isNaN(value)) {
               setCalculatorValue(calculatorValue)
               throw new Error(errors.divideByZero)
             } else {
@@ -54,7 +54,7 @@ export const CalculatorContainerFunctional = () => {
               setCalculatorValue(toCalculator(calculatorValue))
             }
           } else {
-            throw new Error(errors.wrongBracets)
+            throw new Error(errors.wrongBraces)
           }
         }
         break
@@ -65,15 +65,24 @@ export const CalculatorContainerFunctional = () => {
         break
       }
 
-      case "CE": {
-        setCalculatorValue("")
+      case 'CE': {
+        setCalculatorValue('')
         break
       }
       default: {
         let value = `${calculatorValue}${btnValue}`
         let lastSymbol = calculatorValue.toString().slice(-1)
 
-        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace) {
+        if (lastSymbol === '.' && !numbers.includes(btnValue)) {
+          value = value.slice(0, -1)
+        }
+
+        if (value.length === 1 && (operators.includes(btnValue) || value === closeBrace)) {
+          value = ''
+          throw new Error(errors.invalidFormat)
+        }
+
+        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace && value.length > 1) {
           value = `${calculatorValue}`.concat(`*${btnValue}`)
         }
 
