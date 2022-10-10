@@ -11,9 +11,9 @@ export const Header = () => {
         </Title>
       </TitleContainer>
       <LinksContainer>
-        <NavbarLink to={HOME_PAGE_ROUTE_FC}>Home functional</NavbarLink>
-        <NavbarLink to={HOME_PAGE_ROUTE_CL}>Home class</NavbarLink>
-        <NavbarLink to={SETTING_PAGE_ROUTE}>Settings</NavbarLink>
+        <NavbarLink activeClassName='activeLink' to={HOME_PAGE_ROUTE_FC}>Home functional</NavbarLink>
+        <NavbarLink activeClassName='activeLink' to={HOME_PAGE_ROUTE_CL}>Home class</NavbarLink>
+        <NavbarLink activeClassName='activeLink' to={SETTING_PAGE_ROUTE}>Settings</NavbarLink>
       </LinksContainer>
     </Wrapper>
   )

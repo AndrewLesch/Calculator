@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
@@ -24,7 +24,11 @@ export const LinksContainer = styled.div`
   text-align: end;
 `
 
-export const NavbarLink = styled(Link)`
+export const NavbarLink = styled(NavLink)`
+  &.${props => props.activeClassName} {
+    color: ${({ theme }) => theme.colors.headerNavButtonActive};
+    text-decoration: underline;
+  }
   margin-right: 20px;
   text-decoration: none;
   font-weight: 400;
