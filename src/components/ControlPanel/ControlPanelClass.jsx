@@ -4,11 +4,11 @@ import { ControlPanelButton, ControlPanelButtonsContainer } from './components'
 
 export class ControlPanelClass extends Component {
   render() {
-    const { onHistoryButtonClick, isHistoryOpen, deleteHistory } = this.props
+    const { onHistoryButtonClick, isHistoryVisible, deleteHistory } = this.props
 
     return (
       <ControlPanelButtonsContainer>
-        <ControlPanelButton onClick={() => onHistoryButtonClick()}>{isHistoryOpen ? 'Hide story' : 'Show history'}</ControlPanelButton>
+        <ControlPanelButton onClick={() => onHistoryButtonClick()}>{isHistoryVisible ? 'Hide story' : 'Show history'}</ControlPanelButton>
         <ControlPanelButton onClick={() => deleteHistory()}>Delete history</ControlPanelButton>
       </ControlPanelButtonsContainer>
     )
@@ -16,7 +16,7 @@ export class ControlPanelClass extends Component {
 }
 
 ControlPanelClass.propTypes = {
-  isHistoryOpen: propTypes.bool,
+  isHistoryVisible: propTypes.bool,
   onHistoryButtonClick: propTypes.func,
   deleteHistory: propTypes.func,
 }

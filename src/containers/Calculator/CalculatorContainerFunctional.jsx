@@ -4,17 +4,18 @@ import { DisplayFunctional } from '@/components/Display'
 import { HistoryFunctional } from '@/components/History'
 import { KeypadFunctional } from '@/components/Keypad'
 import { ControlPanelFunctional } from '@/components/ControlPanel'
-import { toCalculator } from '@/utils/Calculator/CalculatorClass'
+import { toCalculate } from '@/utils/Calculator/CalculatorClass'
 import { checkBraces } from '@/utils/CheckBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
-import { closeBrace, errors, numbers, openBrace, operators } from '@/constants/calculator'
+import { errors, operators } from '@/constants/calculator'
 import { getStartValue } from '@/utils/GetStartValue'
 import { ErrorBoundary } from '@/components/Error'
+import { handeCalculatorValue } from '@/utils/HandleCalculatorValue'
 
 export const CalculatorContainerFunctional = () => {
-  const [calculatorValue, setCalculatorValue] = useState(getStartValue(CALCULATOR_VALUE_LS_KEY))
-  const [history, setHistoryValue] = useState(getStartValue(HISTORY_LS_KEY))
-  const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+  const [calculatorValue, setCalculatorValue] = useState()
+  const [history, setHistoryValue] = useState()
+  const [isHistoryVisible, setIsHistoryOpen] = useState(false)
 
   useEffect(() => {
     setCalculatorValue(getStartValue(CALCULATOR_VALUE_LS_KEY))
@@ -30,7 +31,7 @@ export const CalculatorContainerFunctional = () => {
   }, [history])
 
   const onHistoryButtonClick = () => {
-    setIsHistoryOpen(!isHistoryOpen)
+    setIsHistoryOpen(!isHistoryVisible)
   }
 
   const onKeypadButtonClick = btnValue => {
@@ -40,21 +41,18 @@ export const CalculatorContainerFunctional = () => {
 
         if (operators.includes(lastSymbol)) {
           throw new Error(errors.invalidFormat)
-        } else {
-          const isOkey = checkBraces(calculatorValue)
+        }
+        if (!checkBraces(calculatorValue)) {
+          throw new Error(errors.wrongBraces)
+        }
 
-          if (isOkey) {
-            const value = toCalculator(calculatorValue)
-            if (value === Infinity || isNaN(value)) {
-              setCalculatorValue(calculatorValue)
-              throw new Error(errors.divideByZero)
-            } else {
-              setHistoryValue([...history, calculatorValue])
-              setCalculatorValue(toCalculator(calculatorValue))
-            }
-          } else {
-            throw new Error(errors.wrongBraces)
-          }
+        const value = toCalculate(calculatorValue)
+        if (value === Infinity || isNaN(value)) {
+          setCalculatorValue(calculatorValue)
+          throw new Error(errors.divideByZero)
+        } else {
+          setHistoryValue([...history, calculatorValue])
+          setCalculatorValue(toCalculate(calculatorValue))
         }
         break
       }
@@ -68,28 +66,9 @@ export const CalculatorContainerFunctional = () => {
         setCalculatorValue('')
         break
       }
+
       default: {
-        let value = `${calculatorValue}${btnValue}`
-        let lastSymbol = calculatorValue.toString().slice(-1)
-
-        if (lastSymbol === '.' && !numbers.includes(btnValue)) {
-          value = value.slice(0, -1)
-        }
-
-        if (value.length === 1 && (operators.includes(btnValue) || value === closeBrace)) {
-          value = ''
-          throw new Error(errors.invalidFormat)
-        }
-
-        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace && value.length > 1) {
-          value = `${calculatorValue}`.concat(`*${btnValue}`)
-        }
-
-        if (operators.includes(lastSymbol) && operators.includes(btnValue)) {
-          value = `${calculatorValue}${btnValue}`.slice(0, -2).concat(btnValue)
-          lastSymbol = ''
-        }
-        setCalculatorValue(value)
+        setCalculatorValue(handeCalculatorValue(calculatorValue, btnValue))
       }
     }
   }
@@ -102,9 +81,9 @@ export const CalculatorContainerFunctional = () => {
           <KeypadFunctional onKeypadButtonClick={onKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
-          <ControlPanelFunctional isHistoryOpen={isHistoryOpen} onHistoryButtonClick={onHistoryButtonClick}
+          <ControlPanelFunctional isHistoryOpen={isHistoryVisible} onHistoryButtonClick={onHistoryButtonClick}
             setHistory={setHistoryValue} />
-          {isHistoryOpen && <HistoryFunctional history={history} />}
+          {isHistoryVisible && <HistoryFunctional history={history} />}
         </HistoryWrapper>
       </CalculatorWrapper>
     </ErrorBoundary>

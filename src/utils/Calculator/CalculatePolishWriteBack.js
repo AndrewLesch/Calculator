@@ -4,7 +4,10 @@ import { AddCommand, Calculator, DivideCommand, MultiplyCommand, SubtractCommand
 // Function for calculating the expression of the Polish notation
 export const calculatePolishWriteback = polishWriteback => {
   const myCalculator = new Calculator()
-  let firstNumber, secondNumber, result
+  let firstNumber
+  let secondNumber
+  let result
+
   const stack = []
 
   for (let i = 0; i < polishWriteback.length; i++) {

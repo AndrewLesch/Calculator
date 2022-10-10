@@ -6,11 +6,9 @@ import { HOME_PAGE_ROUTE_CL, HOME_PAGE_ROUTE_FC, SETTING_PAGE_ROUTE } from '@/co
 import { SettingsPage } from '@/screens/Settings'
 import { Header } from '@/components/Header'
 import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage'
-import { getStartValue } from '@/utils/GetStartValue'
 import { HomePageClass } from '@/screens/Home/HomePageClass'
 import { HomePageFunctional } from '@/screens/Home/HomePageFunctional'
 import { darkTheme, lightTheme } from '@/styles/theme'
-import { saveThemeToLS } from './constants'
 
 export const ThemeContext = createContext({
   selectedTheme: lightTheme || darkTheme,
@@ -23,20 +21,20 @@ export const App = () => {
   useEffect(() =>{
     const themeKey = JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY)) 
     switch (themeKey) {
-      case lightTheme.key:
-        setSelectedTheme(lightTheme)
-        break;
+      case darkTheme.key:
+        setSelectedTheme(darkTheme)
+        break
     
       default:
-        setSelectedTheme(darkTheme)
-        break;
+        setSelectedTheme(lightTheme)
+        break
     }
   },[])
 
   const handleThemeChange = useCallback(theme => {
     const parsedTheme = JSON.parse(theme)
     setSelectedTheme(parsedTheme)
-    saveThemeToLS(parsedTheme.key)
+    localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(parsedTheme.key))
   },[setSelectedTheme])
 
   return (

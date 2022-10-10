@@ -60,4 +60,4 @@ export class DivideCommand {
   }
 }
 
-export const toCalculator = value => calculatePolishWriteback(toPolishWriteback(value))
+export const toCalculate = value => calculatePolishWriteback(toPolishWriteback(value))
