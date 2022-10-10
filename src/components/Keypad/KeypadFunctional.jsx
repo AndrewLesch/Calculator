@@ -4,19 +4,18 @@ import propTypes from 'prop-types'
 import { keypadButtons } from '@/constants/calculator'
 
 
-export const KeypadFunctional = ({ onKeypadButtonClick }) => {
-  return (
-    <KeypadButtonWrapper>
-      {keypadButtons.map(btnValue =>
-        <KeypadButton
-          value={btnValue}
-          onClick={() => onKeypadButtonClick(btnValue)}
-          key={btnValue}>{btnValue}
-        </KeypadButton>,
-      )}
-    </KeypadButtonWrapper>
-  )
-}
+export const KeypadFunctional = ({ onKeypadButtonClick }) => (
+  <KeypadButtonWrapper>
+    {keypadButtons.map(btnValue =>
+      <KeypadButton
+        value={btnValue}
+        onClick={() => onKeypadButtonClick(btnValue)}
+        key={btnValue}>{btnValue}
+      </KeypadButton>,
+    )}
+  </KeypadButtonWrapper>
+)
+
 
 KeypadFunctional.propTypes = {
   onKeypadButtonClick: propTypes.func,

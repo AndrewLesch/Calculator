@@ -123,7 +123,7 @@ export class CalculatorContainerClass extends Component {
           throw new Error(errors.invalidFormat)
         }
 
-        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace) {
+        if (btnValue === openBrace && !operators.includes(lastSymbol) && lastSymbol !== openBrace && value.length > 1) {
           value = `${calculatorValue}`.concat(`*${btnValue}`)
         }
 

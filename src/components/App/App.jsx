@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useCallback, useEffect, useState } from 'react'
 import { AppWrapper, PageLayout } from './components'
 import { ThemeProvider } from 'styled-components'
 import { Route, Switch } from 'react-router-dom'
@@ -18,21 +18,26 @@ export const ThemeContext = createContext({
 })
 
 export const App = () => {
-  const [selectedTheme, setSelectedTheme] = useState(getStartValue(CURRENT_THEME_LS_KEY))
+  const [selectedTheme, setSelectedTheme] = useState(lightTheme)
 
-  const handleThemeChange = themeKey => {
+  useEffect(() =>{
+    const themeKey = JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY)) 
     switch (themeKey) {
-      case 'lightTheme':
+      case lightTheme.key:
         setSelectedTheme(lightTheme)
-        saveThemeToLS(lightTheme)
-        break
-
+        break;
+    
       default:
         setSelectedTheme(darkTheme)
-        saveThemeToLS(darkTheme)
-        break
+        break;
     }
-  }
+  },[])
+
+  const handleThemeChange = useCallback(theme => {
+    const parsedTheme = JSON.parse(theme)
+    setSelectedTheme(parsedTheme)
+    saveThemeToLS(parsedTheme.key)
+  },[setSelectedTheme])
 
   return (
     <ThemeContext.Provider value={{ selectedTheme, handleThemeChange }}>

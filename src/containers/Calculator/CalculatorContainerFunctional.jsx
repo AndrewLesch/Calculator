@@ -87,7 +87,7 @@ export const CalculatorContainerFunctional = () => {
 
         if (operators.includes(lastSymbol) && operators.includes(btnValue)) {
           value = `${calculatorValue}${btnValue}`.slice(0, -2).concat(btnValue)
-          lastSymbol = ""
+          lastSymbol = ''
         }
         setCalculatorValue(value)
       }
