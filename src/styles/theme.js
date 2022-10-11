@@ -13,28 +13,8 @@ const size = {
   large: 700,
 }
 
-const above = Object.keys(size).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (min-width: ${size[label]}px) {
-      ${css(...args)}
-    }
-  `
-  return acc
-}, {})
-
-const below = Object.keys(size).reduce((acc, label) => {
-  acc[label] = (...args) => css`
-    @media (max-width: ${size[label]}px) {
-      ${css(...args)}
-    }
-  `
-  return acc
-}, {})
-
 export const defaultThemeStyles = {
   size,
-  above,
-  below,
   boxShadows,
   font,
   spaces: [0, 5, 10, 16, 20, 32, 64, 128],

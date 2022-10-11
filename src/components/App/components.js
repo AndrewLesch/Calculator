@@ -10,7 +10,6 @@ export const PageLayout = styled.div`
 `
 
 export const AppWrapper = styled.div`
-  width: 1280px;
   height: 500px;
   max-width: 1280px;
   max-height: 500px;
