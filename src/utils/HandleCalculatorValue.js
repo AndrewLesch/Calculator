@@ -4,6 +4,14 @@ export const handleCalculatorValue = (calculatorValue, btnValue) => {
   let value = `${calculatorValue}${btnValue}`
   let lastSymbol = calculatorValue.toString().slice(-1)
 
+  if (lastSymbol === '0' && numbers.includes(btnValue) && (value.length <= 2)) {
+    value = btnValue
+  }
+
+  if (lastSymbol === '0' && btnValue === 0 && (value.length <= 2)) {
+    value = value.slice(0, -1)
+  }
+
   if (lastSymbol === '.' && !numbers.includes(btnValue)) {
     value = value.slice(0, -1)
   }
