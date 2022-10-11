@@ -8,8 +8,8 @@ export class ControlPanelClass extends Component {
 
     return (
       <ControlPanelButtonsContainer>
-        <ControlPanelButton onClick={() => onHistoryButtonClick()}>{isHistoryVisible ? 'Hide story' : 'Show history'}</ControlPanelButton>
-        <ControlPanelButton onClick={() => deleteHistory()}>Delete history</ControlPanelButton>
+        <ControlPanelButton onClick={onHistoryButtonClick}>{isHistoryVisible ? 'Hide story' : 'Show history'}</ControlPanelButton>
+        <ControlPanelButton onClick={deleteHistory}>Delete history</ControlPanelButton>
       </ControlPanelButtonsContainer>
     )
   }

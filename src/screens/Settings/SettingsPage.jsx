@@ -1,7 +1,7 @@
 import React from 'react'
 import { ThemeChanger } from '@/components/ThemeChanger'
 import { SettingsContainer, SettingsTitle, ThemeChangerContainer, DeleteButton, ThemeChangerDescription } from './components'
-import { clearCalculatorData } from '@/utils/ClearData'
+import { clearCalculatorData } from '@/utils/clearCalculatorData'
 
 export const SettingsPage = () => (
     <SettingsContainer>
@@ -14,6 +14,6 @@ export const SettingsPage = () => (
             </ThemeChangerDescription>
             <ThemeChanger />
         </ThemeChangerContainer>
-        <DeleteButton onClick={() => clearCalculatorData()}>Clear all history</DeleteButton>
+        <DeleteButton onClick={clearCalculatorData}>Clear all history</DeleteButton>
     </SettingsContainer>
 )

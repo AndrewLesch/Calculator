@@ -1,29 +1,31 @@
-import { operators } from '@/constants/calculator'
-import { AddCommand, Calculator, DivideCommand, MultiplyCommand, SubtractCommand } from './CalculatorClass'
+import { numberDivider } from '@/constants'
+import { AddCommand, Calculator, DivideCommand, MultiplyCommand, SubtractCommand } from './Calculator'
+import { toPolishWriteback } from './ToPolishWriteBack'
 
 // Function for calculating the expression of the Polish notation
-export const calculatePolishWriteback = polishWriteback => {
-  const myCalculator = new Calculator()
-  let firstNumber
-  let secondNumber
-  let result
+export const calculatePolishWriteback = statement => {
+  let number = 0
+  let expression = ''
 
-  const stack = []
+  const calculator = new Calculator()
 
-  for (let i = 0; i < polishWriteback.length; i++) {
-    if ((operators).indexOf(polishWriteback[i]) < 0) {
-      stack.push(+polishWriteback[i])
+  for (let i = 0; i < statement.length; i++) {
+    if (statement[i] <= '9' && statement[i] >= '0' || statement[i] === '.') {
+      expression += statement[i]
+    } else if (statement[i] === numberDivider) {
+      number = +expression
+      calculator.pushValue(number)
+      expression = ''
     } else {
-      secondNumber = stack.pop()
-      firstNumber = stack.pop()
-      switch (polishWriteback[i]) {
-        case '+': result = myCalculator.executeCommand(new AddCommand(firstNumber, secondNumber)); break
-        case '-': result = myCalculator.executeCommand(new SubtractCommand(firstNumber, secondNumber)); break
-        case '*': result = myCalculator.executeCommand(new MultiplyCommand(firstNumber, secondNumber)); break
-        case '/': result = myCalculator.executeCommand(new DivideCommand(firstNumber, secondNumber)); break
+      switch (statement[i]) {
+        case '+': calculator.executeCommand(new AddCommand()); break
+        case '-': calculator.executeCommand(new SubtractCommand()); break
+        case '*': calculator.executeCommand(new MultiplyCommand()); break
+        case '/': calculator.executeCommand(new DivideCommand()); break
       }
-      stack.push(result)
     }
   }
-  return +stack.pop().toFixed(3)
+  return +calculator.getResult().toFixed(3)
 }
+
+export const toCalculate = value => calculatePolishWriteback(toPolishWriteback(value))

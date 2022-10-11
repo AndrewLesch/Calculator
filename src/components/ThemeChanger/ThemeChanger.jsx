@@ -1,17 +1,17 @@
 import React from 'react'
 import { ThemeOption, ThemeSelector } from './components'
 import { ThemeContext } from '../App/App'
-import { darkTheme, lightTheme } from '@/styles/theme'
+import { darkThemeKey, lightThemeKey } from '@/constants'
 
 export const ThemeChanger = () => (
   <ThemeContext.Consumer>
-    {({ selectedTheme, handleThemeChange }) => (
+    {({ selectedThemeKey, handleThemeChange }) => (
       <ThemeSelector
-        defaultValue={JSON.stringify(selectedTheme)}
+        defaultValue={selectedThemeKey}
         onChange={event => handleThemeChange(event.target.value)}
       >
-        <ThemeOption value={JSON.stringify(lightTheme)}>Light Theme</ThemeOption>
-        <ThemeOption value={JSON.stringify(darkTheme)}>Dark Theme</ThemeOption>
+        <ThemeOption value={lightThemeKey}>Light Theme</ThemeOption>
+        <ThemeOption value={darkThemeKey}>Dark Theme</ThemeOption>
       </ThemeSelector>
     )}
   </ThemeContext.Consumer>

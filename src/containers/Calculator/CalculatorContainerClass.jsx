@@ -4,12 +4,12 @@ import { DisplayClass } from '@/components/Display'
 import { HistoryClass } from '@/components/History'
 import { KeypadClass } from '@/components/Keypad'
 import { ControlPanelClass } from '@/components/ControlPanel'
-import { toCalculate } from '@/utils/Calculator/CalculatorClass'
-import { checkBraces } from '@/utils/CheckBraces'
+import { toCalculate } from '@/utils/Calculator/calculatePolishWriteback'
+import { checkBraces } from '@/utils/checkBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
 import { getStartValue } from '@/utils/GetStartValue'
 import { errors, operators } from '@/constants/calculator'
-import { handeCalculatorValue } from '@/utils/HandleCalculatorValue'
+import { handleCalculatorValue } from '@/utils/handleCalculatorValue'
 
 export class CalculatorContainerClass extends Component {
   constructor(props) {
@@ -92,7 +92,7 @@ export class CalculatorContainerClass extends Component {
       }
 
       default: {
-        this.setState((({ ...this.state, calculatorValue: handeCalculatorValue(calculatorValue, btnValue) })))
+        this.setState((({ ...this.state, calculatorValue: handleCalculatorValue(calculatorValue, btnValue) })))
       }
     }
   }

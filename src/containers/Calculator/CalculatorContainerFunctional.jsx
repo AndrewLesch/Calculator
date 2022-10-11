@@ -4,17 +4,17 @@ import { DisplayFunctional } from '@/components/Display'
 import { HistoryFunctional } from '@/components/History'
 import { KeypadFunctional } from '@/components/Keypad'
 import { ControlPanelFunctional } from '@/components/ControlPanel'
-import { toCalculate } from '@/utils/Calculator/CalculatorClass'
-import { checkBraces } from '@/utils/CheckBraces'
+import { toCalculate } from '@/utils/Calculator/calculatePolishWriteback'
+import { checkBraces } from '@/utils/checkBraces'
 import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
 import { errors, operators } from '@/constants/calculator'
 import { getStartValue } from '@/utils/GetStartValue'
-import { ErrorBoundary } from '@/components/Error'
-import { handeCalculatorValue } from '@/utils/HandleCalculatorValue'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { handleCalculatorValue } from '@/utils/handleCalculatorValue'
 
 export const CalculatorContainerFunctional = () => {
-  const [calculatorValue, setCalculatorValue] = useState()
-  const [history, setHistoryValue] = useState()
+  const [calculatorValue, setCalculatorValue] = useState('')
+  const [history, setHistoryValue] = useState([])
   const [isHistoryVisible, setIsHistoryOpen] = useState(false)
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export const CalculatorContainerFunctional = () => {
       }
 
       default: {
-        setCalculatorValue(handeCalculatorValue(calculatorValue, btnValue))
+        setCalculatorValue(handleCalculatorValue(calculatorValue, btnValue))
       }
     }
   }

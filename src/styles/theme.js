@@ -1,5 +1,3 @@
-import { css } from 'styled-components'
-
 const font = 'sans-serif'
 
 const boxShadows = [
@@ -24,7 +22,6 @@ export const defaultThemeStyles = {
 }
 
 const lightThemeColors = {
-  key: 'lightTheme',
   colors: {
     layoutBackground: '#CECECE',
     headerBackground: '#434343',
@@ -53,7 +50,6 @@ const lightThemeColors = {
 }
 
 const darkThemeColors = {
-  key: 'darkTheme',
   colors: {
     layoutBackground: '#181818',
     headerBackground: '#101010',

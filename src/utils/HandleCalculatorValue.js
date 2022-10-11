@@ -1,6 +1,6 @@
 import { openBrace, operators, closeBrace, numbers, errors } from "@/constants"
 
-export const handeCalculatorValue = (calculatorValue, btnValue) => {
+export const handleCalculatorValue = (calculatorValue, btnValue) => {
   let value = `${calculatorValue}${btnValue}`
   let lastSymbol = calculatorValue.toString().slice(-1)
 

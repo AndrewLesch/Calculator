@@ -9,19 +9,20 @@ import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage'
 import { HomePageClass } from '@/screens/Home/HomePageClass'
 import { HomePageFunctional } from '@/screens/Home/HomePageFunctional'
 import { darkTheme, lightTheme } from '@/styles/theme'
+import { darkThemeKey, lightThemeKey } from '@/constants'
 
 export const ThemeContext = createContext({
-  selectedTheme: lightTheme || darkTheme,
-  setSelectedTheme: () => { },
+  selectedThemeKey: lightThemeKey || darkThemeKey,
+  handleThemeChange: () => { },
 })
 
 export const App = () => {
+  const [selectedThemeKey, setSelectedThemeKey] = useState(JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY)))
   const [selectedTheme, setSelectedTheme] = useState(lightTheme)
 
   useEffect(() => {
-    const themeKey = JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY))
-    switch (themeKey) {
-      case darkTheme.key:
+    switch (selectedThemeKey) {
+      case darkThemeKey:
         setSelectedTheme(darkTheme)
         break
 
@@ -29,16 +30,15 @@ export const App = () => {
         setSelectedTheme(lightTheme)
         break
     }
-  }, [])
+  }, [selectedThemeKey])
 
-  const handleThemeChange = useCallback(theme => {
-    const parsedTheme = JSON.parse(theme)
-    setSelectedTheme(parsedTheme)
-    localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(parsedTheme.key))
-  }, [setSelectedTheme])
+  const handleThemeChange = useCallback(themeKey => {
+    setSelectedThemeKey(themeKey)
+    localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(themeKey))
+  }, [setSelectedThemeKey])
 
   return (
-    <ThemeContext.Provider value={{ selectedTheme, handleThemeChange }}>
+    <ThemeContext.Provider value={{ selectedThemeKey, handleThemeChange }}>
       <ThemeProvider theme={() => selectedTheme}>
         <PageLayout>
           <AppWrapper>

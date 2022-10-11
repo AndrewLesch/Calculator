@@ -14,3 +14,6 @@ export const operatorsPriority = {
   '*': 1,
   '/': 1,
 }
+export const numberDivider = '?'
+export const darkThemeKey = 'darkThemeKey'
+export const lightThemeKey = 'lightThemeKey'
