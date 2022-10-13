@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { App } from './components/App'
 import GlobalStyles from '@/styles/globalStyles'
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
     <GlobalStyles />
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById('root'),
 )
