@@ -1,8 +1,8 @@
 import { numberDivider } from '@/constants'
-import { AddCommand, Calculator, DivideCommand, MultiplyCommand, SubtractCommand } from './Calculator'
-import { toPolishWriteback } from './ToPolishWriteBack'
 
-// Function for calculating the expression of the Polish notation
+import { AddCommand, Calculator, DivideCommand, MultiplyCommand, SubtractCommand } from './Calculator'
+import { toPolishWriteback } from './toPolishWriteBack'
+
 export const calculatePolishWriteback = statement => {
   let number = 0
   let expression = ''

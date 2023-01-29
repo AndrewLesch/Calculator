@@ -1,6 +1,5 @@
 import { closeBrace, numberDivider, openBrace, operatorsPriority } from '@/constants/calculator'
 
-// The function of converting to Polish notation for further work with it.
 export const toPolishWriteback = statement => {
   const stack = []
   let result = ''

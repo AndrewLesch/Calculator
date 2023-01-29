@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
 import propTypes from 'prop-types'
-import { ControlPanelButton, ControlPanelButtonsContainer } from './components'
+import React, { Component } from 'react'
 
-export class ControlPanelClass extends Component {
+import { ControlPanelButton, ControlPanelButtonsContainer } from '../styled'
+
+export class ControlPanelCL extends Component {
   render() {
     const { onHistoryButtonClick, isHistoryVisible, deleteHistory } = this.props
 
@@ -15,7 +16,7 @@ export class ControlPanelClass extends Component {
   }
 }
 
-ControlPanelClass.propTypes = {
+ControlPanelCL.propTypes = {
   isHistoryVisible: propTypes.bool,
   onHistoryButtonClick: propTypes.func,
   deleteHistory: propTypes.func,

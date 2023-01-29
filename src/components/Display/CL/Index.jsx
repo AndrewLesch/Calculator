@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
 import propTypes from 'prop-types'
-import { CalculatorDisplay } from './components'
+import React, { Component } from 'react'
 
-export class DisplayClass extends Component {
+import { CalculatorDisplay } from '../styled'
+
+export class DisplayCL extends Component {
   render() {
     const { calculatorValue } = this.props
 
@@ -12,6 +13,6 @@ export class DisplayClass extends Component {
   }
 }
 
-DisplayClass.propTypes = {
+DisplayCL.propTypes = {
   calculatorValue: propTypes.string,
 }

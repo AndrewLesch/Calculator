@@ -1,4 +1,3 @@
-// Function to determine the correct placement of brackets.
 export const checkBraces = str => {
   const chars = str.toString().split('')
   const stack = []

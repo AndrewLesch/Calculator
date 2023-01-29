@@ -1,7 +1,8 @@
 import React from 'react'
-import { ThemeOption, ThemeSelector } from './components'
-import { ThemeContext } from '../App/App'
-import { darkThemeKey, lightThemeKey } from '@/constants'
+
+import { darkThemeKey, lightThemeKey , ThemeContext } from '@/constants'
+
+import { ThemeOption, ThemeSelector } from './styled'
 
 export const ThemeChanger = () => (
   <ThemeContext.Consumer>

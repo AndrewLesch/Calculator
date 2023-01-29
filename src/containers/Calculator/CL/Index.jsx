@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from './components'
-import { DisplayClass } from '@/components/Display'
-import { HistoryClass } from '@/components/History'
-import { KeypadClass } from '@/components/Keypad'
-import { ControlPanelClass } from '@/components/ControlPanel'
-import { toCalculate } from '@/utils/Calculator/calculatePolishWriteback'
-import { checkBraces } from '@/utils/checkBraces'
-import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
-import { getStartValue } from '@/utils/GetStartValue'
+
+import { ControlPanelCL } from '@/components/ControlPanel/CL/Index'
+import { DisplayCL } from '@/components/Display/CL/Index'
+import { HistoryCL } from '@/components/History/CL/Index'
+import { KeypadCL } from '@/components/Keypad/CL/Index'
 import { errors, operators } from '@/constants/calculator'
+import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
+import { toCalculate } from '@/utils/Calculator/calculatePolishWriteBack'
+import { checkBraces } from '@/utils/checkBraces'
+import { getStartValue } from '@/utils/GetStartValue'
 import { handleCalculatorValue } from '@/utils/handleCalculatorValue'
 
-export class CalculatorContainerClass extends Component {
+import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled'
+
+export class CalculatorContainerCL extends Component {
   constructor(props) {
     super(props)
 
@@ -103,13 +105,13 @@ export class CalculatorContainerClass extends Component {
     return (
       <CalculatorWrapper>
         <ButtonsWrapper>
-          <DisplayClass calculatorValue={calculatorValue} />
-          <KeypadClass onKeypadButtonClick={this.handleKeypadButtonClick} />
+          <DisplayCL calculatorValue={calculatorValue} />
+          <KeypadCL onKeypadButtonClick={this.handleKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
-          <ControlPanelClass deleteHistory={this.deleteHistory} isHistoryVisible={isHistoryVisible}
+          <ControlPanelCL deleteHistory={this.deleteHistory} isHistoryVisible={isHistoryVisible}
             onHistoryButtonClick={this.handleHistoryButtonClick} />
-          {isHistoryVisible && <HistoryClass history={history} />}
+          {isHistoryVisible && <HistoryCL history={history} />}
         </HistoryWrapper>
       </CalculatorWrapper >
     )

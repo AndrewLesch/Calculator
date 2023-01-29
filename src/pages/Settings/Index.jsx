@@ -1,7 +1,9 @@
 import React from 'react'
+
 import { ThemeChanger } from '@/components/ThemeChanger'
-import { SettingsContainer, SettingsTitle, ThemeChangerContainer, DeleteButton, ThemeChangerDescription } from './components'
 import { clearCalculatorData } from '@/utils/clearCalculatorData'
+
+import { DeleteButton, SettingsContainer, SettingsTitle, ThemeChangerContainer, ThemeChangerDescription } from './styled'
 
 export const SettingsPage = () => (
     <SettingsContainer>

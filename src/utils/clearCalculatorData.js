@@ -1,4 +1,4 @@
-import { HISTORY_LS_KEY, CALCULATOR_VALUE_LS_KEY } from '@/constants/localStorage'
+import { CALCULATOR_VALUE_LS_KEY,HISTORY_LS_KEY } from '@/constants/localStorage'
 
 export const clearCalculatorData = () => {
   localStorage.setItem(HISTORY_LS_KEY, JSON.stringify([]))

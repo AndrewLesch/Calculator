@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { CalculatorWrapper, ButtonsWrapper, HistoryWrapper } from './components'
-import { DisplayFunctional } from '@/components/Display'
-import { HistoryFunctional } from '@/components/History'
-import { KeypadFunctional } from '@/components/Keypad'
-import { ControlPanelFunctional } from '@/components/ControlPanel'
-import { toCalculate } from '@/utils/Calculator/calculatePolishWriteback'
-import { checkBraces } from '@/utils/checkBraces'
-import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
-import { errors, operators } from '@/constants/calculator'
-import { getStartValue } from '@/utils/GetStartValue'
+
+import { ControlPanelFC } from '@/components/ControlPanel/FC/Index'
+import { DisplayFC } from '@/components/Display/FC/Index'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { HistoryFC } from '@/components/History/FC/Index'
+import { KeypadFC } from '@/components/Keypad/FC/Index'
+import { errors, operators } from '@/constants/calculator'
+import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
+import { toCalculate } from '@/utils/Calculator/calculatePolishWriteBack'
+import { checkBraces } from '@/utils/checkBraces'
+import { getStartValue } from '@/utils/GetStartValue'
 import { handleCalculatorValue } from '@/utils/handleCalculatorValue'
 
-export const CalculatorContainerFunctional = () => {
+import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled'
+
+export const CalculatorContainerFC = () => {
   const [calculatorValue, setCalculatorValue] = useState('')
   const [history, setHistoryValue] = useState([])
   const [isHistoryVisible, setIsHistoryOpen] = useState(false)
@@ -77,13 +79,13 @@ export const CalculatorContainerFunctional = () => {
     <ErrorBoundary>
       <CalculatorWrapper>
         <ButtonsWrapper>
-          <DisplayFunctional calculatorValue={calculatorValue} />
-          <KeypadFunctional onKeypadButtonClick={onKeypadButtonClick} />
+          <DisplayFC calculatorValue={calculatorValue} />
+          <KeypadFC onKeypadButtonClick={onKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
-          <ControlPanelFunctional isHistoryOpen={isHistoryVisible} onHistoryButtonClick={onHistoryButtonClick}
+          <ControlPanelFC isHistoryVisible={isHistoryVisible} onHistoryButtonClick={onHistoryButtonClick}
             setHistory={setHistoryValue} />
-          {isHistoryVisible && <HistoryFunctional history={history} />}
+          {isHistoryVisible && <HistoryFC history={history} />}
         </HistoryWrapper>
       </CalculatorWrapper>
     </ErrorBoundary>

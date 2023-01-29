@@ -1,7 +1,7 @@
 {
   "extends": ["standard", "standard-react", "prettier", "prettier/react"],
-  "plugins": ["prettier", "react-hooks", "cypress"],
-  "parser": "babel-eslint",
+  "plugins": ["prettier", "react-hooks", "cypress", "simple-import-sort"],
+  "parser": "@babel/eslint-parser",
   "env": {
     "node": true,
     "browser": true,
@@ -9,6 +9,8 @@
     "cypress/globals": true
   },
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "arrow-parens": ["error", "as-needed"],
     "semi": "error",
     "prefer-destructuring": "error",

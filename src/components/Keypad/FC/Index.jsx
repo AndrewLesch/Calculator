@@ -1,9 +1,11 @@
-import React from 'react'
-import { KeypadButton, KeypadButtonWrapper } from './components'
 import propTypes from 'prop-types'
+import React from 'react'
+
 import { keypadButtons } from '@/constants/calculator'
 
-export const KeypadFunctional = ({ onKeypadButtonClick }) => (
+import { KeypadButton, KeypadButtonWrapper } from '../styled'
+
+export const KeypadFC = ({ onKeypadButtonClick }) => (
   <KeypadButtonWrapper>
     {keypadButtons.map(btnValue =>
       <KeypadButton
@@ -15,7 +17,7 @@ export const KeypadFunctional = ({ onKeypadButtonClick }) => (
   </KeypadButtonWrapper>
 )
 
-KeypadFunctional.propTypes = {
+KeypadFC.propTypes = {
   onKeypadButtonClick: propTypes.func,
 }
 

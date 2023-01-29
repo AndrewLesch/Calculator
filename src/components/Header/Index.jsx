@@ -1,6 +1,8 @@
 import React from 'react'
-import { Wrapper, Title, LinksContainer, NavbarLink } from './components'
+
 import { HOME_PAGE_ROUTE_CL, HOME_PAGE_ROUTE_FC, SETTING_PAGE_ROUTE } from '@/constants/router'
+
+import { LinksContainer, NavbarLink,Title, Wrapper } from './styled'
 
 export const Header = () => (
   <Wrapper>

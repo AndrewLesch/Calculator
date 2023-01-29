@@ -1,8 +1,9 @@
-import React from 'react'
-import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from './components'
 import propTypes from 'prop-types'
+import React from 'react'
 
-export const HistoryFunctional = ({ history }) => (
+import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from '../styled'
+
+export const HistoryFC = ({ history }) => (
   <HistoryContainer>
     <HistoryTitle>
       History
@@ -14,6 +15,6 @@ export const HistoryFunctional = ({ history }) => (
 )
 
 
-HistoryFunctional.propTypes = {
+HistoryFC.propTypes = {
   history: propTypes.array,
 }

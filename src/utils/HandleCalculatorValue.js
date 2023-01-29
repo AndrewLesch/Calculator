@@ -1,4 +1,4 @@
-import { openBrace, operators, closeBrace, numbers, errors } from "@/constants"
+import { closeBrace, errors,numbers, openBrace, operators } from "@/constants"
 
 export const handleCalculatorValue = (calculatorValue, btnValue) => {
   let value = `${calculatorValue}${btnValue}`
