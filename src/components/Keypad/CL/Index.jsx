@@ -1,26 +1,34 @@
-import propTypes from 'prop-types'
-import React, { Component } from 'react'
+import propTypes from 'prop-types';
+import React, { Component } from 'react';
 
-import { keypadButtons } from '@/constants/calculator'
+import { keypadButtons } from '@/constants/calculator';
 
-import { KeypadButton, KeypadButtonWrapper } from '../styled'
+import { KeypadButton, KeypadButtonWrapper } from '../styled';
 
-export class KeypadCL extends Component {
+export default class KeypadCL extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
+    const { onKeypadButtonClick } = this.props;
+
     return (
       <KeypadButtonWrapper>
-        {keypadButtons.map(btnValue =>
+        {keypadButtons.map(btnValue => (
           <KeypadButton
             value={btnValue}
-            onClick={() => this.props.onKeypadButtonClick(btnValue)}
-            key={btnValue}>{btnValue}
-          </KeypadButton>,
-        )}
+            onClick={() => onKeypadButtonClick(btnValue)}
+            key={btnValue}>
+            {btnValue}
+          </KeypadButton>
+        ))}
       </KeypadButtonWrapper>
-    )
+    );
   }
 }
 
 KeypadCL.propTypes = {
   onKeypadButtonClick: propTypes.func,
-}
+};

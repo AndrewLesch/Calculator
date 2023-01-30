@@ -1,12 +1,12 @@
-import propTypes from 'prop-types'
-import React from 'react'
+import propTypes from 'prop-types';
+import React from 'react';
 
-import { CalculatorDisplay } from '../styled'
+import CalculatorDisplay from '../styled';
 
-export const DisplayFC = ({ calculatorValue }) => (
-  <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>
-)
+export default function DisplayFC({ calculatorValue }) {
+  return <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>;
+}
 
 DisplayFC.propTypes = {
   calculatorValue: propTypes.string,
-}
+};

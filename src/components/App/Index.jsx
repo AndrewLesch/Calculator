@@ -1,31 +1,35 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
+import React, { useMemo } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
-import { Header } from '@/components/Header'
-import { darkThemeKey, ThemeContext } from '@/constants'
-import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage'
-import { HOME_PAGE_ROUTE_CL, HOME_PAGE_ROUTE_FC, SETTING_PAGE_ROUTE } from '@/constants/router'
-import { HomePageCL } from '@/pages/Home/CL/Index'
-import { HomePageFC } from '@/pages/Home/FC/Index'
-import { SettingsPage } from '@/pages/Settings/Index'
-import { darkTheme, lightTheme } from '@/styles/theme'
+import { ThemeContext } from '@/constants';
+import {
+  HOME_PAGE_ROUTE_CL,
+  HOME_PAGE_ROUTE_FC,
+  SETTING_PAGE_ROUTE,
+} from '@/constants/router';
+import HomePageCL from '@/pages/Home/CL/Index';
+import HomePageFC from '@/pages/Home/FC/Index';
+import SettingsPage from '@/pages/Settings/Index';
 
-import { useThemeChange } from './hook/useThemeChange'
-import { AppWrapper, PageLayout } from './styled'
+import Header from '../Header/Index';
+import useThemeChange from './hook/useThemeChange';
+import { AppWrapper, PageLayout } from './styled';
 
-
-export const App = () => {
+export default function App() {
   const {
     selectedThemeKey,
     selectedTheme,
-    setSelectedThemeKey,
-    setSelectedTheme,
     handleThemeChange,
-  } = useThemeChange()
+  } = useThemeChange();
+
+  const themeContextValue = useMemo(
+    () => ({ selectedThemeKey, handleThemeChange }),
+    [selectedThemeKey, handleThemeChange],
+  );
 
   return (
-    <ThemeContext.Provider value={{ selectedThemeKey, handleThemeChange }}>
+    <ThemeContext.Provider value={themeContextValue}>
       <ThemeProvider theme={() => selectedTheme}>
         <PageLayout>
           <AppWrapper>
@@ -40,5 +44,5 @@ export const App = () => {
         </PageLayout>
       </ThemeProvider>
     </ThemeContext.Provider>
-  )
+  );
 }

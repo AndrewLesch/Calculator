@@ -1,106 +1,122 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import { ControlPanelCL } from '@/components/ControlPanel/CL/Index'
-import { DisplayCL } from '@/components/Display/CL/Index'
-import { HistoryCL } from '@/components/History/CL/Index'
-import { KeypadCL } from '@/components/Keypad/CL/Index'
-import { errors, operators } from '@/constants/calculator'
-import { CALCULATOR_VALUE_LS_KEY, HISTORY_LS_KEY } from '@/constants/localStorage'
-import { toCalculate } from '@/utils/Calculator/calculatePolishWriteBack'
-import { checkBraces } from '@/utils/checkBraces'
-import { getStartValue } from '@/utils/GetStartValue'
-import { handleCalculatorValue } from '@/utils/handleCalculatorValue'
+import ControlPanelCL from '@/components/ControlPanel/CL/Index';
+import DisplayCL from '@/components/Display/CL/Index';
+import HistoryCL from '@/components/History/CL/Index';
+import KeypadCL from '@/components/Keypad/CL/Index';
+import { errors, operators } from '@/constants/calculator';
+import {
+  CALCULATOR_VALUE_LS_KEY,
+  HISTORY_LS_KEY,
+} from '@/constants/localStorage';
+import { toCalculate } from '@/utils/Calculator/calculatePolishWriteBack';
+import checkBraces from '@/utils/checkBraces';
+import getStartValue from '@/utils/getStartValue';
+import handleCalculatorValue from '@/utils/handleCalculatorValue';
 
-import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled'
+import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
 
-export class CalculatorContainerCL extends Component {
+export default class CalculatorContainerCL extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       calculatorValue: '',
       history: [],
       isHistoryVisible: false,
-    }
+    };
   }
 
   componentDidMount() {
-    this.setState(({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       calculatorValue: getStartValue(CALCULATOR_VALUE_LS_KEY),
       history: getStartValue(HISTORY_LS_KEY),
-    }))
+    }));
   }
 
   componentDidUpdate(prevState) {
-    const { calculatorValue, history } = this.state
+    const { calculatorValue, history } = this.state;
 
     if (prevState.calculatorValue !== calculatorValue) {
-      localStorage.setItem(CALCULATOR_VALUE_LS_KEY, JSON.stringify(this.state.calculatorValue))
+      localStorage.setItem(
+        CALCULATOR_VALUE_LS_KEY,
+        JSON.stringify(calculatorValue),
+      );
     }
     if (prevState.history !== history) {
-      localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(this.state.history))
+      localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(history));
     }
   }
 
   handleHistoryButtonClick = () => {
     this.setState(prevState => ({
       isHistoryVisible: !prevState.isHistoryVisible,
-    }))
-  }
+    }));
+  };
 
   deleteHistory = () => {
-    localStorage.setItem(HISTORY_LS_KEY, JSON.stringify([]))
-    this.setState(({ ...this.state, history: [] }))
-  }
+    localStorage.setItem(HISTORY_LS_KEY, JSON.stringify([]));
+    this.setState(prevState => ({ ...prevState, history: [] }));
+  };
 
   handleKeypadButtonClick = btnValue => {
-    const { calculatorValue } = this.state
+    const { calculatorValue } = this.state;
 
     switch (btnValue) {
       case '=': {
-        const lastSymbol = calculatorValue.toString().slice(-1)
+        const lastSymbol = calculatorValue.toString().slice(-1);
 
         if (operators.includes(lastSymbol)) {
-          throw new Error(errors.invalidFormat)
+          throw new Error(errors.invalidFormat);
         }
         if (!checkBraces(calculatorValue)) {
-          throw new Error(errors.wrongBraces)
+          throw new Error(errors.wrongBraces);
         }
 
-        const value = toCalculate(calculatorValue)
-        if (value === Infinity || isNaN(value)) {
-          this.setState((({ ...this.state, calculatorValue: calculatorValue })))
-          throw new Error(errors.divideByZero)
+        const value = toCalculate(calculatorValue);
+        if (value === Infinity || Number.isNaN(value)) {
+          this.setState(prevState => ({
+            ...prevState,
+            calculatorValue,
+          }));
+          throw new Error(errors.divideByZero);
         } else {
-          this.setState(({ history, calculatorValue }) => {
-            return {
-              history: [...history, calculatorValue],
-              calculatorValue: toCalculate(calculatorValue),
-            }
-          })
+          this.setState(({ history, calculatorValue }) => ({
+            history: [...history, calculatorValue],
+            calculatorValue: toCalculate(calculatorValue),
+          }));
         }
-        break
+        break;
       }
 
       case 'C': {
-        this.setState((({ ...this.state, calculatorValue: calculatorValue.toString().slice(0, -1) })))
-        break
+        this.setState(prevState => ({
+          ...prevState,
+          calculatorValue: calculatorValue.toString().slice(0, -1),
+        }));
+        break;
       }
 
       case 'CE': {
-        this.setState((({ ...this.state, calculatorValue: '' })))
-        break
+        this.setState(prevState => ({
+          ...prevState,
+          calculatorValue: '',
+        }));
+        break;
       }
 
       default: {
-        this.setState((({ ...this.state, calculatorValue: handleCalculatorValue(calculatorValue, btnValue) })))
+        this.setState(prevState => ({
+          ...prevState,
+          calculatorValue: handleCalculatorValue(calculatorValue, btnValue),
+        }));
       }
     }
-  }
+  };
 
   render() {
-    const { calculatorValue, history, isHistoryVisible } = this.state
+    const { calculatorValue, history, isHistoryVisible } = this.state;
 
     return (
       <CalculatorWrapper>
@@ -109,11 +125,14 @@ export class CalculatorContainerCL extends Component {
           <KeypadCL onKeypadButtonClick={this.handleKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
-          <ControlPanelCL deleteHistory={this.deleteHistory} isHistoryVisible={isHistoryVisible}
-            onHistoryButtonClick={this.handleHistoryButtonClick} />
+          <ControlPanelCL
+            deleteHistory={this.deleteHistory}
+            isHistoryVisible={isHistoryVisible}
+            onHistoryButtonClick={this.handleHistoryButtonClick}
+          />
           {isHistoryVisible && <HistoryCL history={history} />}
         </HistoryWrapper>
-      </CalculatorWrapper >
-    )
+      </CalculatorWrapper>
+    );
   }
 }

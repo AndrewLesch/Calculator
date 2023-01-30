@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export const CalculatorDisplay = styled.div`
+const CalculatorDisplay = styled.div`
   margin: ${({ theme }) => theme.spaces[4]}px;
   width: 90%;
   height: 10%;
@@ -8,6 +8,9 @@ export const CalculatorDisplay = styled.div`
   font-weight: ${({ theme }) => theme.size.xs};
   text-align: end;
   border: none;
-  border-bottom: ${({ theme }) => theme.borders[0]}px solid ${({ theme }) => theme.colors.defaultAppBorder};
+  border-bottom: ${({ theme }) => theme.borders[0]}px solid
+    ${({ theme }) => theme.colors.defaultAppBorder};
   color: ${({ theme }) => theme.colors.calculatorDisplayText};
-`
+`;
+
+export default CalculatorDisplay;

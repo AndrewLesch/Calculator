@@ -1,34 +1,37 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from 'react';
 
-import { CURRENT_THEME_LS_KEY, darkThemeKey } from "@/constants"
-import { darkTheme, lightTheme } from "@/styles/theme"
+import { CURRENT_THEME_LS_KEY, darkThemeKey } from '@/constants';
+import { darkTheme, lightTheme } from '@/styles/theme';
 
-export const useThemeChange = () => {
-  const [selectedThemeKey, setSelectedThemeKey] = useState(JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY)))
-  const [selectedTheme, setSelectedTheme] = useState(lightTheme)
+export default function useThemeChange() {
+  const [selectedThemeKey, setSelectedThemeKey] = useState(
+    JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY)),
+  );
+  const [selectedTheme, setSelectedTheme] = useState(lightTheme);
 
   useEffect(() => {
     switch (selectedThemeKey) {
       case darkThemeKey:
-        setSelectedTheme(darkTheme)
-        break
+        setSelectedTheme(darkTheme);
+        break;
 
       default:
-        setSelectedTheme(lightTheme)
-        break
+        setSelectedTheme(lightTheme);
+        break;
     }
-  }, [selectedThemeKey])
+  }, [selectedThemeKey]);
 
-  const handleThemeChange = useCallback(themeKey => {
-    setSelectedThemeKey(themeKey)
-    localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(themeKey))
-  }, [setSelectedThemeKey])
+  const handleThemeChange = useCallback(
+    themeKey => {
+      setSelectedThemeKey(themeKey);
+      localStorage.setItem(CURRENT_THEME_LS_KEY, JSON.stringify(themeKey));
+    },
+    [setSelectedThemeKey],
+  );
 
   return {
     selectedThemeKey,
     selectedTheme,
-    setSelectedThemeKey,
-    setSelectedTheme,
     handleThemeChange,
-  }
+  };
 }

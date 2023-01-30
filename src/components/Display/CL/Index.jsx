@@ -1,18 +1,21 @@
-import propTypes from 'prop-types'
-import React, { Component } from 'react'
+import propTypes from 'prop-types';
+import React, { Component } from 'react';
 
-import { CalculatorDisplay } from '../styled'
+import CalculatorDisplay from '../styled';
 
-export class DisplayCL extends Component {
+export default class DisplayCL extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
-    const { calculatorValue } = this.props
+    const { calculatorValue } = this.props;
 
-    return (
-      <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>
-    )
+    return <CalculatorDisplay>{calculatorValue}</CalculatorDisplay>;
   }
 }
 
 DisplayCL.propTypes = {
   calculatorValue: propTypes.string,
-}
+};

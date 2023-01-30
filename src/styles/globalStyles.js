@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
-import { defaultThemeStyles } from './theme'
+import { defaultThemeStyles } from './theme';
 
 export default createGlobalStyle`
   * {
@@ -32,4 +32,4 @@ export default createGlobalStyle`
   #root {
     display: flex;
   }
-`
+`;

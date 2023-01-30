@@ -1,31 +1,31 @@
-export const checkBraces = str => {
-  const chars = str.toString().split('')
-  const stack = []
-  const openBrace = ['(']
-  const closeBrace = [')']
-  let closeIndex
-  let openIndex
+export default function checkBraces(str) {
+  const chars = str.toString().split('');
+  const stack = [];
+  const openBrace = ['('];
+  const closeBrace = [')'];
+  let closeIndex;
+  let openIndex;
 
-  for (let i = 0, { length } = chars; i < length; i++) {
-    openIndex = openBrace.indexOf(chars[i])
+  for (let i = 0, { length } = chars; i < length; ++i) {
+    openIndex = openBrace.indexOf(chars[i]);
+
     if (openIndex !== -1) {
-      stack.push(openIndex)
-      continue
+      stack.push(openIndex);
     }
 
-    closeIndex = closeBrace.indexOf(chars[i])
+    closeIndex = closeBrace.indexOf(chars[i]);
 
     if (closeIndex !== -1) {
-      openIndex = stack.pop()
+      openIndex = stack.pop();
       if (closeIndex !== openIndex) {
-        return false
+        return false;
       }
     }
   }
 
   if (stack.length !== 0) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }

@@ -1,20 +1,26 @@
-import propTypes from 'prop-types'
-import React from 'react'
+import propTypes from 'prop-types';
+import React from 'react';
 
-import { HistoryContainer, HistoryElement, HistoryElementsContainer, HistoryTitle } from '../styled'
+import {
+  HistoryContainer,
+  HistoryElement,
+  HistoryElementsContainer,
+  HistoryTitle,
+} from '../styled';
 
-export const HistoryFC = ({ history }) => (
-  <HistoryContainer>
-    <HistoryTitle>
-      History
-    </HistoryTitle>
-    <HistoryElementsContainer>
-      {history.map((historyElement, i) => <HistoryElement key={i}>{historyElement}</HistoryElement>)}
-    </HistoryElementsContainer>
-  </HistoryContainer>
-)
-
+export default function HistoryFC({ history }) {
+  return (
+    <HistoryContainer>
+      <HistoryTitle>History</HistoryTitle>
+      <HistoryElementsContainer>
+        {history.map(historyElement => (
+          <HistoryElement key={historyElement}>{historyElement}</HistoryElement>
+        ))}
+      </HistoryElementsContainer>
+    </HistoryContainer>
+  );
+}
 
 HistoryFC.propTypes = {
-  history: propTypes.array,
-}
+  history: propTypes.arrayOf,
+};

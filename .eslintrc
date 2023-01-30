@@ -1,5 +1,5 @@
 {
-  "extends": ["standard", "standard-react", "prettier", "prettier/react"],
+  "extends": ["standard", "standard-react", "prettier", "prettier/react", "airbnb"],
   "plugins": ["prettier", "react-hooks", "cypress", "simple-import-sort"],
   "parser": "@babel/eslint-parser",
   "env": {
@@ -9,6 +9,9 @@
     "cypress/globals": true
   },
   "rules": {
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-shadow": "off",
+    "react/require-default-props": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "arrow-parens": ["error", "as-needed"],
@@ -17,7 +20,7 @@
     "max-len": [
       "warn",
       {
-        "code": 150,
+        "code": 90,
         "ignoreUrls": true,
         "ignorePattern": "import"
       }
@@ -65,5 +68,24 @@
         ]
       }
     }
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          [
+            "@",
+            "./src"
+          ]
+        ],
+        "extensions": [
+          ".js",
+          ".ts",
+          ".tsx",
+          ".jsx",
+          ".json"
+        ]
+      }
+    }
+  }
 }

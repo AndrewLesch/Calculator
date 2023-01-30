@@ -1,15 +1,13 @@
-const font = 'sans-serif'
+const font = 'sans-serif';
 
-const boxShadows = [
-  'box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)',
-]
+const boxShadows = ['box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.75)'];
 
 const size = {
   xs: 400,
   small: 500,
   med: 600,
   large: 700,
-}
+};
 
 export const defaultThemeStyles = {
   size,
@@ -19,7 +17,7 @@ export const defaultThemeStyles = {
   fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80],
   borders: [1, 2],
   borderRadiuses: [5, 10],
-}
+};
 
 const lightThemeColors = {
   colors: {
@@ -47,7 +45,7 @@ const lightThemeColors = {
     headerNavButton: '#9F9F9F',
     headerNavButtonActive: '#FEFEFE',
   },
-}
+};
 
 const darkThemeColors = {
   colors: {
@@ -75,7 +73,13 @@ const darkThemeColors = {
     headerNavButton: '#9F9F9F',
     headerNavButtonActive: '#FEFEFE',
   },
-}
+};
 
-export const lightTheme = { ...lightThemeColors, ...defaultThemeStyles }
-export const darkTheme = { ...darkThemeColors, ...defaultThemeStyles }
+export const lightTheme = {
+  ...lightThemeColors,
+  ...defaultThemeStyles,
+};
+export const darkTheme = {
+  ...darkThemeColors,
+  ...defaultThemeStyles,
+};

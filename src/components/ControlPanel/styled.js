@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ControlPanelButton = styled.button`
   margin: ${({ theme }) => theme.spaces[1]}px auto;
@@ -8,13 +8,14 @@ export const ControlPanelButton = styled.button`
   border-radius: ${({ theme }) => theme.borderRadiuses[0]}px;
   font-size: ${({ theme }) => theme.fontSizes[1]}px;
   color: ${({ theme }) => theme.colors.controlPanelButton};
-  border: ${({ theme }) => theme.borders[1]}px solid ${({ theme }) => theme.colors.defaultAppBorder};
-  
+  border: ${({ theme }) => theme.borders[1]}px solid
+    ${({ theme }) => theme.colors.defaultAppBorder};
+
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 export const ControlPanelButtonsContainer = styled.div`
   display: flex;
-`
+`;

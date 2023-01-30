@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import { CalculatorContainerFC } from '@/containers/Calculator/FC/Index'
+import CalculatorContainerFC from '@/containers/Calculator/FC/Index';
 
-export const HomePageFC = () => (
-    <CalculatorContainerFC />
-)
+export default function HomePageFC() {
+  return <CalculatorContainerFC />;
+}
