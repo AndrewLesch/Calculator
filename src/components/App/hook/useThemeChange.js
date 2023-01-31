@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { CURRENT_THEME_LS_KEY, darkThemeKey } from '@/constants';
+import { darkThemeKey } from '@/constants/calculator';
+import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage';
 import { darkTheme, lightTheme } from '@/styles/theme';
 
 export default function useThemeChange() {

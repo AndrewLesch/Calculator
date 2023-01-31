@@ -6,13 +6,16 @@ import { keypadButtons } from '@/constants/calculator';
 import { KeypadButton, KeypadButtonWrapper } from '../styled';
 
 export default function KeypadFC({ onKeypadButtonClick }) {
+  const onKeypadButtonClickHandle = btnValue => () => onKeypadButtonClick(btnValue);
+
   return (
     <KeypadButtonWrapper>
       {keypadButtons.map(btnValue => (
         <KeypadButton
           value={btnValue}
-          onClick={() => onKeypadButtonClick(btnValue)}
-          key={btnValue}>
+          onClick={onKeypadButtonClickHandle(btnValue)}
+          key={btnValue}
+        >
           {btnValue}
         </KeypadButton>
       ))}

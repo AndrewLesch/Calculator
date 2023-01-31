@@ -1,5 +1,3 @@
-import { createContext } from 'react';
-
 export const keypadButtons = [
   'C',
   7,
@@ -40,8 +38,3 @@ export const operatorsPriority = {
 export const numberDivider = '?';
 export const darkThemeKey = 'darkThemeKey';
 export const lightThemeKey = 'lightThemeKey';
-
-export const ThemeContext = createContext({
-  selectedThemeKey: lightThemeKey || darkThemeKey,
-  handleThemeChange: () => {},
-});

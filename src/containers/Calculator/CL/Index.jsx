@@ -80,6 +80,7 @@ export default class CalculatorContainerCL extends Component {
             ...prevState,
             calculatorValue,
           }));
+          alert('На ноль делить нельзя');
           throw new Error(errors.divideByZero);
         } else {
           this.setState(({ history, calculatorValue }) => ({

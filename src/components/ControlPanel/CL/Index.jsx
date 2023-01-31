@@ -10,11 +10,7 @@ export default class ControlPanelCL extends Component {
   }
 
   render() {
-    const {
-      onHistoryButtonClick,
-      isHistoryVisible,
-      deleteHistory,
-    } = this.props;
+    const { onHistoryButtonClick, isHistoryVisible, deleteHistory } = this.props;
 
     return (
       <ControlPanelButtonsContainer>

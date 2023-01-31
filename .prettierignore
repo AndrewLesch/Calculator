@@ -2,3 +2,16 @@
 .vscode
 node_modules
 dist
+public
+package.json
+package-lock.json
+jsconfig.json
+cypress
+build
+.prettierrc
+.lintstagedrc.json
+.huskyrc.json
+.github
+.eslintrc
+.commitlintrc.json
+.babelrc

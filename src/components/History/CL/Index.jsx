@@ -33,5 +33,5 @@ export default class HistoryCL extends Component {
 }
 
 HistoryCL.propTypes = {
-  history: propTypes.arrayOf,
+  history: propTypes.arrayOf(propTypes.any),
 };

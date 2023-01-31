@@ -60,6 +60,5 @@ export default function toPolishWriteback(statement) {
     result += sym;
     sym = stack.pop();
   }
-
   return result;
 }

@@ -25,6 +25,10 @@ const lightThemeColors = {
     headerBackground: '#434343',
     calculatorBackground: '#FFFFFF',
 
+    notFound: '#FEFEFE',
+    notFoundBorder: '#101010',
+    notFoundText: '#101010',
+
     keypadButton: '#FEFEFE',
     keypadButtonBorder: '#101010',
     keypadText: '#101010',
@@ -52,6 +56,10 @@ const darkThemeColors = {
     layoutBackground: '#181818',
     headerBackground: '#101010',
     calculatorBackground: '#2a2121',
+
+    notFound: '#181818',
+    notFoundBorder: '#9F9F9F',
+    notFoundText: '#FEFEFE',
 
     keypadButton: '#181818',
     keypadButtonBorder: '#9F9F9F',

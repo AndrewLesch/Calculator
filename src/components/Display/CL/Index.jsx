@@ -17,5 +17,5 @@ export default class DisplayCL extends Component {
 }
 
 DisplayCL.propTypes = {
-  calculatorValue: propTypes.string,
+  calculatorValue: propTypes.oneOfType([propTypes.string, propTypes.number]),
 };

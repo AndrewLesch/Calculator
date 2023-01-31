@@ -8,5 +8,5 @@ export default function DisplayFC({ calculatorValue }) {
 }
 
 DisplayFC.propTypes = {
-  calculatorValue: propTypes.string,
+  calculatorValue: propTypes.oneOfType([propTypes.string, propTypes.number]),
 };

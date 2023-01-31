@@ -59,6 +59,7 @@ export default function CalculatorContainerFC() {
 
         if (value === Infinity || Number.isNaN(value)) {
           setCalculatorValue(calculatorValue);
+          alert('На ноль делить нельзя');
           throw new Error(errors.divideByZero);
         } else {
           setHistoryValue([...history, calculatorValue]);

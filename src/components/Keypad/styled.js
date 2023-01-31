@@ -14,6 +14,10 @@ export const KeypadButton = styled.button`
   &:hover {
     cursor: pointer;
   }
+  &:active {
+    background-color: #0d0d0d;
+    border-color: #0d0d0d;
+  }
 `;
 
 export const KeypadButtonWrapper = styled.div`

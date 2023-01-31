@@ -22,5 +22,5 @@ export default function HistoryFC({ history }) {
 }
 
 HistoryFC.propTypes = {
-  history: propTypes.arrayOf,
+  history: propTypes.arrayOf(propTypes.any),
 };

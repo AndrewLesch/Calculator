@@ -1,4 +1,4 @@
-import { numberDivider } from '@/constants';
+import { numberDivider } from '@/constants/calculator';
 
 import Calculator from './Calculator';
 import AddCommand from './CalculatorCommands/AddCommand';

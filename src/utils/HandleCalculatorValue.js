@@ -1,6 +1,10 @@
 import {
-  closeBrace, errors, numbers, openBrace, operators,
-} from '@/constants';
+  closeBrace,
+  errors,
+  numbers,
+  openBrace,
+  operators,
+} from '@/constants/calculator';
 
 export default function handleCalculatorValue(calculatorValue, btnValue) {
   let value = `${calculatorValue}${btnValue}`;
