@@ -9,6 +9,8 @@
     "cypress/globals": true
   },
   "rules": {
+    "global-require": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-shadow": "off",
     "react/require-default-props": "off",
@@ -80,6 +82,7 @@
           ]
         ],
         "extensions": [
+          "js",
           ".js",
           ".ts",
           ".tsx",
