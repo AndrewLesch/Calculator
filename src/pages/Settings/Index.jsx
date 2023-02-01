@@ -12,6 +12,9 @@ import {
 } from './styled';
 
 export default function SettingsPage() {
+  const deleteButtonClickHandle = () => {
+    clearCalculatorData();
+  };
   return (
     <SettingsContainer>
       <SettingsTitle>Settings</SettingsTitle>
@@ -19,7 +22,7 @@ export default function SettingsPage() {
         <ThemeChangerDescription>Switch theme</ThemeChangerDescription>
         <ThemeChanger />
       </ThemeChangerContainer>
-      <DeleteButton onClick={clearCalculatorData}>
+      <DeleteButton onClick={deleteButtonClickHandle}>
         Clear all history
       </DeleteButton>
     </SettingsContainer>

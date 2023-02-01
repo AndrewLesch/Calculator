@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const KeypadButton = styled.button`
-  height: 65px;
-  width: 75px;
-  margin: ${({ theme }) => theme.spaces[2]}px;
+  height: ${({ theme }) => theme.height[3]}px;
+  width: ${({ theme }) => theme.width[0]}px;
+  margin: auto; 
   border: ${({ theme }) => theme.borders[1]}px solid
     ${({ theme }) => theme.colors.keypadButtonBorder};
   border-radius: ${({ theme }) => theme.borderRadiuses[1]}px;
@@ -14,15 +14,12 @@ export const KeypadButton = styled.button`
   &:hover {
     cursor: pointer;
   }
-  &:active {
-    background-color: #0d0d0d;
-    border-color: #0d0d0d;
-  }
 `;
 
 export const KeypadButtonWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   width: 70%;
   margin: auto;
+  grid-gap: 20px;
 `;

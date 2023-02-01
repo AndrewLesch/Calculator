@@ -9,15 +9,25 @@ export default class ControlPanelCL extends Component {
     this.state = {};
   }
 
+  onHistoryButtonClickHandle = () => {
+    const { onHistoryButtonClick } = this.props;
+    onHistoryButtonClick();
+  };
+
+  onDeleteButtonClickHandle = () => {
+    const { deleteHistory } = this.props;
+    deleteHistory();
+  };
+
   render() {
-    const { onHistoryButtonClick, isHistoryVisible, deleteHistory } = this.props;
+    const { isHistoryVisible } = this.props;
 
     return (
       <ControlPanelButtonsContainer>
-        <ControlPanelButton onClick={onHistoryButtonClick}>
+        <ControlPanelButton onClick={this.onHistoryButtonClickHandle}>
           {isHistoryVisible ? 'Hide story' : 'Show history'}
         </ControlPanelButton>
-        <ControlPanelButton onClick={deleteHistory}>
+        <ControlPanelButton onClick={this.onDeleteButtonClickHandle}>
           Delete history
         </ControlPanelButton>
       </ControlPanelButtonsContainer>

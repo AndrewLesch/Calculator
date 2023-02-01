@@ -16,5 +16,5 @@ export const HistoryElement = styled.p`
 `;
 export const HistoryElementsContainer = styled.div`
   overflow-y: auto;
-  max-height: 325px;
+  max-height: ${({ theme }) => theme.height[5]}px;
 `;

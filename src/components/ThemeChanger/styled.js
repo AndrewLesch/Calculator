@@ -5,8 +5,8 @@ export const ThemeSelector = styled.select`
     ${({ theme }) => theme.spaces[4]}px ${({ theme }) => theme.spaces[4]}px;
   border-radius: ${({ theme }) => theme.borderRadiuses[0]}px;
   cursor: pointer;
-  height: 50px;
-  width: 210px;
+  height: ${({ theme }) => theme.height[1]}px;
+  width: ${({ theme }) => theme.width[2]}px;
   padding-left: ${({ theme }) => theme.spaces[4]}px;
   text-align: start;
   border: ${({ theme }) => theme.borders[1]}px solid

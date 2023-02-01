@@ -4,6 +4,7 @@ import Calculator from './Calculator';
 import AddCommand from './CalculatorCommands/AddCommand';
 import DivideCommand from './CalculatorCommands/DivideCommand';
 import MultiplyCommand from './CalculatorCommands/MultiplyCommand';
+import ResidueCommand from './CalculatorCommands/ResidueCommand';
 import SubtractCommand from './CalculatorCommands/SubtractCommand';
 import toPolishWriteback from './toPolishWriteBack';
 
@@ -33,6 +34,9 @@ export function calculatePolishWriteback(statement) {
           break;
         case '/':
           calculator.executeCommand(new DivideCommand());
+          break;
+        case '%':
+          calculator.executeCommand(new ResidueCommand());
           break;
         default:
       }

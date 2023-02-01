@@ -8,11 +8,11 @@ export const CalculatorWrapper = styled.div`
 `;
 
 export const ButtonsWrapper = styled.div`
-  width: 1000px;
+  width: ${({ theme }) => theme.width[4]}px;
 `;
 
 export const HistoryWrapper = styled.div`
-  width: 280px;
+  width: ${({ theme }) => theme.width[3]}px;
   align-items: center;
   height: 90%;
   margin: auto;

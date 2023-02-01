@@ -17,6 +17,8 @@ export const defaultThemeStyles = {
   fontSizes: [12, 14, 16, 20, 24, 32, 40, 56, 72, 80],
   borders: [1, 2],
   borderRadiuses: [5, 10],
+  width: [75, 110, 210, 280, 1000, 1280],
+  height: [40, 50, 55, 65, 105, 315, 500],
 };
 
 const lightThemeColors = {

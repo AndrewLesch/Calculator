@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  height: 55px;
+  height:${({ theme }) => theme.height[2]}px;
   display: flex;
   background-color: ${({ theme }) => theme.colors.headerBackground};
   align-items: center;

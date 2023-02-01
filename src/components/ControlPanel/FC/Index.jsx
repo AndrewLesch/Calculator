@@ -8,12 +8,20 @@ export default function ControlPanelFC({
   onHistoryButtonClick,
   setHistory,
 }) {
+  const onHistoryButtonClickHandle = () => {
+    onHistoryButtonClick();
+  };
+
+  const onDeleteButtonClickHandle = () => {
+    setHistory([]);
+  };
+
   return (
     <ControlPanelButtonsContainer>
-      <ControlPanelButton onClick={onHistoryButtonClick}>
+      <ControlPanelButton onClick={onHistoryButtonClickHandle}>
         {isHistoryVisible ? 'Hide story' : 'Show history'}
       </ControlPanelButton>
-      <ControlPanelButton onClick={() => setHistory([])}>
+      <ControlPanelButton onClick={onDeleteButtonClickHandle}>
         Delete history
       </ControlPanelButton>
     </ControlPanelButtonsContainer>

@@ -16,8 +16,8 @@ export const SettingsTitle = styled.h1`
 
 export const DeleteButton = styled.button`
   margin-left: ${({ theme }) => theme.spaces[4]}px;
-  height: 50px;
-  width: 210px;
+  height: ${({ theme }) => theme.height[1]}px;
+  width: ${({ theme }) => theme.width[2]}px;
   border-radius: ${({ theme }) => theme.borderRadiuses[0]}px;
   cursor: pointer;
   padding-left: ${({ theme }) => theme.spaces[4]}px;

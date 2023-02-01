@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const ControlPanelButton = styled.button`
   margin: ${({ theme }) => theme.spaces[1]}px auto;
   padding: ${({ theme }) => theme.spaces[1]}px;
-  width: 110px;
-  height: 40px;
+  width: ${({ theme }) => theme.width[1]}px;
+  height: ${({ theme }) => theme.height[0]}px;;
   border-radius: ${({ theme }) => theme.borderRadiuses[0]}px;
   font-size: ${({ theme }) => theme.fontSizes[1]}px;
   color: ${({ theme }) => theme.colors.controlPanelButton};
