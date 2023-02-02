@@ -10,6 +10,42 @@ export default function handleCalculatorValue(calculatorValue, btnValue) {
   let value = `${calculatorValue}${btnValue}`;
   let lastSymbol = calculatorValue.toString().slice(-1);
 
+  if (btnValue === '+/-') {
+    const stringCalcValue = calculatorValue.toString();
+    let lastOperatorIndex;
+    const arr = [];
+    for (let i = 0; i < calculatorValue.length; i++) {
+      if (
+        calculatorValue[i] === '-'
+        || calculatorValue[i] === '+'
+        || calculatorValue[i] === '/'
+        || calculatorValue[i] === '*'
+        || calculatorValue[i] === '%'
+      ) {
+        arr.push(i);
+      }
+      lastOperatorIndex = arr[arr.length - 1];
+    }
+
+    const lastBracetIndex = stringCalcValue.lastIndexOf('(-');
+    const newCalculatorValue = [...stringCalcValue];
+
+    if (
+      stringCalcValue.includes('(-')
+      && lastOperatorIndex - 2 < lastBracetIndex
+    ) {
+      newCalculatorValue.splice(lastOperatorIndex - 1, 2);
+      value = newCalculatorValue.join('');
+    } else {
+      newCalculatorValue.splice(lastOperatorIndex + 1, 0, '(-');
+      value = newCalculatorValue.join('');
+    }
+  }
+
+  if (lastSymbol === '(' && (btnValue === '*' || btnValue === '/')) {
+    value = value.slice(0, -1);
+  }
+
   if (lastSymbol === '0' && numbers.includes(btnValue) && value.length <= 2) {
     value = btnValue;
   }

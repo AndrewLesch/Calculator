@@ -5,7 +5,7 @@ export const PageLayout = styled.div`
   height: 100%;
   padding: ${({ theme }) => theme.spaces[4]}px;
   margin: 0 auto;
-  min-height: 620px;
+  min-height: ${({ theme }) => theme.height[7]}px;
   background-color: ${({ theme }) => theme.colors.layoutBackground};
 `;
 

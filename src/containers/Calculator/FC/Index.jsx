@@ -1,101 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import ControlPanelFC from '@/components/ControlPanel/FC/Index';
 import DisplayFC from '@/components/Display/FC/Index';
 import ErrorBoundary from '@/components/ErrorBoundary/Index';
 import HistoryFC from '@/components/History/FC/Index';
 import KeypadFC from '@/components/Keypad/FC/Index';
-import { errors, operators } from '@/constants/calculator';
-import {
-  CALCULATOR_VALUE_LS_KEY,
-  HISTORY_LS_KEY,
-} from '@/constants/localStorage';
-import { toCalculate } from '@/utils/Calculator/calculatePolishWriteBack';
-import checkBraces from '@/utils/checkBraces';
-import getStartValue from '@/utils/getStartValue';
-import handleCalculatorValue from '@/utils/handleCalculatorValue';
+import onButtonClick from '@/utils/onButtonClick';
 
 import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
+import useCalculatorValues from './hook/useCalculatorValues';
 
 export default function CalculatorContainerFC() {
-  const [calculatorValue, setCalculatorValue] = useState('');
-  const [history, setHistoryValue] = useState([]);
-  const [isHistoryVisible, setIsHistoryOpen] = useState(false);
-
-  useEffect(() => {
-    setCalculatorValue(getStartValue(CALCULATOR_VALUE_LS_KEY));
-    setHistoryValue(getStartValue(HISTORY_LS_KEY));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(
-      CALCULATOR_VALUE_LS_KEY,
-      JSON.stringify(calculatorValue),
-    );
-  }, [calculatorValue]);
-
-  useEffect(() => {
-    localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(history));
-  }, [history]);
-
+  const {
+    calculatorValue,
+    history,
+    lastExpression,
+    isHistoryVisible,
+    setCalculatorValue,
+    setHistory,
+    setLastExpression,
+    setIsHistoryOpen,
+  } = useCalculatorValues();
   const onHistoryButtonClick = () => {
     setIsHistoryOpen(!isHistoryVisible);
   };
 
   const onKeypadButtonClick = btnValue => {
-    switch (btnValue) {
-      case '=': {
-        const lastSymbol = calculatorValue.toString().slice(-1);
-
-        if (operators.includes(lastSymbol)) {
-          throw new Error(errors.invalidFormat);
-        }
-
-        if (!checkBraces(calculatorValue)) {
-          throw new Error(errors.wrongBraces);
-        }
-
-        const value = toCalculate(calculatorValue);
-
-        if (value === Infinity || Number.isNaN(value)) {
-          setCalculatorValue(calculatorValue);
-          alert('На ноль делить нельзя');
-          throw new Error(errors.divideByZero);
-        } else {
-          setHistoryValue([...history, calculatorValue]);
-          setCalculatorValue(toCalculate(calculatorValue));
-        }
-        break;
-      }
-
-      case 'C': {
-        setCalculatorValue(calculatorValue.toString().slice(0, -1));
-        break;
-      }
-
-      case 'CE': {
-        setCalculatorValue('');
-        break;
-      }
-
-      default: {
-        setCalculatorValue(handleCalculatorValue(calculatorValue, btnValue));
-      }
-    }
+    onButtonClick(
+      calculatorValue,
+      setCalculatorValue,
+      setHistory,
+      setLastExpression,
+      btnValue,
+      history,
+    );
   };
 
   return (
     <ErrorBoundary>
       <CalculatorWrapper>
         <ButtonsWrapper>
-          <DisplayFC calculatorValue={calculatorValue} />
+          <DisplayFC
+            calculatorValue={calculatorValue}
+            lastExpression={lastExpression}
+          />
+
           <KeypadFC onKeypadButtonClick={onKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
           <ControlPanelFC
             isHistoryVisible={isHistoryVisible}
             onHistoryButtonClick={onHistoryButtonClick}
-            setHistory={setHistoryValue}
+            setHistory={setHistory}
           />
           {isHistoryVisible && <HistoryFC history={history} />}
         </HistoryWrapper>

@@ -9,7 +9,31 @@ const size = {
   large: 700,
 };
 
+const mobileThemeStyles = {
+  fontSizes: [8, 10, 13, 15],
+  width: 45,
+  height: 35,
+  gridGap: 5,
+};
+
+const tabletThemeStyles = {
+  fontSizes: [12, 13, 15, 18],
+  width: 55,
+  height: 40,
+  gridGap: 5,
+};
+
+const laptopThemeStyles = {
+  fontSizes: [16, 17, 21],
+  width: 60,
+  height: 60,
+  gridGap: 15,
+};
+
 export const defaultThemeStyles = {
+  mobileThemeStyles,
+  tabletThemeStyles,
+  laptopThemeStyles,
   size,
   boxShadows,
   font,
@@ -18,8 +42,11 @@ export const defaultThemeStyles = {
   borders: [1, 2],
   borderRadiuses: [5, 10],
   width: [75, 110, 210, 280, 1000, 1280],
-  height: [40, 50, 55, 65, 105, 315, 500],
+  height: [40, 50, 55, 65, 105, 315, 550, 620],
 };
+
+const defaultLightThemeColor = '#FFFFFF';
+const secondLigthThemeColor = '#101010';
 
 const lightThemeColors = {
   colors: {
@@ -27,61 +54,67 @@ const lightThemeColors = {
     headerBackground: '#434343',
     calculatorBackground: '#FFFFFF',
 
-    notFound: '#FEFEFE',
-    notFoundBorder: '#101010',
-    notFoundText: '#101010',
+    notFound: defaultLightThemeColor,
+    notFoundBorder: secondLigthThemeColor,
+    notFoundText: secondLigthThemeColor,
 
-    keypadButton: '#FEFEFE',
-    keypadButtonBorder: '#101010',
-    keypadText: '#101010',
+    keypadButton: defaultLightThemeColor,
+    keypadButtonBorder: secondLigthThemeColor,
+    keypadText: secondLigthThemeColor,
 
     controlPanelButton: '#181818',
 
-    calculatorDisplayText: '#101010',
+    calculatorDisplayValue: secondLigthThemeColor,
+    calculatorDisplayExp: '#827878',
 
-    historyTitle: '#101010',
-    historyElement: '#101010',
+    historyTitle: secondLigthThemeColor,
+    historyElement: secondLigthThemeColor,
 
-    settingsTitle: '#101010',
-    themeChangerDescription: '#101010',
+    settingsTitle: secondLigthThemeColor,
+    themeChangerDescription: secondLigthThemeColor,
 
-    defaultAppBorder: '#101010',
+    defaultAppBorder: secondLigthThemeColor,
 
-    headerTitle: '#FEFEFE',
+    headerTitle: defaultLightThemeColor,
     headerNavButton: '#9F9F9F',
-    headerNavButtonActive: '#FEFEFE',
+    headerNavButtonActive: defaultLightThemeColor,
   },
 };
 
+const defaultDarkThemeColor = '#181818';
+const secondDarkThemeColor = '#FEFEFE';
+const borderDarkThemeColor = '#9F9F9F';
+
 const darkThemeColors = {
   colors: {
-    layoutBackground: '#181818',
+    layoutBackground: defaultDarkThemeColor,
     headerBackground: '#101010',
     calculatorBackground: '#2a2121',
 
-    notFound: '#181818',
-    notFoundBorder: '#9F9F9F',
-    notFoundText: '#FEFEFE',
+    notFound: defaultDarkThemeColor,
+    notFoundBorder: borderDarkThemeColor,
+    notFoundText: secondDarkThemeColor,
 
-    keypadButton: '#181818',
-    keypadButtonBorder: '#9F9F9F',
-    keypadText: '#FEFEFE',
+    keypadButton: defaultDarkThemeColor,
+    keypadButtonBorder: borderDarkThemeColor,
+    keypadText: secondDarkThemeColor,
 
-    controlPanelButton: '#181818',
+    controlPanelButton: defaultDarkThemeColor,
 
-    calculatorDisplayText: '#FEFEFE',
+    calculatorDisplayValue: secondDarkThemeColor,
+    calculatorDisplayExp: '#a6a5a5',
 
-    historyTitle: '#FEFEFE',
-    historyElement: '#FEFEFE',
+    historyTitle: secondDarkThemeColor,
+    historyElement: secondDarkThemeColor,
 
-    settingsTitle: '#FEFEFE',
-    themeChangerDescription: '#FEFEFE',
+    settingsTitle: secondDarkThemeColor,
+    themeChangerDescription: secondDarkThemeColor,
 
-    defaultAppBorder: '#9F9F9F',
+    defaultAppBorder: borderDarkThemeColor,
 
-    headerTitle: '#FEFEFE',
-    headerNavButton: '#9F9F9F',
-    headerNavButtonActive: '#FEFEFE',
+    headerTitle: secondDarkThemeColor,
+    headerNavButton: borderDarkThemeColor,
+    headerNavButtonActive: secondDarkThemeColor,
   },
 };
 

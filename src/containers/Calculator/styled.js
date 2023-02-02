@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 export const CalculatorWrapper = styled.div`
   display: flex;
-  height: 90%;
+  height: 95%;
   background-color: ${({ theme }) => theme.colors.calculatorBackground};
   justify-content: space-between;
 `;
 
 export const ButtonsWrapper = styled.div`
-  width: ${({ theme }) => theme.width[4]}px;
+  width: 75%;
 `;
 
 export const HistoryWrapper = styled.div`
-  width: ${({ theme }) => theme.width[3]}px;
+  width: 25%;
   align-items: center;
   height: 90%;
   margin: auto;

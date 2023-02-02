@@ -9,10 +9,8 @@ import {
   CALCULATOR_VALUE_LS_KEY,
   HISTORY_LS_KEY,
 } from '@/constants/localStorage';
+import { checkBraces, getStartValue, handleCalculatorValue } from '@/utils';
 import { toCalculate } from '@/utils/Calculator/calculatePolishWriteBack';
-import checkBraces from '@/utils/checkBraces';
-import getStartValue from '@/utils/getStartValue';
-import handleCalculatorValue from '@/utils/handleCalculatorValue';
 
 import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
 
@@ -23,6 +21,7 @@ export default class CalculatorContainerCL extends Component {
     this.state = {
       calculatorValue: '',
       history: [],
+      lastExpression: '',
       isHistoryVisible: false,
     };
   }
@@ -85,6 +84,7 @@ export default class CalculatorContainerCL extends Component {
         } else {
           this.setState(({ history, calculatorValue }) => ({
             history: [...history, calculatorValue],
+            lastExpression: calculatorValue,
             calculatorValue: toCalculate(calculatorValue),
           }));
         }
@@ -103,6 +103,7 @@ export default class CalculatorContainerCL extends Component {
         this.setState(prevState => ({
           ...prevState,
           calculatorValue: '',
+          lastExpression: '',
         }));
         break;
       }
@@ -117,12 +118,17 @@ export default class CalculatorContainerCL extends Component {
   };
 
   render() {
-    const { calculatorValue, history, isHistoryVisible } = this.state;
+    const {
+      calculatorValue, history, lastExpression, isHistoryVisible,
+    } = this.state;
 
     return (
       <CalculatorWrapper>
         <ButtonsWrapper>
-          <DisplayCL calculatorValue={calculatorValue} />
+          <DisplayCL
+            calculatorValue={calculatorValue}
+            lastExpression={lastExpression}
+          />
           <KeypadCL onKeypadButtonClick={this.handleKeypadButtonClick} />
         </ButtonsWrapper>
         <HistoryWrapper>
