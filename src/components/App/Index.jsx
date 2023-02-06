@@ -24,11 +24,11 @@ export default function App() {
           <AppWrapper>
             <Header />
             <Switch>
-              {routes.map(route => (
+              {routes.map(({ exact, path, component }) => (
                 <Route
-                  exact={route.exact} path={route.path}
-                  key={route.path}>
-                  {route.component}
+                  exact={exact} path={path}
+                  key={path}>
+                  {component}
                 </Route>
               ))}
             </Switch>

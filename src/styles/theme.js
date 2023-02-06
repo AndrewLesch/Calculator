@@ -42,7 +42,7 @@ export const defaultThemeStyles = {
   borders: [1, 2],
   borderRadiuses: [5, 10],
   width: [75, 110, 210, 280, 1000, 1280],
-  height: [40, 50, 55, 65, 105, 315, 550, 620],
+  height: [40, 50, 55, 65, 105, 400, 550, 620],
 };
 
 const defaultLightThemeColor = '#FFFFFF';

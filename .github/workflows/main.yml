@@ -1,23 +1,8 @@
-name: React CI
-on:
-  pull_request:
-    branches:
-    - master
+name: Push
+on: push;
 jobs:
-  build:
-    name: Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: kingscooty/actions-yarn-cy@master
-        with:
-          args: install
-      - uses: kingscooty/actions-yarn-cy@master
-        with:
-          args: eslint:test
-      - uses: kingscooty/actions-yarn-cy@master
-        with:
-          args: build
-      - uses: kingscooty/actions-yarn-cy@master
-        with:
-          args: cypress:test
+  name: Tests
+  steps:
+    - run: npm run prettier
+    - run: npm run eslint:fix
+    - run: npm run build

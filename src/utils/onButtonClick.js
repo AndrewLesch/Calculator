@@ -1,6 +1,6 @@
 import { errors, operators } from '@/constants/calculator';
 
-import { toCalculate } from './Calculator/calculatePolishWriteBack';
+import { toCalculate } from './Calculator/сalculatePolishWriteBack';
 import checkBraces from './checkBraces';
 import handleCalculatorValue from './handleCalculatorValue';
 
