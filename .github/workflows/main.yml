@@ -1,8 +1,21 @@
-name: Push
-on: push;
+name: github-action
+on:
+  push:
+    branches: [main]
 jobs:
-  name: Tests
-  steps:
-    - run: npm run prettier
-    - run: npm run eslint:fix
-    - run: npm run build
+  build:
+    name: Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+        run: npm install
+      - name: lint code
+        run: npm run eslint:test
