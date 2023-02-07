@@ -1,8 +1,8 @@
 import { errors, operators } from '@/constants/calculator';
 
-import { toCalculate } from './Calculator/сalculatePolishWriteBack';
-import checkBraces from './checkBraces';
-import handleCalculatorValue from './handleCalculatorValue';
+import { toCalculate } from './Calculator/сalculatePolishWB';
+import checkBracesIsValid from './checkBracesIsValid';
+import handleCalcValue from './handleCalcValue';
 
 export default function onButtonClick(
   calculatorValue,
@@ -20,7 +20,7 @@ export default function onButtonClick(
         throw new Error(errors.invalidFormat);
       }
 
-      if (!checkBraces(calculatorValue)) {
+      if (!checkBracesIsValid(calculatorValue)) {
         throw new Error(errors.wrongBraces);
       }
 
@@ -50,7 +50,7 @@ export default function onButtonClick(
     }
 
     default: {
-      setCalculatorValue(handleCalculatorValue(calculatorValue, btnValue));
+      setCalculatorValue(handleCalcValue(calculatorValue, btnValue));
     }
   }
 }

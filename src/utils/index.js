@@ -1,7 +1,7 @@
-import checkBraces from './checkBraces';
+import checkBracesIsValid from './checkBracesIsValid';
 import getStartValue from './getStartValue';
-import handleCalculatorValue from './handleCalculatorValue';
+import handleCalcValue from './handleCalcValue';
 
-export { checkBraces };
+export { checkBracesIsValid as checkBraces };
 export { getStartValue };
-export { handleCalculatorValue };
+export { handleCalcValue as handleCalculatorValue };

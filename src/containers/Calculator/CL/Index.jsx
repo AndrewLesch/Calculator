@@ -10,7 +10,7 @@ import {
   HISTORY_LS_KEY,
 } from '@/constants/localStorage';
 import { checkBraces, getStartValue, handleCalculatorValue } from '@/utils';
-import { toCalculate } from '@/utils/Calculator/сalculatePolishWriteBack';
+import { toCalculate } from '@/utils/Calculator/сalculatePolishWB';
 
 import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
 

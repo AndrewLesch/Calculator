@@ -6,7 +6,7 @@ import {
   operators,
 } from '@/constants/calculator';
 
-export default function handleCalculatorValue(calculatorValue, btnValue) {
+export default function handleCalcValue(calculatorValue, btnValue) {
   let value = `${calculatorValue}${btnValue}`;
   let lastSymbol = calculatorValue.toString().slice(-1);
 

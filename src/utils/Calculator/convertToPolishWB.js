@@ -5,7 +5,7 @@ import {
   operatorsPriority,
 } from '@/constants/calculator';
 
-export default function toPolishWriteback(statement) {
+export default function convertToPolishWB(statement) {
   const stack = [];
   let result = '';
 

@@ -8,21 +8,20 @@ import { KeypadButton, KeypadButtonWrapper } from '../styled';
 export default function KeypadFC({ onKeypadButtonClick }) {
   const onKeypadButtonClickHandle = btnValue => () => onKeypadButtonClick(btnValue);
 
-  const buttons = useMemo(() => keypadButtons.map(btnValue => (
-    <KeypadButton
-      value={btnValue}
-      onClick={onKeypadButtonClickHandle(btnValue)}
-      key={btnValue}
-      >
-      {btnValue}
-    </KeypadButton>
-  )), [onKeypadButtonClick]);
-
-  return (
-    <KeypadButtonWrapper>
-      {buttons}
-    </KeypadButtonWrapper>
+  const buttons = useMemo(
+    () => keypadButtons.map(btnValue => (
+      <KeypadButton
+        value={btnValue}
+        onClick={onKeypadButtonClickHandle(btnValue)}
+        key={btnValue}
+        >
+        {btnValue}
+      </KeypadButton>
+    )),
+    [onKeypadButtonClick],
   );
+
+  return <KeypadButtonWrapper>{buttons}</KeypadButtonWrapper>;
 }
 
 KeypadFC.propTypes = {

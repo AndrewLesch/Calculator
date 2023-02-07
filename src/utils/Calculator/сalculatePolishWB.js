@@ -6,9 +6,9 @@ import DivideCommand from './CalculatorCommands/DivideCommand';
 import MultiplyCommand from './CalculatorCommands/MultiplyCommand';
 import ResidueCommand from './CalculatorCommands/ResidueCommand';
 import SubtractCommand from './CalculatorCommands/SubtractCommand';
-import toPolishWriteback from './toPolishWriteBack';
+import convertToPolishWB from './convertToPolishWB';
 
-export function calculatePolishWriteback(statement) {
+export function calculatePolishWB(statement) {
   let number = 0;
   let expression = '';
 
@@ -45,4 +45,4 @@ export function calculatePolishWriteback(statement) {
   return +calculator.getResult().toFixed(3);
 }
 
-export const toCalculate = value => calculatePolishWriteback(toPolishWriteback(value));
+export const toCalculate = value => calculatePolishWB(convertToPolishWB(value));

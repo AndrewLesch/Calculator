@@ -1,4 +1,4 @@
-export default function checkBraces(str) {
+export default function checkBracesIsValid(str) {
   const chars = str.toString().split('');
   const stack = [];
   const openBrace = ['('];
