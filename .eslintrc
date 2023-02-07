@@ -9,6 +9,7 @@
     "cypress/globals": true
   },
   "rules": {
+    "linebreak-style": 0,
     "global-require": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
