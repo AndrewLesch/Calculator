@@ -1,10 +1,11 @@
 export default class SubtractCommand {
-  constructor() {
-    this.value = 0;
+  constructor(currentValueOne, currentValueTwo) {
+    this.currentValueOne = currentValueOne;
+    this.currentValueTwo = currentValueTwo;
   }
 
-  execute(currentValueOne, currentValueTwo) {
-    this.value = currentValueTwo - currentValueOne;
-    return this.value;
+  execute() {
+    const value = this.currentValueTwo - this.currentValueOne;
+    return value;
   }
 }

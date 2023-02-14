@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import ControlPanelCL from '@/components/ControlPanel/CL/Index';
-import DisplayCL from '@/components/Display/CL/Index';
-import HistoryCL from '@/components/History/CL/Index';
-import KeypadCL from '@/components/Keypad/CL/Index';
+import ControlPanelCL from '@/components/ControlPanel/CC';
+import DisplayCL from '@/components/Display/CC';
+import HistoryCL from '@/components/History/CC';
+import KeypadCL from '@/components/Keypad/CC';
 import { errors, operators } from '@/constants/calculator';
 import {
   CALCULATOR_VALUE_LS_KEY,
   HISTORY_LS_KEY,
 } from '@/constants/localStorage';
 import { checkBraces, getStartValue, handleCalculatorValue } from '@/utils';
-import { toCalculate } from '@/utils/Calculator/сalculatePolishWB';
+import calculateState from '@/utils/Calculator/calculateState';
 
 import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
 
@@ -23,6 +23,7 @@ export default class CalculatorContainerCL extends Component {
       history: [],
       lastExpression: '',
       isHistoryVisible: false,
+      isProCalcActive: true,
     };
   }
 
@@ -73,7 +74,7 @@ export default class CalculatorContainerCL extends Component {
           throw new Error(errors.wrongBraces);
         }
 
-        const value = toCalculate(calculatorValue);
+        const value = calculateState(calculatorValue);
         if (value === Infinity || Number.isNaN(value)) {
           this.setState(prevState => ({
             ...prevState,
@@ -85,17 +86,31 @@ export default class CalculatorContainerCL extends Component {
           this.setState(({ history, calculatorValue }) => ({
             history: [...history, calculatorValue],
             lastExpression: calculatorValue,
-            calculatorValue: toCalculate(calculatorValue),
+            calculatorValue: calculateState(calculatorValue),
           }));
         }
         break;
       }
 
       case 'C': {
-        this.setState(prevState => ({
-          ...prevState,
-          calculatorValue: calculatorValue.toString().slice(0, -1),
-        }));
+        if (
+          calculatorValue.toString().slice(-4) === 'sin('
+          || calculatorValue.toString().slice(-4) === 'cos('
+          || calculatorValue.toString().slice(-4) === 'abs('
+          || calculatorValue.toString().slice(-4) === 'fac('
+          || calculatorValue.toString().slice(-4) === 'log('
+          || calculatorValue.toString().slice(-4) === 'tan('
+        ) {
+          this.setState(prevState => ({
+            ...prevState,
+            calculatorValue: calculatorValue.toString().slice(0, -4),
+          }));
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            calculatorValue: calculatorValue.toString().slice(0, -1),
+          }));
+        }
         break;
       }
 
@@ -104,6 +119,13 @@ export default class CalculatorContainerCL extends Component {
           ...prevState,
           calculatorValue: '',
           lastExpression: '',
+        }));
+        break;
+      }
+
+      case 'pro': {
+        this.setState(prevState => ({
+          isProCalcActive: !prevState.isProCalcActive,
         }));
         break;
       }
@@ -119,7 +141,11 @@ export default class CalculatorContainerCL extends Component {
 
   render() {
     const {
-      calculatorValue, history, lastExpression, isHistoryVisible,
+      calculatorValue,
+      history,
+      lastExpression,
+      isHistoryVisible,
+      isProCalcActive,
     } = this.state;
 
     return (
@@ -129,7 +155,10 @@ export default class CalculatorContainerCL extends Component {
             calculatorValue={calculatorValue}
             lastExpression={lastExpression}
           />
-          <KeypadCL onKeypadButtonClick={this.handleKeypadButtonClick} />
+          <KeypadCL
+            onKeypadButtonClick={this.handleKeypadButtonClick}
+            isProCalcActive={isProCalcActive}
+          />
         </ButtonsWrapper>
         <HistoryWrapper>
           <ControlPanelCL

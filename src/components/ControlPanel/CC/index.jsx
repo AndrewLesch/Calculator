@@ -1,5 +1,5 @@
-import propTypes from 'prop-types';
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
 import { ControlPanelButton, ControlPanelButtonsContainer } from '../styled';
 

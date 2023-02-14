@@ -1,8 +1,7 @@
-import propTypes from 'prop-types';
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
 import {
-  HistoryContainer,
   HistoryElement,
   HistoryElementsContainer,
   HistoryTitle,
@@ -18,7 +17,7 @@ export default class HistoryCL extends Component {
     const { history } = this.props;
 
     return (
-      <HistoryContainer>
+      <React.Fragment>
         <HistoryTitle>History</HistoryTitle>
         <HistoryElementsContainer>
           {history.map(historyElement => (
@@ -27,7 +26,7 @@ export default class HistoryCL extends Component {
             </HistoryElement>
           ))}
         </HistoryElementsContainer>
-      </HistoryContainer>
+      </React.Fragment>
     );
   }
 }

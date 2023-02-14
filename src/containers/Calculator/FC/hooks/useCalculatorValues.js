@@ -11,6 +11,7 @@ export default function useCalculatorValues() {
   const [history, setHistory] = useState([]);
   const [lastExpression, setLastExpression] = useState('');
   const [isHistoryVisible, setIsHistoryOpen] = useState(false);
+  const [isProCalcActive, setIsProCalcActive] = useState(true);
 
   useEffect(() => {
     setCalculatorValue(getStartValue(CALCULATOR_VALUE_LS_KEY));
@@ -33,6 +34,8 @@ export default function useCalculatorValues() {
     history,
     lastExpression,
     isHistoryVisible,
+    isProCalcActive,
+    setIsProCalcActive,
     setCalculatorValue,
     setHistory,
     setLastExpression,

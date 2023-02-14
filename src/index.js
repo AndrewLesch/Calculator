@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import GlobalStyles from '@/styles/globalStyles';
 
-import App from './components/App/Index';
+import App from './components/App';
 
 ReactDOM.render(
   <BrowserRouter>

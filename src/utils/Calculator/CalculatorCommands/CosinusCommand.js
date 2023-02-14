@@ -1,11 +1,11 @@
-export default class AddCommand {
+export default class CosinusCommand {
   constructor(currentValueOne, currentValueTwo) {
     this.currentValueOne = currentValueOne;
     this.currentValueTwo = currentValueTwo;
   }
 
   execute() {
-    const value = this.currentValueTwo + this.currentValueOne;
+    const value = Math.cos(this.currentValueOne);
     return value;
   }
 }

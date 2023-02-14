@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const SettingsContainer = styled.div`
-  width: 100%;
-  height: 90%;
+  border-radius: 0 0 ${({ theme }) => theme.borderRadiuses[1]}px
+    ${({ theme }) => theme.borderRadiuses[1]}px;
   background-color: ${({ theme }) => theme.colors.calculatorBackground};
+  min-height: ${({ theme }) => theme.height[6]}px;
 `;
 
 export const ThemeChangerContainer = styled.div``;

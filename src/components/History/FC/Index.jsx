@@ -1,8 +1,7 @@
-import propTypes from 'prop-types';
 import React from 'react';
+import propTypes from 'prop-types';
 
 import {
-  HistoryContainer,
   HistoryElement,
   HistoryElementsContainer,
   HistoryTitle,
@@ -10,14 +9,14 @@ import {
 
 export default function HistoryFC({ history }) {
   return (
-    <HistoryContainer>
+    <React.Fragment>
       <HistoryTitle>History</HistoryTitle>
       <HistoryElementsContainer>
         {history.map(historyElement => (
           <HistoryElement key={historyElement}>{historyElement}</HistoryElement>
         ))}
       </HistoryElementsContainer>
-    </HistoryContainer>
+    </React.Fragment>
   );
 }
 

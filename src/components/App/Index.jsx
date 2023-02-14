@@ -2,11 +2,12 @@ import React, { useMemo } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { routes } from '@/constants/router';
+import routes from '@/constants/router';
 import ThemeContext from '@/constants/themeContext';
 
-import Header from '../Header/Index';
-import useThemeChange from './hook/useThemeChange';
+import Header from '../Header';
+
+import useThemeChange from './hooks/useThemeChange';
 import { AppWrapper, PageLayout } from './styled';
 
 export default function App() {

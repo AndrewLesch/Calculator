@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ThemeChanger from '@/components/ThemeChanger/Index';
+import ThemeChanger from '@/components/ThemeChanger';
 import clearCalculatorData from '@/utils/clearCalculatorData';
 
 import {

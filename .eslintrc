@@ -1,5 +1,5 @@
 {
-  "extends": ["standard", "standard-react", "prettier", "prettier/react", "airbnb"],
+  "extends": ["prettier", "prettier/react", "airbnb"],
   "plugins": ["prettier", "react-hooks", "cypress", "simple-import-sort"],
   "parser": "@babel/eslint-parser",
   "env": {
@@ -9,13 +9,25 @@
     "cypress/globals": true
   },
   "rules": {
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          ["^(@|components)(/.*|$)"],
+          ["^\\u0000"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^.+\\.?(css)$"]
+        ]
+      }
+    ],
     "linebreak-style": 0,
     "global-require": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-shadow": "off",
     "react/require-default-props": "off",
-    "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "arrow-parens": ["error", "as-needed"],
     "semi": "error",
@@ -85,8 +97,6 @@
         "extensions": [
           "js",
           ".js",
-          ".ts",
-          ".tsx",
           ".jsx",
           ".json"
         ]

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { darkThemeKey } from '@/constants/calculator';
+import { colorThemeKey, darkThemeKey } from '@/constants/calculator';
 import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage';
-import { darkTheme, lightTheme } from '@/styles/theme';
+import { colorTheme, darkTheme, lightTheme } from '@/styles/theme';
 
 export default function useThemeChange() {
   const [selectedThemeKey, setSelectedThemeKey] = useState(
@@ -14,6 +14,10 @@ export default function useThemeChange() {
     switch (selectedThemeKey) {
       case darkThemeKey:
         setSelectedTheme(darkTheme);
+        break;
+
+      case colorThemeKey:
+        setSelectedTheme(colorTheme);
         break;
 
       default:
