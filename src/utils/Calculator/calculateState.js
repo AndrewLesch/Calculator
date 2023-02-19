@@ -6,7 +6,21 @@ import {
 
 import InvokerCalculator from './InvokerCalculator';
 
-const numbersValue = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 'e', 'π'];
+const numbersValue = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '.',
+  'e',
+  'π',
+];
 
 export default function calculateState(statement) {
   const numbersStack = [];
@@ -19,11 +33,7 @@ export default function calculateState(statement) {
   for (let i = 0; i < statement.length; i++) {
     const char = statement.charAt(i);
 
-    if (
-      numbersValue.indexOf(
-        char,
-      ) >= 0
-    ) {
+    if (numbersValue.indexOf(char) >= 0) {
       if (char === 'e') {
         numbersResult += 2.71;
       } else if (char === 'π') {

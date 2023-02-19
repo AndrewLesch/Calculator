@@ -68,19 +68,23 @@ export default class CalculatorContainerCL extends Component {
         const lastSymbol = calculatorValue.toString().slice(-1);
 
         if (operators.includes(lastSymbol)) {
+          this.setState(() => ({
+            calculatorValue: errors.invalidFormat,
+          }));
           throw new Error(errors.invalidFormat);
         }
         if (!checkBraces(calculatorValue)) {
+          this.setState(() => ({
+            calculatorValue: errors.wrongBraces,
+          }));
           throw new Error(errors.wrongBraces);
         }
 
         const value = calculateState(calculatorValue);
         if (value === Infinity || Number.isNaN(value)) {
-          this.setState(prevState => ({
-            ...prevState,
-            calculatorValue,
+          this.setState(() => ({
+            calculatorValue: errors.divideByZero,
           }));
-          alert('На ноль делить нельзя');
           throw new Error(errors.divideByZero);
         } else {
           this.setState(({ history, calculatorValue }) => ({
@@ -94,6 +98,15 @@ export default class CalculatorContainerCL extends Component {
 
       case 'C': {
         if (
+          calculatorValue === errors.divideByZero
+          || calculatorValue === errors.invalidFormat
+          || calculatorValue === errors.wrongBraces
+        ) {
+          this.setState(prevState => ({
+            ...prevState,
+            calculatorValue: '',
+          }));
+        } else if (
           calculatorValue.toString().slice(-4) === 'sin('
           || calculatorValue.toString().slice(-4) === 'cos('
           || calculatorValue.toString().slice(-4) === 'abs('
@@ -131,10 +144,21 @@ export default class CalculatorContainerCL extends Component {
       }
 
       default: {
-        this.setState(prevState => ({
-          ...prevState,
-          calculatorValue: handleCalculatorValue(calculatorValue, btnValue),
-        }));
+        if (
+          calculatorValue === errors.divideByZero
+          || calculatorValue === errors.invalidFormat
+          || calculatorValue === errors.wrongBraces
+        ) {
+          this.setState(prevState => ({
+            ...prevState,
+            calculatorValue: handleCalculatorValue('', btnValue),
+          }));
+        } else {
+          this.setState(prevState => ({
+            ...prevState,
+            calculatorValue: handleCalculatorValue(calculatorValue, btnValue),
+          }));
+        }
       }
     }
   };

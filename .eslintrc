@@ -40,7 +40,6 @@
         "ignorePattern": "import"
       }
     ],
-    "no-alert": "off",
     "no-unused-vars": "warn",
     "operator-linebreak": "warn",
     "react-hooks/rules-of-hooks": "error",

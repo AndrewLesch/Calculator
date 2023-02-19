@@ -19,18 +19,19 @@ export default function onCalcButtonClick(
       const lastSymbol = calculatorValue.toString().slice(-1);
 
       if (operators.includes(lastSymbol)) {
+        setCalculatorValue(errors.invalidFormat);
         throw new Error(errors.invalidFormat);
       }
 
       if (!checkBracesIsValid(calculatorValue)) {
+        setCalculatorValue(errors.wrongBraces);
         throw new Error(errors.wrongBraces);
       }
 
       const value = calculateState(calculatorValue);
 
       if (value === Infinity || Number.isNaN(value)) {
-        setCalculatorValue(calculatorValue);
-        alert('На ноль делить нельзя');
+        setCalculatorValue(errors.divideByZero);
         throw new Error(errors.divideByZero);
       } else {
         setHistory([...history, calculatorValue]);
@@ -42,6 +43,12 @@ export default function onCalcButtonClick(
 
     case 'C': {
       if (
+        calculatorValue === errors.divideByZero
+        || calculatorValue === errors.invalidFormat
+        || calculatorValue === errors.wrongBraces
+      ) {
+        setCalculatorValue('');
+      } else if (
         calculatorValue.toString().slice(-4) === 'sin('
         || calculatorValue.toString().slice(-4) === 'cos('
         || calculatorValue.toString().slice(-4) === 'abs('
@@ -68,7 +75,15 @@ export default function onCalcButtonClick(
     }
 
     default: {
-      setCalculatorValue(handleCalcValue(calculatorValue, btnValue));
+      if (
+        calculatorValue === errors.divideByZero
+        || calculatorValue === errors.invalidFormat
+        || calculatorValue === errors.wrongBraces
+      ) {
+        setCalculatorValue(handleCalcValue('', btnValue));
+      } else {
+        setCalculatorValue(handleCalcValue(calculatorValue, btnValue));
+      }
     }
   }
 }

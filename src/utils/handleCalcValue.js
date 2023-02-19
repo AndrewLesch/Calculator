@@ -96,9 +96,10 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   }
 
   if (
-    !operators.includes(lastSymbol)
+    operators.includes(lastSymbol)
     && btnValue === 'sin'
     && calculatorValue.length > 0
+    && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*sin(`;
   }
@@ -107,6 +108,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
     !operators.includes(lastSymbol)
     && btnValue === 'tan'
     && calculatorValue.length > 0
+    && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*tan(`;
   }
@@ -115,6 +117,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
     !operators.includes(lastSymbol)
     && btnValue === '|x|'
     && calculatorValue.length > 0
+    && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*abs(`;
   }
@@ -123,6 +126,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
     !operators.includes(lastSymbol)
     && btnValue === 'fac'
     && calculatorValue.length > 0
+    && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*fac(`;
   }
@@ -131,6 +135,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
     !operators.includes(lastSymbol)
     && btnValue === 'cos'
     && calculatorValue.length > 0
+    && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*cos(`;
   }
@@ -139,6 +144,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
     !operators.includes(lastSymbol)
     && btnValue === '√'
     && calculatorValue.length > 0
+    && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*√(`;
   }
