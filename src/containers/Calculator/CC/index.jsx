@@ -87,10 +87,11 @@ export default class CalculatorContainerCL extends Component {
           }));
           throw new Error(errors.divideByZero);
         } else {
+          const mathAnswer = calculateState(calculatorValue);
           this.setState(({ history, calculatorValue }) => ({
-            history: [...history, calculatorValue],
+            history: [...history, `${calculatorValue} = ${mathAnswer}`],
             lastExpression: calculatorValue,
-            calculatorValue: calculateState(calculatorValue),
+            calculatorValue: mathAnswer,
           }));
         }
         break;

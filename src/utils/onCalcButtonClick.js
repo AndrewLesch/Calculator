@@ -34,9 +34,10 @@ export default function onCalcButtonClick(
         setCalculatorValue(errors.divideByZero);
         throw new Error(errors.divideByZero);
       } else {
-        setHistory([...history, calculatorValue]);
         setLastExpression(calculatorValue);
-        setCalculatorValue(calculateState(calculatorValue));
+        const mathAnswer = calculateState(calculatorValue);
+        setCalculatorValue(mathAnswer);
+        setHistory([...history, `${calculatorValue} = ${mathAnswer}`]);
       }
       break;
     }
