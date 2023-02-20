@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ControlPanelFC from '@/components/ControlPanel/FC';
-import DisplayFC from '@/components/Display/FC';
-import HistoryFC from '@/components/History/FC';
-import KeypadFC from '@/components/Keypad/FC';
+import ControlPanelFC from '@/components/ControlPanel/FC/asdasd';
+import DisplayFC from '@/components/Display/FC/sadasd';
+import HistoryFC from '@/components/History/FC/asdasd';
+import KeypadFC from '@/components/Keypad/FC/asdadsasd';
 import useCalculatorValues from '@/hooks/useCalculatorValues';
 import onCalcButtonClick from '@/utils/onCalcButtonClick';
 
