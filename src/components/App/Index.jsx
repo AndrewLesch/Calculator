@@ -6,7 +6,6 @@ import routes from '@/constants/router';
 import ThemeContext from '@/constants/themeContext';
 import useThemeChange from '@/hooks/useThemeChange';
 
-import ErrorBoundary from '../ErrorBoundary';
 import Header from '../Header';
 
 import { AppWrapper, PageLayout } from './styled';
@@ -20,25 +19,23 @@ export default function App() {
   );
 
   return (
-    <ErrorBoundary>
-      <ThemeContext.Provider value={themeContextValue}>
-        <ThemeProvider theme={() => selectedTheme}>
-          <PageLayout>
-            <AppWrapper>
-              <Header />
-              <Switch>
-                {routes.map(({ exact, path, component }) => (
-                  <Route
-                    exact={exact} path={path}
-                    key={path}>
-                    {component}
-                  </Route>
-                ))}
-              </Switch>
-            </AppWrapper>
-          </PageLayout>
-        </ThemeProvider>
-      </ThemeContext.Provider>
-    </ErrorBoundary>
+    <ThemeContext.Provider value={themeContextValue}>
+      <ThemeProvider theme={() => selectedTheme}>
+        <PageLayout>
+          <AppWrapper>
+            <Header />
+            <Switch>
+              {routes.map(({ exact, path, component }) => (
+                <Route
+                  exact={exact} path={path}
+                  key={path}>
+                  {component}
+                </Route>
+              ))}
+            </Switch>
+          </AppWrapper>
+        </PageLayout>
+      </ThemeProvider>
+    </ThemeContext.Provider>
   );
 }

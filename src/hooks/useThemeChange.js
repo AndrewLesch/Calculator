@@ -4,10 +4,10 @@ import { colorThemeKey, darkThemeKey } from '@/constants/calculator';
 import { CURRENT_THEME_LS_KEY } from '@/constants/localStorage';
 import { colorTheme, darkTheme, lightTheme } from '@/styles/theme';
 
-const getStartValue = key => JSON.parse(localStorage.getItem(key));
+const getStartValue = () => JSON.parse(localStorage.getItem(CURRENT_THEME_LS_KEY));
 
 export default function useThemeChange() {
-  const [selectedThemeKey, setSelectedThemeKey] = useState(() => getStartValue(CURRENT_THEME_LS_KEY));
+  const [selectedThemeKey, setSelectedThemeKey] = useState(() => getStartValue());
   const [selectedTheme, setSelectedTheme] = useState(lightTheme);
 
   useEffect(() => {

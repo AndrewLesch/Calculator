@@ -5,7 +5,7 @@ import { keypadButtons, proKeypadButtons } from '@/constants/calculator';
 
 import { KeypadButton, KeypadButtonWrapper } from '../styled';
 
-export default function KeypadFC({ onKeypadButtonClick, isProCalcActive }) {
+const KeypadFC = React.memo(({ onKeypadButtonClick, isProCalcActive }) => {
   const onKeypadButtonClickHandle = btnValue => () => onKeypadButtonClick(btnValue);
 
   const buttonsValue = useMemo(
@@ -26,7 +26,9 @@ export default function KeypadFC({ onKeypadButtonClick, isProCalcActive }) {
       ))}
     </KeypadButtonWrapper>
   );
-}
+});
+
+export default KeypadFC;
 
 KeypadFC.propTypes = {
   onKeypadButtonClick: propTypes.func,

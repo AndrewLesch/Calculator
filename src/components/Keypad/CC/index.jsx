@@ -1,11 +1,11 @@
-import React, { Component, memo } from 'react';
+import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
 import { keypadButtons, proKeypadButtons } from '@/constants/calculator';
 
 import { KeypadButton, KeypadButtonWrapper } from '../styled';
 
-class KeypadCL extends Component {
+export default class KeypadCL extends Component {
   constructor(props) {
     super(props);
 
@@ -57,8 +57,6 @@ class KeypadCL extends Component {
     );
   }
 }
-
-export default memo(KeypadCL);
 
 KeypadCL.propTypes = {
   onKeypadButtonClick: propTypes.func,

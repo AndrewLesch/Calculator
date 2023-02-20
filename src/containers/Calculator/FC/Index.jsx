@@ -24,7 +24,7 @@ export default function CalculatorContainerFC() {
   } = useCalculatorValues();
 
   const onHistoryButtonClick = () => {
-    setIsHistoryOpen(() => !isHistoryOpen);
+    setIsHistoryOpen(isHistoryOpen => !isHistoryOpen);
   };
 
   const onKeypadButtonClick = btnValue => {
