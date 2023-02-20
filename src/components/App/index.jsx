@@ -6,7 +6,7 @@ import routes from '@/constants/router';
 import ThemeContext from '@/constants/themeContext';
 import useThemeChange from '@/hooks/useThemeChange';
 
-import Header from '../Header/asdadsasd';
+import Header from '../Header';
 
 import { AppWrapper, PageLayout } from './styled';
 

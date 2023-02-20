@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import ControlPanelCL from '@/components/ControlPanel/CC/asdasdasd';
-import DisplayCL from '@/components/Display/CC/asdasd';
-import HistoryCL from '@/components/History/CC/asdasd';
-import KeypadCL from '@/components/Keypad/CC/asdasd';
+import ControlPanelCL from '@/components/ControlPanel/CC';
+import DisplayCL from '@/components/Display/CC';
+import HistoryCL from '@/components/History/CC';
+import KeypadCL from '@/components/Keypad/CC';
 import { errors, operators } from '@/constants/calculator';
 import {
   CALCULATOR_VALUE_LS_KEY,

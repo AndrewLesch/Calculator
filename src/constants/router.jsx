@@ -1,9 +1,9 @@
 import React from 'react';
 
-import NotFound from '@/components/NotFound/asdasd';
-import HomePageCL from '@/pages/Home/CC/asdasd';
-import HomePageFC from '@/pages/Home/FC/asdasdasd';
-import SettingsPage from '@/pages/Settings/asdads';
+import NotFound from '@/components/NotFound';
+import HomePageCL from '@/pages/Home/CC';
+import HomePageFC from '@/pages/Home/FC';
+import SettingsPage from '@/pages/Settings';
 
 import routerPaths from './routerPaths';
 
