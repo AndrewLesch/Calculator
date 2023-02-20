@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { ControlPanelButton, ControlPanelButtonsContainer } from '../styled';
 
 export default function ControlPanelFC({
-  isHistoryVisible,
+  isHistoryOpen,
   onHistoryButtonClick,
   setHistory,
 }) {
@@ -19,7 +19,7 @@ export default function ControlPanelFC({
   return (
     <ControlPanelButtonsContainer>
       <ControlPanelButton onClick={onHistoryButtonClickHandle}>
-        {isHistoryVisible ? 'Hide story' : 'Show history'}
+        {isHistoryOpen ? 'Hide story' : 'Show history'}
       </ControlPanelButton>
       <ControlPanelButton onClick={onDeleteButtonClickHandle}>
         Delete history
@@ -29,7 +29,7 @@ export default function ControlPanelFC({
 }
 
 ControlPanelFC.propTypes = {
-  isHistoryVisible: propTypes.bool,
+  isHistoryOpen: propTypes.bool,
   onHistoryButtonClick: propTypes.func,
   setHistory: propTypes.func,
 };

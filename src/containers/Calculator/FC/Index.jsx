@@ -14,7 +14,7 @@ export default function CalculatorContainerFC() {
     calculatorValue,
     history,
     lastExpression,
-    isHistoryVisible,
+    isHistoryOpen,
     isProCalcActive,
     setIsProCalcActive,
     setCalculatorValue,
@@ -24,7 +24,7 @@ export default function CalculatorContainerFC() {
   } = useCalculatorValues();
 
   const onHistoryButtonClick = () => {
-    setIsHistoryOpen(() => !isHistoryVisible);
+    setIsHistoryOpen(() => !isHistoryOpen);
   };
 
   const onKeypadButtonClick = btnValue => {
@@ -55,11 +55,11 @@ export default function CalculatorContainerFC() {
       </ButtonsWrapper>
       <HistoryWrapper>
         <ControlPanelFC
-          isHistoryVisible={isHistoryVisible}
+          isHistoryOpen={isHistoryOpen}
           onHistoryButtonClick={onHistoryButtonClick}
           setHistory={setHistory}
         />
-        {isHistoryVisible && <HistoryFC history={history} />}
+        {isHistoryOpen && <HistoryFC history={history} />}
       </HistoryWrapper>
     </CalculatorWrapper>
   );
