@@ -7,25 +7,32 @@ import SettingsPage from '@/pages/Settings';
 
 import routerPaths from './routerPaths';
 
+const {
+  SETTING_PAGE_ROUTE,
+  HOME_PAGE_ROUTE_CL,
+  HOME_PAGE_ROUTE_FC,
+  INCORRECT_PAGE_ROUTE,
+} = routerPaths;
+
 const routes = [
   {
     exact: true,
-    path: routerPaths.SETTING_PAGE_ROUTE,
+    path: SETTING_PAGE_ROUTE,
     component: <SettingsPage />,
   },
   {
     exact: true,
-    path: routerPaths.HOME_PAGE_ROUTE_CL,
+    path: HOME_PAGE_ROUTE_CL,
     component: <HomePageCL />,
   },
   {
     exact: true,
-    path: routerPaths.HOME_PAGE_ROUTE_FC,
+    path: HOME_PAGE_ROUTE_FC,
     component: <HomePageFC />,
   },
   {
     exact: false,
-    path: routerPaths.INCORRECT_PAGE_ROUTE,
+    path: INCORRECT_PAGE_ROUTE,
     component: <NotFound />,
   },
 ];

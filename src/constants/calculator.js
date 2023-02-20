@@ -22,7 +22,7 @@ export const keypadButtons = [
   '.',
   '=',
 ];
-export const proKeypadButtons = [
+const proButtons = [
   '%',
   'e',
   '1/x',
@@ -38,6 +38,7 @@ export const proKeypadButtons = [
   '√',
   'fac',
 ];
+export const proKeypadButtons = keypadButtons.concat(proButtons);
 export const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 export const operators = [
   '+',

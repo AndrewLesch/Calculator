@@ -4,11 +4,6 @@ import propTypes from 'prop-types';
 import { ControlPanelButton, ControlPanelButtonsContainer } from '../styled';
 
 export default class ControlPanelCL extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   onHistoryButtonClickHandle = () => {
     const { onHistoryButtonClick } = this.props;
     onHistoryButtonClick();

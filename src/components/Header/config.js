@@ -1,16 +1,18 @@
 import routerPaths from '@/constants/routerPaths';
 
+const { HOME_PAGE_ROUTE_FC, HOME_PAGE_ROUTE_CL, SETTING_PAGE_ROUTE } = routerPaths;
+
 const navBarLinks = [
   {
-    to: routerPaths.HOME_PAGE_ROUTE_FC,
+    to: HOME_PAGE_ROUTE_FC,
     name: 'Home functional',
   },
   {
-    to: routerPaths.HOME_PAGE_ROUTE_CL,
+    to: HOME_PAGE_ROUTE_CL,
     name: 'Home class',
   },
   {
-    to: routerPaths.SETTING_PAGE_ROUTE,
+    to: SETTING_PAGE_ROUTE,
     name: 'Settings',
   },
 ];

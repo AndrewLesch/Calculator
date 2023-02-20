@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import propTypes from 'prop-types';
 
 import {
@@ -7,17 +7,12 @@ import {
   HistoryTitle,
 } from '../styled';
 
-export default class HistoryCL extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+export default class HistoryCL extends PureComponent {
   render() {
     const { history } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <HistoryTitle>History</HistoryTitle>
         <HistoryElementsContainer>
           {history.map(historyElement => (
@@ -26,11 +21,11 @@ export default class HistoryCL extends Component {
             </HistoryElement>
           ))}
         </HistoryElementsContainer>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
 
 HistoryCL.propTypes = {
-  history: propTypes.arrayOf(propTypes.any),
+  history: propTypes.arrayOf(propTypes.string),
 };

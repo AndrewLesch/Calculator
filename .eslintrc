@@ -35,7 +35,7 @@
     "max-len": [
       "warn",
       {
-        "code": 90,
+        "code": 105,
         "ignoreUrls": true,
         "ignorePattern": "import"
       }

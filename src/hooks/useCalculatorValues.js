@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import {
   CALCULATOR_VALUE_LS_KEY,
@@ -10,10 +10,10 @@ export default function useCalculatorValues() {
   const [calculatorValue, setCalculatorValue] = useState('');
   const [history, setHistory] = useState([]);
   const [lastExpression, setLastExpression] = useState('');
-  const [isHistoryVisible, setIsHistoryOpen] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isProCalcActive, setIsProCalcActive] = useState(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setCalculatorValue(getStartValue(CALCULATOR_VALUE_LS_KEY));
     setHistory(getStartValue(HISTORY_LS_KEY));
   }, []);
@@ -23,17 +23,14 @@ export default function useCalculatorValues() {
       CALCULATOR_VALUE_LS_KEY,
       JSON.stringify(calculatorValue),
     );
-  }, [calculatorValue]);
-
-  useEffect(() => {
     localStorage.setItem(HISTORY_LS_KEY, JSON.stringify(history));
-  }, [history]);
+  }, [calculatorValue, history]);
 
   return {
     calculatorValue,
     history,
     lastExpression,
-    isHistoryVisible,
+    isHistoryOpen,
     isProCalcActive,
     setIsProCalcActive,
     setCalculatorValue,

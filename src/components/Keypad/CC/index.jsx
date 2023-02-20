@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, memo } from 'react';
 import propTypes from 'prop-types';
 
 import { keypadButtons, proKeypadButtons } from '@/constants/calculator';
 
 import { KeypadButton, KeypadButtonWrapper } from '../styled';
 
-export default class KeypadCL extends Component {
+class KeypadCL extends Component {
   constructor(props) {
     super(props);
 
-    const { isProCalcActive } = this.props;
+    const { isProCalcActive, onKeypadButtonClick } = this.props;
 
     this.state = {
       buttons: keypadButtons,
       isProCalc: isProCalcActive,
     };
+    this.onKeypadButtonClick = onKeypadButtonClick;
   }
 
   componentDidMount() {
@@ -23,21 +24,20 @@ export default class KeypadCL extends Component {
     if (isProCalc) {
       this.setState(prevState => ({
         ...prevState,
-        buttons: keypadButtons.concat(proKeypadButtons),
+        buttons: proKeypadButtons,
       }));
     }
   }
 
   static getDerivedStateFromProps(props) {
     if (props.isProCalcActive) {
-      return { buttons: keypadButtons.concat(proKeypadButtons) };
+      return { buttons: proKeypadButtons };
     }
     return { buttons: keypadButtons };
   }
 
   onKeypadButtonClickHandle = btnValue => () => {
-    const { onKeypadButtonClick } = this.props;
-    onKeypadButtonClick(btnValue);
+    this.onKeypadButtonClick(btnValue);
   };
 
   render() {
@@ -57,6 +57,8 @@ export default class KeypadCL extends Component {
     );
   }
 }
+
+export default memo(KeypadCL);
 
 KeypadCL.propTypes = {
   onKeypadButtonClick: propTypes.func,

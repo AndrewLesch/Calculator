@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
 
 import {
@@ -7,12 +7,7 @@ import {
   CalculatorDisplayValue,
 } from '../styled';
 
-export default class DisplayCL extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+export default class DisplayCL extends PureComponent {
   render() {
     const { calculatorValue, lastExpression } = this.props;
 
