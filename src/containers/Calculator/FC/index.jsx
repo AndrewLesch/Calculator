@@ -11,11 +11,13 @@ import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
 
 export default function CalculatorContainerFC() {
   const {
+    isAnswer,
     calculatorValue,
     history,
     lastExpression,
     isHistoryOpen,
     isProCalcActive,
+    setIsAnswer,
     setIsProCalcActive,
     setCalculatorValue,
     setHistory,
@@ -29,6 +31,8 @@ export default function CalculatorContainerFC() {
 
   const onKeypadButtonClick = btnValue => {
     onCalcButtonClick(
+      isAnswer,
+      setIsAnswer,
       calculatorValue,
       setCalculatorValue,
       setHistory,

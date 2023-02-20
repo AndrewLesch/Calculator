@@ -4,7 +4,7 @@ import ControlPanelCL from '@/components/ControlPanel/CC';
 import DisplayCL from '@/components/Display/CC';
 import HistoryCL from '@/components/History/CC';
 import KeypadCL from '@/components/Keypad/CC';
-import { errors, operators } from '@/constants/calculator';
+import { defaultOperators, errors, operators } from '@/constants/calculator';
 import {
   CALCULATOR_VALUE_LS_KEY,
   HISTORY_LS_KEY,
@@ -24,6 +24,7 @@ export default class CalculatorContainerCL extends Component {
       lastExpression: '',
       isHistoryVisible: false,
       isProCalcActive: true,
+      isAnswer: false,
     };
   }
 
@@ -61,7 +62,7 @@ export default class CalculatorContainerCL extends Component {
   };
 
   handleKeypadButtonClick = btnValue => {
-    const { calculatorValue } = this.state;
+    const { calculatorValue, isAnswer } = this.state;
 
     switch (btnValue) {
       case '=': {
@@ -92,6 +93,7 @@ export default class CalculatorContainerCL extends Component {
             history: [...history, `${calculatorValue} = ${mathAnswer}`],
             lastExpression: calculatorValue,
             calculatorValue: mathAnswer,
+            isAnswer: true,
           }));
         }
         break;
@@ -149,15 +151,18 @@ export default class CalculatorContainerCL extends Component {
           calculatorValue === errors.divideByZero
           || calculatorValue === errors.invalidFormat
           || calculatorValue === errors.wrongBraces
+          || (isAnswer && !defaultOperators.includes(btnValue))
         ) {
           this.setState(prevState => ({
             ...prevState,
             calculatorValue: handleCalculatorValue('', btnValue),
+            isAnswer: false,
           }));
         } else {
           this.setState(prevState => ({
             ...prevState,
             calculatorValue: handleCalculatorValue(calculatorValue, btnValue),
+            isAnswer: false,
           }));
         }
       }

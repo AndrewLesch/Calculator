@@ -7,6 +7,7 @@ import {
 import { getStartValue } from '@/utils';
 
 export default function useCalculatorValues() {
+  const [isAnswer, setIsAnswer] = useState(false);
   const [calculatorValue, setCalculatorValue] = useState('');
   const [history, setHistory] = useState([]);
   const [lastExpression, setLastExpression] = useState('');
@@ -27,11 +28,13 @@ export default function useCalculatorValues() {
   }, [calculatorValue, history]);
 
   return {
+    isAnswer,
     calculatorValue,
     history,
     lastExpression,
     isHistoryOpen,
     isProCalcActive,
+    setIsAnswer,
     setIsProCalcActive,
     setCalculatorValue,
     setHistory,

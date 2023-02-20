@@ -1,10 +1,12 @@
-import { errors, operators } from '@/constants/calculator';
+import { defaultOperators, errors, operators } from '@/constants/calculator';
 
 import calculateState from './Calculator/calculateState';
 import checkBracesIsValid from './checkBracesIsValid';
 import handleCalcValue from './handleCalcValue';
 
 export default function onCalcButtonClick(
+  isAnswer,
+  setIsAnswer,
   calculatorValue,
   setCalculatorValue,
   setHistory,
@@ -38,6 +40,7 @@ export default function onCalcButtonClick(
         const mathAnswer = calculateState(calculatorValue);
         setCalculatorValue(mathAnswer);
         setHistory([...history, `${calculatorValue} = ${mathAnswer}`]);
+        setIsAnswer(true);
       }
       break;
     }
@@ -80,10 +83,13 @@ export default function onCalcButtonClick(
         calculatorValue === errors.divideByZero
         || calculatorValue === errors.invalidFormat
         || calculatorValue === errors.wrongBraces
+        || (isAnswer && !defaultOperators.includes(btnValue))
       ) {
         setCalculatorValue(handleCalcValue('', btnValue));
+        setIsAnswer(false);
       } else {
         setCalculatorValue(handleCalcValue(calculatorValue, btnValue));
+        setIsAnswer(false);
       }
     }
   }

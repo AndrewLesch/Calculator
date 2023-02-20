@@ -38,7 +38,10 @@ export default function handleCalcValue(calculatorValue, btnValue) {
       throw new Error(errors.invalidFormat);
     }
 
-    if (calculatorValue.length > 0 && !operators.includes(lastSymbol)) {
+    if (
+      calculatorValue.toString().length > 0
+      && !operators.includes(lastSymbol)
+    ) {
       value = `${calculatorValue}^(`;
     }
 
@@ -96,9 +99,9 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   }
 
   if (
-    operators.includes(lastSymbol)
+    !operators.includes(lastSymbol)
     && btnValue === 'sin'
-    && calculatorValue.length > 0
+    && calculatorValue.toString().length > 0
     && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*sin(`;
@@ -107,7 +110,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   if (
     !operators.includes(lastSymbol)
     && btnValue === 'tan'
-    && calculatorValue.length > 0
+    && calculatorValue.toString().length > 0
     && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*tan(`;
@@ -116,7 +119,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   if (
     !operators.includes(lastSymbol)
     && btnValue === '|x|'
-    && calculatorValue.length > 0
+    && calculatorValue.toString().length > 0
     && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*abs(`;
@@ -124,8 +127,17 @@ export default function handleCalcValue(calculatorValue, btnValue) {
 
   if (
     !operators.includes(lastSymbol)
+    && btnValue === 'e^x'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*e^(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
     && btnValue === 'fac'
-    && calculatorValue.length > 0
+    && calculatorValue.toString().length > 0
     && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*fac(`;
@@ -134,7 +146,7 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   if (
     !operators.includes(lastSymbol)
     && btnValue === 'cos'
-    && calculatorValue.length > 0
+    && calculatorValue.toString().length > 0
     && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*cos(`;
@@ -143,17 +155,26 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   if (
     !operators.includes(lastSymbol)
     && btnValue === '√'
-    && calculatorValue.length > 0
+    && calculatorValue.toString().length > 0
     && lastSymbol !== openBrace
   ) {
     value = `${calculatorValue}*√(`;
   }
 
   if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'log'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*log(`;
+  }
+
+  if (
     btnValue === closeBrace
     && (operators.includes(lastSymbol) || lastSymbol === openBrace)
   ) {
-    throw new Error(errors.invalidFormat);
+    value = calculatorValue;
   }
 
   if (btnValue === '+/-') {

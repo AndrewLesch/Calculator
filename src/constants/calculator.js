@@ -40,6 +40,18 @@ const proButtons = [
 ];
 export const proKeypadButtons = keypadButtons.concat(proButtons);
 export const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+export const defaultOperators = [
+  '+',
+  '-',
+  '*',
+  '/',
+  '%',
+  '(',
+  ')',
+  'x^2',
+  'x^y',
+  '+/-',
+];
 export const operators = [
   '+',
   '-',
@@ -55,6 +67,8 @@ export const operators = [
   'tan',
   '√',
   'fac',
+  'x^2',
+  'x^y',
 ];
 export const errors = {
   divideByZero: 'Divide by zero',
