@@ -15,11 +15,12 @@ const KeypadFC = React.memo(({ onKeypadButtonClick, isProCalcActive }) => {
 
   return (
     <KeypadButtonWrapper>
-      {buttonsValue.map(btnValue => (
+      {buttonsValue.map((btnValue, id) => (
         <KeypadButton
           value={btnValue}
           onClick={onKeypadButtonClickHandle(btnValue)}
           key={btnValue}
+          id={id}
         >
           {btnValue}
         </KeypadButton>
