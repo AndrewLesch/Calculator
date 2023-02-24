@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  border-radius: ${({ theme }) => theme.borderRadiuses[1]}px
+    ${({ theme }) => theme.borderRadiuses[1]}px 0 0;
   height: ${({ theme }) => theme.height[2]}px;
   display: flex;
   background-color: ${({ theme }) => theme.colors.headerBackground};
@@ -23,13 +25,13 @@ export const Title = styled.h1`
     font-size: ${({ theme }) => theme.tabletThemeStyles.fontSizes[1]}px;
   }
 
-  @media (min-width: 601px) and (max-width: 1024px) {
+  @media (min-width: 601px) and (max-width: 940px) {
     font-size: ${({ theme }) => theme.laptopThemeStyles.fontSizes[1]}px;
   }
 `;
 
 export const LinksContainer = styled.div`
-  width: 70%;
+  width: ${({ theme }) => theme.width[4]}px;
   text-align: end;
 `;
 
@@ -37,6 +39,7 @@ export const NavbarLink = styled(NavLink)`
   &.${props => props.activeClassName} {
     color: ${({ theme }) => theme.colors.headerNavButtonActive};
     text-decoration: underline;
+    font-weight: 600;
   }
 
   margin-right: ${({ theme }) => theme.spaces[4]}px;
@@ -58,7 +61,7 @@ export const NavbarLink = styled(NavLink)`
     font-size: ${({ theme }) => theme.tabletThemeStyles.fontSizes[0]}px;
   }
 
-  @media (min-width: 601px) and (max-width: 1024px) {
+  @media (min-width: 601px) and (max-width: 940px) {
     font-size: ${({ theme }) => theme.laptopThemeStyles.fontSizes[0]}px;
   }
 `;

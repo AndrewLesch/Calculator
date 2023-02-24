@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 105px;
-  width: 100%;
-  padding: 5%;
+  height: ${({ theme }) => theme.height[5]}px;
+  padding: ${({ theme }) => theme.spaces[6]}px;
   border: ${({ theme }) => theme.borders[1]}px solid
     ${({ theme }) => theme.colors.notFoundBorder};
   font-size: ${({ theme }) => theme.fontSizes[4]}px;

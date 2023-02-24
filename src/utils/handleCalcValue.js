@@ -10,6 +10,173 @@ export default function handleCalcValue(calculatorValue, btnValue) {
   let value = `${calculatorValue}${btnValue}`;
   let lastSymbol = calculatorValue.toString().slice(-1);
 
+  if (btnValue === 'fac') {
+    value = `${calculatorValue}fac(`;
+  }
+
+  if (btnValue === '√') {
+    value = `${calculatorValue}√(`;
+  }
+
+  if (btnValue === 'log') {
+    value = `${calculatorValue}log(`;
+  }
+
+  if (btnValue === 'x^2') {
+    if (calculatorValue.length === 0) {
+      throw new Error(errors.invalidFormat);
+    }
+    value = `${calculatorValue}^2`;
+  }
+
+  if (btnValue === 'e^x') {
+    value = `${calculatorValue}e^(`;
+  }
+
+  if (btnValue === 'x^y') {
+    if (calculatorValue.length === 0) {
+      throw new Error(errors.invalidFormat);
+    }
+
+    if (
+      calculatorValue.toString().length > 0
+      && !operators.includes(lastSymbol)
+    ) {
+      value = `${calculatorValue}^(`;
+    }
+
+    if (calculatorValue.toString().slice(-2) === '^(') {
+      value = value.slice(0, -2);
+    }
+  }
+
+  if (btnValue === 'sin') {
+    value = `${calculatorValue}sin(`;
+  }
+
+  if (btnValue === 'cos') {
+    value = `${calculatorValue}cos(`;
+  }
+
+  if (btnValue === 'tan') {
+    value = `${calculatorValue}tan(`;
+  }
+
+  if (
+    btnValue === 'π'
+    && (lastSymbol === 'π'
+      || (numbers.includes(+lastSymbol) && calculatorValue.length !== 0))
+  ) {
+    value = `${calculatorValue}*π`;
+  }
+
+  if (lastSymbol === 'π' && !operators.includes(btnValue) && btnValue !== ')') {
+    value = `${calculatorValue}*${btnValue}`;
+  }
+
+  if (
+    btnValue === 'e'
+    && (lastSymbol === 'e'
+      || (numbers.includes(+lastSymbol) && calculatorValue.length !== 0))
+  ) {
+    value = `${calculatorValue}*e`;
+  }
+
+  if (lastSymbol === 'e' && btnValue !== ')' && !operators.includes(btnValue)) {
+    value = `${calculatorValue}*${btnValue}`;
+  }
+
+  if (btnValue === '|x|') {
+    value = `${calculatorValue}abs(`;
+  }
+
+  if (btnValue === '1/x') {
+    if (calculatorValue.length !== 0 && numbers.includes(+lastSymbol)) {
+      value = `${calculatorValue}*1/`;
+    } else {
+      value = `${calculatorValue}1/`;
+    }
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'sin'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*sin(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'tan'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*tan(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === '|x|'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*abs(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'e^x'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*e^(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'fac'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*fac(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'cos'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*cos(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === '√'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*√(`;
+  }
+
+  if (
+    !operators.includes(lastSymbol)
+    && btnValue === 'log'
+    && calculatorValue.toString().length > 0
+    && lastSymbol !== openBrace
+  ) {
+    value = `${calculatorValue}*log(`;
+  }
+
+  if (
+    btnValue === closeBrace
+    && (operators.includes(lastSymbol) || lastSymbol === openBrace)
+  ) {
+    value = calculatorValue;
+  }
+
   if (btnValue === '+/-') {
     const stringCalcValue = calculatorValue.toString();
     let lastOperatorIndex;
@@ -75,7 +242,14 @@ export default function handleCalcValue(calculatorValue, btnValue) {
     value = `${calculatorValue}`.concat(`*${btnValue}`);
   }
 
-  if (operators.includes(lastSymbol) && operators.includes(btnValue)) {
+  if (
+    operators.includes(lastSymbol)
+    && (btnValue === '+'
+      || btnValue === '-'
+      || btnValue === '*'
+      || btnValue === '/'
+      || btnValue === '%')
+  ) {
     value = `${calculatorValue}${btnValue}`.slice(0, -2).concat(btnValue);
     lastSymbol = '';
   }

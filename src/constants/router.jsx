@@ -1,16 +1,20 @@
 import React from 'react';
 
-import NotFound from '@/components/NotFound/Index';
-import HomePageCL from '@/pages/Home/CL/Index';
-import HomePageFC from '@/pages/Home/FC/Index';
-import SettingsPage from '@/pages/Settings/Index';
+import NotFound from '@/components/NotFound';
+import HomePageCL from '@/pages/Home/CC';
+import HomePageFC from '@/pages/Home/FC';
+import SettingsPage from '@/pages/Settings';
 
-export const HOME_PAGE_ROUTE_FC = '/';
-export const HOME_PAGE_ROUTE_CL = '/CL';
-export const SETTING_PAGE_ROUTE = '/settings';
-const INCORRECT_PAGE_ROUTE = '*';
+import routerPaths from './routerPaths';
 
-export const routes = [
+const {
+  SETTING_PAGE_ROUTE,
+  HOME_PAGE_ROUTE_CL,
+  HOME_PAGE_ROUTE_FC,
+  INCORRECT_PAGE_ROUTE,
+} = routerPaths;
+
+const routes = [
   {
     exact: true,
     path: SETTING_PAGE_ROUTE,
@@ -32,3 +36,4 @@ export const routes = [
     component: <NotFound />,
   },
 ];
+export default routes;

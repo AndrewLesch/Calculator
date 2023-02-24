@@ -4,12 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 
 import GlobalStyles from '@/styles/globalStyles';
 
-import App from './components/App/Index';
+import App from './components/App';
+import ErrorBoundary from './components/ErrorBoundary';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
-    <GlobalStyles />
+    <ErrorBoundary>
+      <App />
+      <GlobalStyles />
+    </ErrorBoundary>
   </BrowserRouter>,
   document.getElementById('root'),
 );
