@@ -6,10 +6,10 @@ describe('App test', () => {
   describe('Calculator test', () => {
     it('should handling addition', () => {
       cy.visit('/');
-      cy.get('#2').click();
-      cy.get('#6').click();
-      cy.get('#7').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=2]').click();
+      cy.get('[data-testid=6]').click();
+      cy.get('[data-testid=7]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '12',
@@ -18,10 +18,10 @@ describe('App test', () => {
 
     it('should handling subtraction', () => {
       cy.visit('/');
-      cy.get('#2').click();
-      cy.get('#18').click();
-      cy.get('#7').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=2]').click();
+      cy.get('[data-testid=18]').click();
+      cy.get('[data-testid=7]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '4',
@@ -30,10 +30,10 @@ describe('App test', () => {
 
     it('should handling divide', () => {
       cy.visit('/');
-      cy.get('#2').click();
-      cy.get('#12').click();
-      cy.get('#7').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=2]').click();
+      cy.get('[data-testid=12]').click();
+      cy.get('[data-testid=7]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '2',
@@ -42,10 +42,10 @@ describe('App test', () => {
 
     it('should handling multiply', () => {
       cy.visit('/');
-      cy.get('#2').click();
-      cy.get('#10').click();
-      cy.get('#7').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=2]').click();
+      cy.get('[data-testid=10]').click();
+      cy.get('[data-testid=7]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '32',
@@ -85,17 +85,17 @@ describe('App test', () => {
     it('should handling pro button', () => {
       cy.visit('/');
       cy.get('.styled__KeypadButtonWrapper-sc-1cd14tb-1').children().last().should('have.text', 'fac');
-      cy.get('#17').click();
+      cy.get('[data-testid=17]').click();
       cy.get('.styled__KeypadButtonWrapper-sc-1cd14tb-1').children().last().should('have.text', '=');
     });
 
     it('should handling abs', () => {
       cy.visit('/');
-      cy.get('#27').click();
-      cy.get('#18').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=27]').click();
+      cy.get('[data-testid=18]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '7',
@@ -104,11 +104,11 @@ describe('App test', () => {
 
     it('should handling cosinus', () => {
       cy.visit('/');
-      cy.get('#26').click();
-      cy.get('#18').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=26]').click();
+      cy.get('[data-testid=18]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '0.754',
@@ -117,10 +117,10 @@ describe('App test', () => {
 
     it('should handling fac', () => {
       cy.visit('/');
-      cy.get('#35').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=35]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '5040',
@@ -129,10 +129,10 @@ describe('App test', () => {
 
     it('should handling log', () => {
       cy.visit('/');
-      cy.get('#32').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=32]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '0.845',
@@ -141,11 +141,11 @@ describe('App test', () => {
 
     it('should handling pow', () => {
       cy.visit('/');
-      cy.get('#1').click();
-      cy.get('#30').click();
-      cy.get('#14').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=30]').click();
+      cy.get('[data-testid=14]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '49',
@@ -154,10 +154,10 @@ describe('App test', () => {
 
     it('should handling residue', () => {
       cy.visit('/');
-      cy.get('#1').click();
-      cy.get('#22').click();
-      cy.get('#15').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=22]').click();
+      cy.get('[data-testid=15]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '1',
@@ -166,11 +166,11 @@ describe('App test', () => {
 
     it('should handling sinus', () => {
       cy.visit('/');
-      cy.get('#25').click();
-      cy.get('#18').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=25]').click();
+      cy.get('[data-testid=18]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '-0.657',
@@ -179,10 +179,10 @@ describe('App test', () => {
 
     it('should handling sqrt', () => {
       cy.visit('/');
-      cy.get('#34').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=34]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '2.646',
@@ -191,10 +191,10 @@ describe('App test', () => {
 
     it('should handling tan', () => {
       cy.visit('/');
-      cy.get('#33').click();
-      cy.get('#1').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=33]').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '0.871',
@@ -203,7 +203,7 @@ describe('App test', () => {
 
     it('should handling e', () => {
       cy.visit('/');
-      cy.get('#23').click();
+      cy.get('[data-testid=23]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         'e',
@@ -212,7 +212,7 @@ describe('App test', () => {
 
     it('should handling 1/x', () => {
       cy.visit('/');
-      cy.get('#24').click();
+      cy.get('[data-testid=24]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '1/',
@@ -221,7 +221,7 @@ describe('App test', () => {
 
     it('should handling π', () => {
       cy.visit('/');
-      cy.get('#28').click();
+      cy.get('[data-testid=28]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         'π',
@@ -230,9 +230,9 @@ describe('App test', () => {
 
     it('should handling x^2', () => {
       cy.visit('/');
-      cy.get('#1').click();
-      cy.get('#29').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=1]').click();
+      cy.get('[data-testid=29]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '49',
@@ -241,10 +241,10 @@ describe('App test', () => {
 
     it('should handling e^x', () => {
       cy.visit('/');
-      cy.get('#31').click();
-      cy.get('#14').click();
-      cy.get('#5').click();
-      cy.get('#21').click();
+      cy.get('[data-testid=31]').click();
+      cy.get('[data-testid=14]').click();
+      cy.get('[data-testid=5]').click();
+      cy.get('[data-testid=21]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '7.344',
@@ -253,13 +253,13 @@ describe('App test', () => {
 
     it('should handling +/-', () => {
       cy.visit('/');
-      cy.get('#2').click();
-      cy.get('#11').click();
+      cy.get('[data-testid=2]').click();
+      cy.get('[data-testid=11]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '(-8',
       );
-      cy.get('#11').click();
+      cy.get('[data-testid=11]').click();
       cy.get('.styled__CalculatorDisplayValue-sc-1rkt8zi-1').should(
         'have.text',
         '8',

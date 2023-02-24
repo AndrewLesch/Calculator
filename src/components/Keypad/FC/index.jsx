@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import propTypes from 'prop-types';
 
 import { keypadButtons, proKeypadButtons } from '@/constants/calculator';
 
 import { KeypadButton, KeypadButtonWrapper } from '../styled';
 
-const KeypadFC = React.memo(({ onKeypadButtonClick, isProCalcActive }) => {
+const KeypadFC = memo(({ onKeypadButtonClick, isProCalcActive }) => {
   const onKeypadButtonClickHandle = btnValue => () => onKeypadButtonClick(btnValue);
 
   const buttonsValue = useMemo(
@@ -20,7 +20,7 @@ const KeypadFC = React.memo(({ onKeypadButtonClick, isProCalcActive }) => {
           value={btnValue}
           onClick={onKeypadButtonClickHandle(btnValue)}
           key={btnValue}
-          id={id}
+          data-testid={id}
         >
           {btnValue}
         </KeypadButton>

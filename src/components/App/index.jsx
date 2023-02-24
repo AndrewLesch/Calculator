@@ -18,9 +18,11 @@ export default function App() {
     [selectedThemeKey, handleThemeChange],
   );
 
+  const setSelectedTheme = () => selectedTheme;
+
   return (
     <ThemeContext.Provider value={themeContextValue}>
-      <ThemeProvider theme={() => selectedTheme}>
+      <ThemeProvider theme={setSelectedTheme}>
         <PageLayout>
           <AppWrapper>
             <Header />

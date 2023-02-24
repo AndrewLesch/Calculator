@@ -32,7 +32,6 @@
     "redux-actions": "^2.6.5",
     "redux-saga": "^1.1.1",
     "styled-components": "^4.4.1",
-    "yarn": "^1.19.1",
     "yup": "^0.27.0"
   },
   "devDependencies": {

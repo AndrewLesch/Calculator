@@ -30,18 +30,20 @@ export default function CalculatorContainerFC() {
   };
 
   const onKeypadButtonClick = btnValue => {
-    onCalcButtonClick(
+    const returnedValues = onCalcButtonClick(
       isAnswer,
-      setIsAnswer,
       calculatorValue,
-      setCalculatorValue,
-      setHistory,
-      setLastExpression,
+      lastExpression,
       btnValue,
       history,
-      setIsProCalcActive,
       isProCalcActive,
     );
+
+    setCalculatorValue(returnedValues.calculatorValue);
+    setHistory(returnedValues.history);
+    setIsAnswer(returnedValues.isAnswer);
+    setIsProCalcActive(returnedValues.isProCalcActive);
+    setLastExpression(returnedValues.lastExpression);
   };
 
   return (

@@ -6,43 +6,50 @@ import handleCalcValue from './handleCalcValue';
 
 export default function onCalcButtonClick(
   isAnswer,
-  setIsAnswer,
   calculatorValue,
-  setCalculatorValue,
-  setHistory,
-  setLastExpression,
+  lastExpression,
   btnValue,
   history,
-  setIsProCalcActive,
   isProCalcActive,
 ) {
+  const calculatorParams = {
+    isAnswer,
+    calculatorValue,
+    lastExpression,
+    btnValue,
+    history,
+    isProCalcActive,
+  };
   switch (btnValue) {
     case '=': {
       const lastSymbol = calculatorValue.toString().slice(-1);
 
       if (operators.includes(lastSymbol)) {
-        setCalculatorValue(errors.invalidFormat);
-        throw new Error(errors.invalidFormat);
+        calculatorParams.calculatorValue = errors.invalidFormat;
+        return calculatorParams;
       }
 
       if (!checkBracesIsValid(calculatorValue)) {
-        setCalculatorValue(errors.wrongBraces);
-        throw new Error(errors.wrongBraces);
+        calculatorParams.calculatorValue = errors.wrongBraces;
+        return calculatorParams;
       }
 
       const value = calculateState(calculatorValue);
 
       if (value === Infinity || Number.isNaN(value)) {
-        setCalculatorValue(errors.divideByZero);
-        throw new Error(errors.divideByZero);
-      } else {
-        setLastExpression(calculatorValue);
-        const mathAnswer = calculateState(calculatorValue);
-        setCalculatorValue(mathAnswer);
-        setHistory([...history, `${calculatorValue} = ${mathAnswer}`]);
-        setIsAnswer(true);
+        calculatorParams.calculatorValue = errors.divideByZero;
+        return calculatorParams;
       }
-      break;
+
+      calculatorParams.lastExpression = calculatorValue;
+      const mathAnswer = calculateState(calculatorValue);
+      calculatorParams.calculatorValue = mathAnswer;
+      calculatorParams.history = [
+        ...history,
+        `${calculatorValue} = ${mathAnswer}`,
+      ];
+      calculatorParams.isAnswer = true;
+      return calculatorParams;
     }
 
     case 'C': {
@@ -51,8 +58,10 @@ export default function onCalcButtonClick(
         || calculatorValue === errors.invalidFormat
         || calculatorValue === errors.wrongBraces
       ) {
-        setCalculatorValue('');
-      } else if (
+        calculatorParams.calculatorValue = '';
+        return calculatorParams;
+      }
+      if (
         calculatorValue.toString().slice(-4) === 'sin('
         || calculatorValue.toString().slice(-4) === 'cos('
         || calculatorValue.toString().slice(-4) === 'abs('
@@ -60,22 +69,24 @@ export default function onCalcButtonClick(
         || calculatorValue.toString().slice(-4) === 'log('
         || calculatorValue.toString().slice(-4) === 'tan('
       ) {
-        setCalculatorValue(calculatorValue.toString().slice(0, -4));
-      } else {
-        setCalculatorValue(calculatorValue.toString().slice(0, -1));
+        calculatorParams.calculatorValue = calculatorValue
+          .toString()
+          .slice(0, -4);
+        return calculatorParams;
       }
-      break;
+      calculatorParams.calculatorValue = calculatorValue.toString().slice(0, -1);
+      return calculatorParams;
     }
 
     case 'CE': {
-      setCalculatorValue('');
-      setLastExpression('');
-      break;
+      calculatorParams.calculatorValue = '';
+      calculatorParams.lastExpression = '';
+      return calculatorParams;
     }
 
     case 'pro': {
-      setIsProCalcActive(!isProCalcActive);
-      break;
+      calculatorParams.isProCalcActive = !calculatorParams.isProCalcActive;
+      return calculatorParams;
     }
 
     default: {
@@ -85,12 +96,16 @@ export default function onCalcButtonClick(
         || calculatorValue === errors.wrongBraces
         || (isAnswer && !defaultOperators.includes(btnValue))
       ) {
-        setCalculatorValue(handleCalcValue('', btnValue));
-        setIsAnswer(false);
-      } else {
-        setCalculatorValue(handleCalcValue(calculatorValue, btnValue));
-        setIsAnswer(false);
+        calculatorParams.calculatorValue = handleCalcValue('', btnValue);
+        calculatorParams.isAnswer = false;
+        return calculatorParams;
       }
+      calculatorParams.calculatorValue = handleCalcValue(
+        calculatorValue,
+        btnValue,
+      );
+      calculatorParams.isAnswer = false;
+      return calculatorParams;
     }
   }
 }

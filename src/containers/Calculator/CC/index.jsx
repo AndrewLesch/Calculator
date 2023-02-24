@@ -4,13 +4,12 @@ import ControlPanelCL from '@/components/ControlPanel/CC';
 import DisplayCL from '@/components/Display/CC';
 import HistoryCL from '@/components/History/CC';
 import KeypadCL from '@/components/Keypad/CC';
-import { defaultOperators, errors, operators } from '@/constants/calculator';
 import {
   CALCULATOR_VALUE_LS_KEY,
   HISTORY_LS_KEY,
 } from '@/constants/localStorage';
-import { checkBraces, getStartValue, handleCalculatorValue } from '@/utils';
-import calculateState from '@/utils/Calculator/calculateState';
+import { getStartValue } from '@/utils';
+import onCalcButtonClick from '@/utils/onCalcButtonClick';
 
 import { ButtonsWrapper, CalculatorWrapper, HistoryWrapper } from '../styled';
 
@@ -62,111 +61,26 @@ export default class CalculatorContainerCL extends Component {
   };
 
   handleKeypadButtonClick = btnValue => {
-    const { calculatorValue, isAnswer } = this.state;
+    const {
+      calculatorValue, isAnswer, history, isProCalcActive, lastExpression,
+    } = this.state;
 
-    switch (btnValue) {
-      case '=': {
-        const lastSymbol = calculatorValue.toString().slice(-1);
+    const returnedValues = onCalcButtonClick(
+      isAnswer,
+      calculatorValue,
+      lastExpression,
+      btnValue,
+      history,
+      isProCalcActive,
+    );
 
-        if (operators.includes(lastSymbol)) {
-          this.setState(() => ({
-            calculatorValue: errors.invalidFormat,
-          }));
-          throw new Error(errors.invalidFormat);
-        }
-        if (!checkBraces(calculatorValue)) {
-          this.setState(() => ({
-            calculatorValue: errors.wrongBraces,
-          }));
-          throw new Error(errors.wrongBraces);
-        }
-
-        const value = calculateState(calculatorValue);
-        if (value === Infinity || Number.isNaN(value)) {
-          this.setState(() => ({
-            calculatorValue: errors.divideByZero,
-          }));
-          throw new Error(errors.divideByZero);
-        } else {
-          const mathAnswer = calculateState(calculatorValue);
-          this.setState(({ history, calculatorValue }) => ({
-            history: [...history, `${calculatorValue} = ${mathAnswer}`],
-            lastExpression: calculatorValue,
-            calculatorValue: mathAnswer,
-            isAnswer: true,
-          }));
-        }
-        break;
-      }
-
-      case 'C': {
-        if (
-          calculatorValue === errors.divideByZero
-          || calculatorValue === errors.invalidFormat
-          || calculatorValue === errors.wrongBraces
-        ) {
-          this.setState(prevState => ({
-            ...prevState,
-            calculatorValue: '',
-          }));
-        } else if (
-          calculatorValue.toString().slice(-4) === 'sin('
-          || calculatorValue.toString().slice(-4) === 'cos('
-          || calculatorValue.toString().slice(-4) === 'abs('
-          || calculatorValue.toString().slice(-4) === 'fac('
-          || calculatorValue.toString().slice(-4) === 'log('
-          || calculatorValue.toString().slice(-4) === 'tan('
-        ) {
-          this.setState(prevState => ({
-            ...prevState,
-            calculatorValue: calculatorValue.toString().slice(0, -4),
-          }));
-        } else {
-          this.setState(prevState => ({
-            ...prevState,
-            calculatorValue: calculatorValue.toString().slice(0, -1),
-          }));
-        }
-        break;
-      }
-
-      case 'CE': {
-        this.setState(prevState => ({
-          ...prevState,
-          calculatorValue: '',
-          lastExpression: '',
-        }));
-        break;
-      }
-
-      case 'pro': {
-        this.setState(prevState => ({
-          isProCalcActive: !prevState.isProCalcActive,
-        }));
-        break;
-      }
-
-      default: {
-        if (
-          calculatorValue === errors.divideByZero
-          || calculatorValue === errors.invalidFormat
-          || calculatorValue === errors.wrongBraces
-          || (isAnswer && !defaultOperators.includes(btnValue))
-        ) {
-          this.setState(prevState => ({
-            ...prevState,
-            calculatorValue: handleCalculatorValue('', btnValue),
-            isAnswer: false,
-          }));
-        } else {
-          this.setState(prevState => ({
-            ...prevState,
-            calculatorValue: handleCalculatorValue(calculatorValue, btnValue),
-            isAnswer: false,
-          }));
-        }
-      }
-    }
+    this.setState(() => ({
+      history: returnedValues.history,
+      lastExpression: returnedValues.lastExpression,
+      calculatorValue: returnedValues.calculatorValue,
+      isAnswer: returnedValues.isAnswer,
+      isProCalcActive: returnedValues.isProCalcActive,
+    }));
   };
 
   render() {
