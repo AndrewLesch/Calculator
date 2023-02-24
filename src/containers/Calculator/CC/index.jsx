@@ -65,7 +65,7 @@ export default class CalculatorContainerCL extends Component {
       calculatorValue, isAnswer, history, isProCalcActive, lastExpression,
     } = this.state;
 
-    const returnedValues = onCalcButtonClick(
+    const calculatorParams = onCalcButtonClick(
       isAnswer,
       calculatorValue,
       lastExpression,
@@ -75,11 +75,11 @@ export default class CalculatorContainerCL extends Component {
     );
 
     this.setState(() => ({
-      history: returnedValues.history,
-      lastExpression: returnedValues.lastExpression,
-      calculatorValue: returnedValues.calculatorValue,
-      isAnswer: returnedValues.isAnswer,
-      isProCalcActive: returnedValues.isProCalcActive,
+      history: calculatorParams.history,
+      lastExpression: calculatorParams.lastExpression,
+      calculatorValue: calculatorParams.calculatorValue,
+      isAnswer: calculatorParams.isAnswer,
+      isProCalcActive: calculatorParams.isProCalcActive,
     }));
   };
 
